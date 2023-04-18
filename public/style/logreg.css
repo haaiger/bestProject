@@ -87,3 +87,59 @@
 .registration-form-container {
   display: none;
 }
+
+.login-form-container {
+  display: none;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  max-width: 500px;
+  background-color: white;
+  border: 1px solid black;
+  margin: auto;
+  padding: 20px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.login-form label {
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.login-form button {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.login-form .msg {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f44336;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  visibility: hidden;
+}

@@ -32,6 +32,7 @@ function Layout({ children, userSession }) {
           <Navbar userSession={userSession} />
         </header>
         <div className="registration-form-container" />
+        <div className="login-form-container" />
         {children}
       </body>
     </html>

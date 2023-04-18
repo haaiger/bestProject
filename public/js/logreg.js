@@ -11,13 +11,17 @@ findButtonForReg.addEventListener("click", () => {
     if (buttonText === "Зарегистрироваться") {
       document.querySelector(".registration").textContent = "Скрыть форму";
     }
+
+    const buttonLogin = document.querySelector(".login");
+    buttonLogin.style.display = "none";
+
     const registrationForm = document.createElement("div");
     registrationForm.classList.add("registration-form");
 
     registrationForm.innerHTML = `
     <form class='regForm' name="regForm">
     <label for="name">Введите ваше имя:</label>
-    <input type="text" name="name" id="name">
+    <input type="text" name="firstName" id="name">
 
     <label for="email">Введите почту:</label>
     <input type="email" name="email" id="email">
@@ -127,5 +131,94 @@ logoutButton?.addEventListener("click", async () => {
     }
   } catch (error) {
     console.log(error);
+  }
+});
+
+const LoginFormContainer = document.querySelector(".login-form-container");
+let counterForLogin = 0;
+
+const findButtonForLogin = document.querySelector(".login");
+findButtonForLogin.addEventListener("click", () => {
+  counterForLogin += 1;
+  if (counterForLogin % 2) {
+    const buttonText = document.querySelector(".login").textContent;
+    if (buttonText === "Авторизоваться") {
+      document.querySelector(".login").textContent = "Скрыть форму";
+    }
+    const buttomRegistration = document.querySelector(".registration");
+    buttomRegistration.style.display = "none";
+
+    const loginForm = document.createElement("div");
+    loginForm.classList.add("login-form");
+
+    loginForm.innerHTML = `
+    <form class='logForm' name="logForm">
+
+    <label for="email">Введите почту:</label>
+    <input type="email" name="email" id="email">
+
+    <label for="password">Введите пароль:</label>
+    <input type="password" name="password" id="password1">
+    <h5 class="msg"></h5>
+
+    <button type='submit'>Авторизоваться</button>
+
+  </a>
+
+
+
+    </form>
+  `;
+    LoginFormContainer.style.display = "inline";
+    LoginFormContainer.appendChild(loginForm);
+
+    const LoginForm1 = document.forms.logForm;
+    LoginForm1.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(LoginForm1);
+      try {
+        const response = await fetch("/users/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(Object.fromEntries(data)),
+        });
+        const result = await response.json();
+        const msg = document.querySelector(".msg");
+        console.log(result, "resultresult");
+        if (result.firstName) {
+          document.querySelector(".logForm").remove();
+          LoginFormContainer.style.display = "none";
+          const buttonProfile = document.querySelector(".profile");
+          buttonProfile.style.display = "inline";
+          const buttonLogoute = document.querySelector(".logout");
+          buttonLogoute.style.display = "inline";
+          const buttonLogin = document.querySelector(".login");
+          buttonLogin.style.display = "none";
+
+          msg.innerText = "";
+
+          const profileButton = document.querySelector(".profile");
+          profileButton.addEventListener("click", () => {
+            window.location = "/profile";
+          });
+        } else {
+          msg.style.visibility = "visible";
+          msg.innerText = `${result.msg}`;
+        }
+      } catch (error) {
+        // alert('ОШИБКА ВЫ НЕ СМОГЛИ ВОЙТИ', error);
+      }
+    });
+  } else {
+    const buttonText = document.querySelector(".login").textContent;
+    if (buttonText === "Скрыть форму") {
+      document.querySelector(".login").textContent = "Авторизоваться";
+      document.querySelector(".logForm").remove();
+      LoginFormContainer.style.display = "none";
+      const buttonRegistration = document.querySelector(".registration");
+      buttonRegistration.style.display = "inline";
+    }
   }
 });

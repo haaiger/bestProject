@@ -5,18 +5,18 @@ const { User } = require("../../db/models");
 
 router.post("/registration", async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { firstName, email, password } = req.body;
     const user = await User.findOne({ where: { email } });
     if (user) {
       res.json({ msg: "Почта уже зарегистрирована" });
     } else {
       const hashPass = await bcrypt.hash(password, 10);
       const newUser = await User.create({
-        name,
+        firstName,
         email,
         password: hashPass,
       });
-      req.session.user = newUser.name;
+      req.session.firstName = newUser.firstName;
       req.session.userId = newUser.id;
       req.session.isAdmin = newUser.isAdmin;
       res.json(newUser);
@@ -41,13 +41,13 @@ router.post("/login", async (req, res) => {
     if (user) {
       const passCheck = await bcrypt.compare(password, user.password);
       if (passCheck) {
-        req.session.user = user.name;
+        req.session.firstName = user.firstName;
         req.session.userId = user.id;
         req.session.isAdmin = user.isAdmin;
 
         res.json({
           msg: "login ok",
-          userName: user.name,
+          firstName: user.firstName,
           user,
           UserIdmsg: user.id,
           isAdmin: user.isAdmin,

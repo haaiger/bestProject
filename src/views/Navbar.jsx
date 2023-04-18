@@ -52,6 +52,8 @@ module.exports = function Navbar({ userSession }) {
             </button>
           </div>
         )}
+
+        {/* ниже кнопки не удалять, нужно для корректной отработки логики */}
         <div className="logReg">
           <button type="button" className="profile button">
             Личный кабинет
