@@ -1,0 +1,36 @@
+.wrappeHome {
+    display: flex;
+    flex-direction: column;
+}
+
+.editForm {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 16px;
+}
+
+.pagination {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-link {
+    text-decoration: none;
+}
+
+.page-item {
+    color: black
+}
+
+.active {
+    color: blue
+}

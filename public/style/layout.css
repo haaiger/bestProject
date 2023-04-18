@@ -1,0 +1,16 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.listLayout {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.anchorLayout {
+    text-decoration: none;
+}
