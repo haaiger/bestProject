@@ -1,9 +1,9 @@
 const React = require("react");
 const Layout = require("./Layout");
 
-function HomePage() {
+function HomePage({ userSession }) {
   return (
-    <Layout>
+    <Layout userSession={userSession}>
       <link rel="stylesheet" href="/style/home.css" />
       <script defer src="/js/home.js" />
       <div>Home page</div>
