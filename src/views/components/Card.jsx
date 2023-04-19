@@ -11,9 +11,9 @@ function Card({ title, text, link }) {
       <div className="card-body">
         <h5 className="card-title">{title}</h5>
         <p className="card-text">{text}</p>
-        <a href="#" className="btn btn-primary">
-          Go somewhere
-        </a>
+        <button type="button" className="btn btn-primary buttonHome">
+          Добавить в изобранное
+        </button>
       </div>
     </div>
   );

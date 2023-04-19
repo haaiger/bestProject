@@ -1,6 +1,6 @@
 const React = require("react");
 const Layout = require("./Layout");
-const Card = require("./Card");
+const Card = require("./components/Card");
 
 const someCards = [
   { link: null, title: "title1", text: "text1" },
@@ -8,7 +8,7 @@ const someCards = [
   { link: null, title: "title3", text: "text3" },
 ];
 
-function HomePage({}) {
+function HomePage() {
   return (
     <Layout>
       <link rel="stylesheet" href="/style/home.css" />
@@ -21,7 +21,7 @@ function HomePage({}) {
               <select name="rentPeriod">
                 <option>Посуточно</option>
                 <option>Краткосрочно</option>
-                <option>На длитеный срок</option>
+                <option>На длительный срок</option>
               </select>
             </div>
             <div className="wrapperFilter">
@@ -41,11 +41,17 @@ function HomePage({}) {
               </select>
             </div>
           </div>
-          <button type="submit">Показать на карте</button>
+          <button type="submit">Поиск</button>
         </form>
+        <button type="button">Показать на карте</button>
         <div className="wrapperRandomАdvertisement">
-          {someCards.map((card) => (
-            <Card title={card.title} text={card.text} link={card.link} />
+          {someCards.map((card, index) => (
+            <Card
+              key={index}
+              title={card.title}
+              text={card.text}
+              link={card.link}
+            />
           ))}
         </div>
       </div>

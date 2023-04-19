@@ -5,6 +5,7 @@ const morgan = require("morgan");
 
 // Роуты
 const homeRouter = require("./src/routes/homeRouter");
+const listRouter = require("./src/routes/listRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,6 +18,7 @@ app.use(morgan("dev"));
 
 // Роуты
 app.use("/", homeRouter);
+app.use("/list-cards", listRouter);
 // app.use(pageNotFoundRouter);
 
 // Старт сервера

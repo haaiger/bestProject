@@ -15,6 +15,7 @@
     "import/no-extraneous-dependencies": "off",
     "quotes": "off",
     "react/prop-types": "off",
-    "jsx-a11y/label-has-associated-control": "off"
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/no-array-index-key": "off"
   }
 }

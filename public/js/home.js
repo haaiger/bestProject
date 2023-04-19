@@ -1,11 +1,25 @@
 const { formHome } = document.forms;
-console.log(formHome);
+const favouriteButton = document.querySelector(".buttonHome");
 
-formHome.addEventListener("submit", (event) => {
+formHome.addEventListener("submit", async (event) => {
   event.preventDefault();
-  console.log(123);
   const loginData = new FormData(formHome);
-  console.log(loginData);
   const data = Object.fromEntries(loginData);
   console.log(data);
+  try {
+    await fetch(
+      `/list-cards/${data.rentPeriod}/${data.typeHouse}/${data.regions}`,
+    );
+  } catch (error) {
+    console.log("Ошибка отправки формы home", error);
+  }
+});
+
+favouriteButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  try {
+    const data = null; // получаем данные дома.
+  } catch (error) {
+    console.log("Ошибка fetch запроса добавления в избранное");
+  }
 });
