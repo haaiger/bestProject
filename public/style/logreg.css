@@ -1,0 +1,96 @@
+.registration-form,
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  max-width: 900px;
+  background-color: white;
+  border: 2px solid black;
+  margin: auto;
+  padding: 10px;
+  border-radius: 5px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-form {
+  max-width: 500px;
+}
+
+.registration-form label,
+.login-form label {
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.registration-form input,
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.registration-form .msg1,
+.login-form .msg {
+  width: 100%;
+  padding: 10px;
+  color: rgb(255, 0, 0);
+  text-align: center;
+  display: none;
+  margin: 5px;
+}
+
+.full-registration-form {
+  width: 100%;
+}
+
+.button {
+  color: #ffffff;
+  margin: 5px;
+  background-color: green;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+
+  padding: 6px 12px;
+  font-size: 20px;
+  line-height: 1.42857143;
+  border-radius: 5px;
+
+  margin: auto 10px auto auto;
+}
+
+.logout,
+.login,
+.registration,
+.profile,
+.registration-form-container,
+.login-form-container {
+  display: none;
+}
+
+.col-md-4 {
+  position: relative;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.col-md-4:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  border-right: 2px solid #ccc; /* цвет и толщина линии-разделителя */
+}
+.col-md-4:last-child:before {
+  display: none; /* убираем линию-разделитель для последней колонки*/
+}

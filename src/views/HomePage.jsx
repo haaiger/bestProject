@@ -8,9 +8,9 @@ const someCards = [
   { link: null, title: "title3", text: "text3" },
 ];
 
-function HomePage() {
+function HomePage({ userSession }) {
   return (
-    <Layout>
+    <Layout userSession={userSession}>
       <link rel="stylesheet" href="/style/home.css" />
       <script defer src="/js/home.js" />
       <div className="wrapperHome">

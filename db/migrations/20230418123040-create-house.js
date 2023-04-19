@@ -1,4 +1,3 @@
-"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -9,32 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      categoryId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Categories",
-          },
-          key: "id",
-        },
+      rentPeriod: {
+        type: Sequelize.STRING,
       },
-      typeHouseId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "TypeHouses",
-          },
-          key: "id",
-        },
+      typeHouse: {
+        type: Sequelize.STRING,
       },
-      regionId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Regions",
-          },
-          key: "id",
-        },
+      region: {
+        type: Sequelize.STRING,
       },
       price: {
         type: Sequelize.INTEGER,
@@ -51,6 +32,11 @@ module.exports = {
       geoTag: {
         type: Sequelize.STRING,
       },
+      isRent: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
