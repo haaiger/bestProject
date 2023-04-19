@@ -1,5 +1,3 @@
-"use strict";
-
 const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
@@ -17,19 +15,20 @@ module.exports = (sequelize, DataTypes) => {
   }
   House.init(
     {
-      categoryId: DataTypes.INTEGER,
-      typeHouseId: DataTypes.INTEGER,
-      regionId: DataTypes.INTEGER,
+      rentPeriod: DataTypes.STRING,
+      typeHouse: DataTypes.STRING,
+      region: DataTypes.STRING,
       price: DataTypes.INTEGER,
       description: DataTypes.TEXT,
       photo: DataTypes.STRING,
       address: DataTypes.STRING,
       geoTag: DataTypes.STRING,
+      isRent: DataTypes.BOOLEAN,
     },
     {
       sequelize,
       modelName: "House",
-    }
+    },
   );
   return House;
 };

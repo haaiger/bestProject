@@ -1,19 +1,27 @@
 const React = require("react");
-const Cards = require("./components/Cards");
+const BigCard = require("./components/BigCard");
+const Layout = require("./Layout");
 
-function ListPage({ foundHouses }) {
+function ListPage({ findHouses, userSession }) {
   return (
-    <div className="wrapperList">
-      <div>Тут будет показывать фильтр, который применен</div>
-      <div>
-        <div>Количество найденных объявлений</div>
-        <div>Фильтр для сортировки</div>
-        <button type="button">На карте</button>
+    <Layout userSession={userSession}>
+      <link rel="stylesheet" href="/style/list.css" />
+      <div className="wrapperList">
+        <div>Тут будет показывать фильтр, который применен</div>
+        <div>
+          <div>Количество найденных объявлений</div>
+          <div>Фильтр для сортировки</div>
+          <button type="button">На карте</button>
+        </div>
+        <div className="wrapperListBigCard">
+          {/* {findHouses.map((house) => (
+            <BigCard url={house.url} />
+          ))} */}
+          <BigCard />
+          <BigCard />
+        </div>
       </div>
-      {foundHouses.map((house) => (
-        <Cards url={house.url} />
-      ))}
-    </div>
+    </Layout>
   );
 }
 

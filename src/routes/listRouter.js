@@ -1,23 +1,23 @@
 const router = require("express").Router();
 const renderTemplate = require("../lib/renderTemplate");
 const ListPage = require("../views/ListPage");
-const { Houses } = require("../../db/models");
+const { House } = require("../../db/models");
 
-const rentPeriod = "Посуточно";
-const typeHouse = "Комната";
-const regions = "Центральный";
+// const rentPeriod = "Суточно";
+// const typeHouse = "Квартира";
+// const region = "Ленинский";
 
 router.get(`/:rentPeriod/:typeHouse/:regions`, async (request, response) => {
-  console.log(console.log("log"), request.params);
   try {
-    const findHouses = await Houses.findAll({
+    const { rentPeriod, typeHouse, region } = request.params;
+    const findHouses = await House.findAll({
       where: {
-        rentPeriod: `${rentPeriod}`,
-        typeHouse: `${typeHouse}`,
-        regions: `${regions}`,
+        rentPeriod,
+        typeHouse,
       },
+      raw: true,
     });
-    console.log(findHouses);
+    console.log("findHouses", findHouses);
     renderTemplate(ListPage, { findHouses }, request, response);
   } catch (error) {
     console.log("Ошибка GET запроса /:rentPeriod/:typeHouse/:regions", error);

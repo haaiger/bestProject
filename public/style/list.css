@@ -1,0 +1,6 @@
+.wrapperListBigCard {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    padding: 32px;
+}

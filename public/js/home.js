@@ -7,9 +7,7 @@ formHome.addEventListener("submit", async (event) => {
   const data = Object.fromEntries(loginData);
   console.log(data);
   try {
-    await fetch(
-      `/list-cards/${data.rentPeriod}/${data.typeHouse}/${data.regions}`,
-    );
+    window.location.href = `/list-cards/${'Суточно'}/${"Квартира"}/${"Ленинский"}`;
   } catch (error) {
     console.log("Ошибка отправки формы home", error);
   }
