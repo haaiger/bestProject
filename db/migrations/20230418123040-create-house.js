@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -14,10 +15,13 @@ module.exports = {
       typeHouse: {
         type: Sequelize.STRING,
       },
-      region: {
+      district: {
         type: Sequelize.STRING,
       },
       price: {
+        type: Sequelize.INTEGER,
+      },
+      rooms: {
         type: Sequelize.INTEGER,
       },
       description: {
@@ -36,7 +40,6 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
       },
-
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
