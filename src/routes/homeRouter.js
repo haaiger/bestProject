@@ -9,7 +9,7 @@ console.log(FeedBacks, 'Feedback<<<<<<');
 
 router.get('/', async (request, response) => {
   try {
-    renderTemplate(Home, {}, response, request);
+    renderTemplate(Home, {}, request, response);
   } catch (error) {
     console.log('Ошибка запроса GET /', error);
   }
