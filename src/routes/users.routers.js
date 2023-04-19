@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const renderTemplate = require("../lib/renderTemplate");
 
 const { User } = require("../../db/models");
-const FullRegForm = require("../views/FullRegForm");
+// const FullRegForm = require("../views/FullRegForm");
 
 router.post("/registration", async (req, res) => {
   try {
