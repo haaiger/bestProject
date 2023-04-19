@@ -1,7 +1,9 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
+const renderTemplate = require("../lib/renderTemplate");
 
 const { User } = require("../../db/models");
+const FullRegForm = require("../views/FullRegForm");
 
 router.post("/registration", async (req, res) => {
   try {
@@ -62,6 +64,10 @@ router.post("/login", async (req, res) => {
     console.log(error);
     res.send(error);
   }
+});
+
+router.get("/full-reg-form", async (request, response) => {
+  renderTemplate(FullRegForm, {}, request, response);
 });
 
 module.exports = router;

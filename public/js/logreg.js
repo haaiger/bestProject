@@ -19,7 +19,7 @@ findButtonForReg.addEventListener("click", () => {
     registrationForm.classList.add("registration-form");
 
     registrationForm.innerHTML = `
-    <form class='regForm' name="regForm">
+    <form class='regForm ' name="regForm">
     <label for="name">Введите ваше имя:</label>
     <input type="text" name="firstName" id="name">
 
@@ -32,10 +32,10 @@ findButtonForReg.addEventListener("click", () => {
     <label for="password">Повторите пароль:</label>
     <input type="password" name="password" id="password2">
 
-    <h5 class="msg"></h5>
+    <h5 class="msg1"></h5>
 
-    <button type='submit'>Быстрая регистрация</button>
-    <a class="btn btn-primary d-grid" href="/full-page-registration">
+    <button class="btn btn-success my-3" style='width: 100%' type='submit'>Быстрая регистрация</button>
+    <a class="btn btn-primary" style='width: 100%' href="/users/full-reg-form">
     Пройти полную регистрацию
   </a>
 
@@ -54,11 +54,10 @@ findButtonForReg.addEventListener("click", () => {
       const password1 = password1Input.value;
       const password2 = password2Input.value;
       if (password1 !== password2) {
-        const msg = document.querySelector(".msg");
-        msg.style.visibility = "visible";
+        const msg = document.querySelector(".msg1");
+        msg.style.display = "inline";
         msg.innerText = "Пароли не совпадают";
       } else {
-        e.preventDefault();
         const data = new FormData(regForm1);
         const body = JSON.stringify(Object.fromEntries(data));
 
@@ -71,10 +70,10 @@ findButtonForReg.addEventListener("click", () => {
             body: JSON.stringify(Object.fromEntries(data)),
           });
           const result = await response.json();
-          const msg = document.querySelector(".msg");
+          const msg1 = document.querySelector(".msg1");
           if (result.msg) {
-            msg.style.visibility = "visible";
-            msg.innerText = `${result.msg}`;
+            msg1.style.visibility = "visible";
+            msg1.innerText = `${result.msg}`;
           } else {
             document.querySelector(".regForm").remove();
             registrationFormContainer.style.display = "none";
@@ -161,9 +160,8 @@ findButtonForLogin.addEventListener("click", () => {
     <input type="password" name="password" id="password1">
     <h5 class="msg"></h5>
 
-    <button type='submit'>Авторизоваться</button>
+    <button class="btn btn-success my-3" style='width: 100%' type='submit'>Авторизоваться</button>
 
-  </a>
 
 
 
@@ -204,7 +202,7 @@ findButtonForLogin.addEventListener("click", () => {
             window.location = "/profile";
           });
         } else {
-          msg.style.visibility = "visible";
+          msg.style.display = "block";
           msg.innerText = `${result.msg}`;
         }
       } catch (error) {

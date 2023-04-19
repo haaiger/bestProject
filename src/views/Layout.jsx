@@ -24,7 +24,8 @@ function Layout({ children, userSession }) {
           integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
           crossOrigin="anonymous"
         />
-        <script defer src="./js/logreg.js" />
+        <script defer src="/js/logreg.js" />
+
         <title>Project</title>
       </head>
       <body>
