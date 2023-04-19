@@ -2,14 +2,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('TypeHouses', {
+    await queryInterface.createTable('Categories', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      typeHouseName: {
+      rentPeriod: {
+        type: Sequelize.STRING
+      },
+      typeHouse: {
+        type: Sequelize.STRING
+      },
+      region: {
         type: Sequelize.STRING
       },
       createdAt: {
@@ -23,6 +29,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('TypeHouses');
+    await queryInterface.dropTable('Categories');
   }
 };
