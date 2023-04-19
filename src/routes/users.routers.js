@@ -7,7 +7,8 @@ const FullRegForm = require("../views/FullRegForm");
 
 router.post("/registration", async (req, res) => {
   try {
-    const { firstName, email, password } = req.body;
+    const { firstName, middleName, lastName, email, phone, password } =
+      req.body;
     const user = await User.findOne({ where: { email } });
     if (user) {
       res.json({ msg: "Почта уже зарегистрирована" });
@@ -15,7 +16,10 @@ router.post("/registration", async (req, res) => {
       const hashPass = await bcrypt.hash(password, 10);
       const newUser = await User.create({
         firstName,
+        middleName,
+        lastName,
         email,
+        phone,
         password: hashPass,
       });
       req.session.firstName = newUser.firstName;
@@ -69,5 +73,33 @@ router.post("/login", async (req, res) => {
 router.get("/full-reg-form", async (request, response) => {
   renderTemplate(FullRegForm, {}, request, response);
 });
+
+// router.post("/full-reg-form", async (req, res) => {
+//   try {
+//     const { firstName, middleName, lastName, email, phone, password } =
+//       req.body;
+//     const user = await User.findOne({ where: { email } });
+//     if (user) {
+//       res.json({ msg: "Почта уже зарегистрирована" });
+//     } else {
+//       const hashPass = await bcrypt.hash(password, 10);
+//       const newUser = await User.create({
+//         firstName,
+//         middleName,
+//         lastName,
+//         email,
+//         phone,
+//         password: hashPass,
+//       });
+//       req.session.firstName = newUser.firstName;
+//       req.session.userId = newUser.id;
+//       req.session.isAdmin = newUser.isAdmin;
+//       res.json(newUser);
+//     }
+//   } catch (error) {
+//     console.log(error);
+//     res.send(error);
+//   }
+// });
 
 module.exports = router;

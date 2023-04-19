@@ -64,6 +64,7 @@ function FullRegForm({ userSession }) {
             required
           />
         </div>
+        <h5 className="msg" />
         <div className="d-grid gap-2">
           <button type="submit" className="btn btn-success">
             Зарегистрироваться

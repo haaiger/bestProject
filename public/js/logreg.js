@@ -18,35 +18,74 @@ findButtonForReg.addEventListener("click", () => {
     const registrationForm = document.createElement("div");
     registrationForm.classList.add("registration-form");
 
-    registrationForm.innerHTML = `
-    <form class='regForm ' name="regForm">
-    <label for="name">Введите ваше имя:</label>
-    <input type="text" name="firstName" id="name">
+    registrationForm.innerHTML = `<form class="p-4 border rounded shadow-sm full-registration-form regForm" name="fullregistrationForm">
+    <h1 class="h4 mb-4">Регистрация</h1>
+    <div class="row">
 
-    <label for="email">Введите почту:</label>
-    <input type="email" name="email" id="email">
 
-    <label for="password">Введите пароль:</label>
-    <input type="password" name="password" id="password1">
-
-    <label for="password">Повторите пароль:</label>
-    <input type="password" name="password" id="password2">
-
+        <div class="col-md-4">
+        <h5 class="form-label">ФИО</h5>
+            <div class="mb-3">
+                <label class="form-label">Имя</label>
+                <input type="text" class="form-control" name="firstName" required />
+            </div>
+        </div>
+        <div class="col-md-4">
+        <h5 class="form-label">Контактные данные</h5>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" required />
+            </div>
+        </div>
+        <div class="col-md-4">
+        <h5 class="form-label">Безопасность</h5>
+            <div class="mb-3">
+                <label class="form-label">Пароль</label>
+                <input type="password" class="form-control" name="password" id="password1" required />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+    
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label class="form-label">Отчество</label>
+                <input type="text" class="form-control" name="middleName" required />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label class="form-label">Телефон</label>
+                <input type="tel" class="form-control" name="phone" required />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label class="form-label">Подтвердите пароль</label>
+                <input type="password" class="form-control" id="password2" required />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="mb-3">
+                <label class="form-label">Фамилия</label>
+                <input type="text" class="form-control" name="lastName" required />
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
+    </div>
     <h5 class="msg1"></h5>
-
-    <button class="btn btn-success my-3" style='width: 100%' type='submit'>Быстрая регистрация</button>
-    <a class="btn btn-primary" style='width: 100%' href="/users/full-reg-form">
-    Пройти полную регистрацию
-  </a>
-
-
-
-    </form>
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success my-2">Зарегистрироваться</button>
+    </div>
+</form>
   `;
     registrationFormContainer.style.display = "inline";
     registrationFormContainer.appendChild(registrationForm);
 
-    const regForm1 = document.forms.regForm;
+    const regForm1 = document.forms.fullregistrationForm;
     regForm1.addEventListener("submit", async (e) => {
       e.preventDefault();
       const password1Input = regForm1.querySelector("#password1");
@@ -220,3 +259,54 @@ findButtonForLogin.addEventListener("click", () => {
     }
   }
 });
+
+// const { fullregistrationForm } = document.forms;
+// fullregistrationForm.addEventListener("submit", async (e) => {
+//   e.preventDefault();
+//   const password1Input = fullregistrationForm.querySelector("#password1");
+//   const password2Input = fullregistrationForm.querySelector("#password2");
+//   const password1 = password1Input.value;
+//   const password2 = password2Input.value;
+//   if (password1 !== password2) {
+//     const msg = document.querySelector(".msg1");
+//     msg.style.display = "inline";
+//     msg.innerText = "Пароли не совпадают";
+//   } else {
+//     const data = new FormData(regForm1);
+//     const body = JSON.stringify(Object.fromEntries(data));
+
+//     try {
+//       const response = await fetch("/users/registration", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(Object.fromEntries(data)),
+//       });
+//       const result = await response.json();
+//       const msg1 = document.querySelector(".msg1");
+//       if (result.msg) {
+//         msg1.style.visibility = "visible";
+//         msg1.innerText = `${result.msg}`;
+//       } else {
+//         document.querySelector(".regForm").remove();
+//         registrationFormContainer.style.display = "none";
+//         const buttonProfile = document.querySelector(".profile");
+//         buttonProfile.style.display = "inline";
+//         const buttonLogoute = document.querySelector(".logout");
+//         buttonLogoute.style.display = "inline";
+//         const buttonRegistration = document.querySelector(".registration");
+//         buttonRegistration.style.display = "none";
+//         const buttonLogin = document.querySelector(".login");
+//         buttonLogin.style.display = "none";
+
+//         const profileButton = document.querySelector(".profile");
+//         profileButton.addEventListener("click", () => {
+//           location.assign(`/profile/${result.user.id}`);
+//         });
+//       }
+//     } catch (error) {
+//       // alert('ОШИБКА!!, ЗАПИСЬ НЕ СОЗДАЛАСЬ', error);
+//     }
+//   }
+// });
