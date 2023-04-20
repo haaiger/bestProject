@@ -1,9 +1,7 @@
-const React = require('react');
-const Navbar = require('./Navbar');
+const React = require("react");
+const Navbar = require("./Navbar");
 
-function Layout({
-  children, userSession, style, font,
-}) {
+function Layout({ children, userSession, style, font }) {
   return (
     <html lang="en">
       <head>
@@ -39,8 +37,8 @@ function Layout({
           crossOrigin="anonymous"
         />
         <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
           crossOrigin="anonymous"
         />
         <script defer src="/js/logreg.js" />
