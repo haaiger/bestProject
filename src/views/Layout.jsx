@@ -4,7 +4,6 @@ const Navbar = require('./Navbar');
 function Layout({
   children, userSession, style, font,
 }) {
-  console.log(userSession, 'USERSESIION');
   return (
     <html lang="en">
       <head>
@@ -14,7 +13,10 @@ function Layout({
         {/* <link rel="stylesheet" href="/style/normalize.css" /> */}
         <link rel="stylesheet" href="/style/layout.css" />
         <link rel="stylesheet" href="/style/contact.css" />
+        <link rel="stylesheet" href="/style/logreg.css" />
         <link rel="stylesheet" href={style} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
 
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
@@ -22,24 +24,14 @@ function Layout({
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
           crossOrigin="anonymous"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,200;0,500;0,900;1,400&display=swap"
           rel="stylesheet"
         />
-
         <link
           href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:ital,wght@0,500;0,900;1,400&display=swap"
           rel="stylesheet"
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:ital,wght@0,500;0,900;1,400&display=swap"
-          rel="stylesheet"
-        />
-
-        <link rel="stylesheet" href="/style/logreg.css" />
-
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -61,6 +53,7 @@ function Layout({
         </header>
         <div className="registration-form-container" />
         <div className="login-form-container" />
+        <div className="confirm-exit" />
         {children}
         <footer>
           <div className="footerLink">

@@ -1,22 +1,22 @@
-const findButtonForReg = document.querySelector('.registration');
+const findButtonForReg = document.querySelector(".registration");
 const registrationFormContainer = document.querySelector(
-  '.registration-form-container',
+  ".registration-form-container"
 );
 let counterForReg = 0;
 
-findButtonForReg.addEventListener('click', () => {
+findButtonForReg.addEventListener("click", () => {
   counterForReg += 1;
   if (counterForReg % 2) {
-    const buttonText = document.querySelector('.registration').textContent;
-    if (buttonText === 'Зарегистрироваться') {
-      document.querySelector('.registration').textContent = 'Скрыть форму';
+    const buttonText = document.querySelector(".registration").textContent;
+    if (buttonText === "Зарегистрироваться") {
+      document.querySelector(".registration").textContent = "Скрыть форму";
     }
 
-    const buttonLogin = document.querySelector('.login');
-    buttonLogin.style.display = 'none';
+    const buttonLogin = document.querySelector(".login");
+    buttonLogin.style.display = "none";
 
-    const registrationForm = document.createElement('div');
-    registrationForm.classList.add('registration-form');
+    const registrationForm = document.createElement("div");
+    registrationForm.classList.add("registration-form");
 
     registrationForm.innerHTML = `<form class="p-4 border rounded shadow-sm full-registration-form regForm" name="fullregistrationForm">
     <h1 class="h4 mb-4">Регистрация</h1>
@@ -82,52 +82,52 @@ findButtonForReg.addEventListener('click', () => {
     </div>
 </form>
   `;
-    registrationFormContainer.style.display = 'inline';
+    registrationFormContainer.style.display = "inline";
     registrationFormContainer.appendChild(registrationForm);
 
     const regForm1 = document.forms.fullregistrationForm;
-    regForm1.addEventListener('submit', async (e) => {
+    regForm1.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const password1Input = regForm1.querySelector('#password1');
-      const password2Input = regForm1.querySelector('#password2');
+      const password1Input = regForm1.querySelector("#password1");
+      const password2Input = regForm1.querySelector("#password2");
       const password1 = password1Input.value;
       const password2 = password2Input.value;
       if (password1 !== password2) {
-        const msg = document.querySelector('.msg1');
-        msg.style.display = 'inline';
-        msg.innerText = 'Пароли не совпадают';
+        const msg = document.querySelector(".msg1");
+        msg.style.display = "inline";
+        msg.innerText = "Пароли не совпадают";
       } else {
         const data = new FormData(regForm1);
         const body = JSON.stringify(Object.fromEntries(data));
 
         try {
-          const response = await fetch('/users/registration', {
-            method: 'POST',
+          const response = await fetch("/users/registration", {
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
             body: JSON.stringify(Object.fromEntries(data)),
           });
           const result = await response.json();
-          const msg1 = document.querySelector('.msg1');
+          const msg1 = document.querySelector(".msg1");
           if (result.msg) {
-            msg1.style.visibility = 'visible';
+            msg1.style.visibility = "visible";
             msg1.innerText = `${result.msg}`;
           } else {
-            document.querySelector('.regForm').remove();
-            registrationFormContainer.style.display = 'none';
-            const buttonProfile = document.querySelector('.profile');
-            buttonProfile.style.display = 'inline';
-            const buttonLogoute = document.querySelector('.logout');
-            buttonLogoute.style.display = 'inline';
-            const buttonRegistration = document.querySelector('.registration');
-            buttonRegistration.style.display = 'none';
-            const buttonLogin = document.querySelector('.login');
-            buttonLogin.style.display = 'none';
+            document.querySelector(".regForm").remove();
+            registrationFormContainer.style.display = "none";
+            const buttonProfile = document.querySelector(".profile");
+            buttonProfile.style.display = "inline";
+            const buttonLogoute = document.querySelector(".logout");
+            buttonLogoute.style.display = "inline";
+            const buttonRegistration = document.querySelector(".registration");
+            buttonRegistration.style.display = "none";
+            const buttonLogin = document.querySelector(".login");
+            buttonLogin.style.display = "none";
 
             const profileButton = document.querySelector(".profile");
             profileButton.addEventListener("click", () => {
-              location.assign(`/profile`);
+              window.location = "/profile";
             });
           }
         } catch (error) {
@@ -136,57 +136,34 @@ findButtonForReg.addEventListener('click', () => {
       }
     });
   } else {
-    const buttonText = document.querySelector('.registration').textContent;
-    if (buttonText === 'Скрыть форму') {
-      document.querySelector('.registration').textContent = 'Зарегистрироваться';
-      document.querySelector('.regForm').remove();
-      registrationFormContainer.style.display = 'none';
-      const buttonLogin = document.querySelector('.login');
-      buttonLogin.style.display = 'inline';
+    const buttonText = document.querySelector(".registration").textContent;
+    if (buttonText === "Скрыть форму") {
+      document.querySelector(".registration").textContent =
+        "Зарегистрироваться";
+      document.querySelector(".regForm").remove();
+      registrationFormContainer.style.display = "none";
+      const buttonLogin = document.querySelector(".login");
+      buttonLogin.style.display = "inline";
     }
   }
 });
 
-const logoutButton = document.querySelector('.logout');
-logoutButton?.addEventListener('click', async () => {
-  try {
-    const response = await fetch('/users/logout');
-    if (response.ok) {
-      const buttonProfile = document.querySelector('.profile');
-      buttonProfile.style.display = 'none';
-      const buttonLogoute = document.querySelector('.logout');
-      buttonLogoute.style.display = 'none';
-      const buttonLogin = document.querySelector('.login');
-      buttonLogin.style.display = 'inline';
-      buttonLogin.textContent = 'Авторизоваться';
-      const buttonRegistration = document.querySelector('.registration');
-      buttonRegistration.style.display = 'inline';
-      buttonRegistration.textContent = 'Зарегистрироваться';
-      window.location = '/';
-    } else {
-      alert('Ошибка');
-    }
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-const LoginFormContainer = document.querySelector('.login-form-container');
+const LoginFormContainer = document.querySelector(".login-form-container");
 let counterForLogin = 0;
 
-const findButtonForLogin = document.querySelector('.login');
-findButtonForLogin.addEventListener('click', () => {
+const findButtonForLogin = document.querySelector(".login");
+findButtonForLogin.addEventListener("click", () => {
   counterForLogin += 1;
   if (counterForLogin % 2) {
-    const buttonText = document.querySelector('.login').textContent;
-    if (buttonText === 'Авторизоваться') {
-      document.querySelector('.login').textContent = 'Скрыть форму';
+    const buttonText = document.querySelector(".login").textContent;
+    if (buttonText === "Авторизоваться") {
+      document.querySelector(".login").textContent = "Скрыть форму";
     }
-    const buttomRegistration = document.querySelector('.registration');
-    buttomRegistration.style.display = 'none';
+    const buttomRegistration = document.querySelector(".registration");
+    buttomRegistration.style.display = "none";
 
-    const loginForm = document.createElement('div');
-    loginForm.classList.add('login-form');
+    const loginForm = document.createElement("div");
+    loginForm.classList.add("login-form");
 
     loginForm.innerHTML = `
     <form class='logForm' name="logForm">
@@ -202,42 +179,42 @@ findButtonForLogin.addEventListener('click', () => {
 
     </form>
   `;
-    LoginFormContainer.style.display = 'inline';
+    LoginFormContainer.style.display = "inline";
     LoginFormContainer.appendChild(loginForm);
 
     const LoginForm1 = document.forms.logForm;
-    LoginForm1.addEventListener('submit', async (e) => {
+    LoginForm1.addEventListener("submit", async (e) => {
       e.preventDefault();
       const data = new FormData(LoginForm1);
       try {
-        const response = await fetch('/users/login', {
-          method: 'POST',
+        const response = await fetch("/users/login", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify(Object.fromEntries(data)),
         });
         const result = await response.json();
-        const msg = document.querySelector('.msg');
-        console.log(result, 'resultresult');
+        const msg = document.querySelector(".msg");
+        console.log(result, "resultresult");
         if (result.firstName) {
-          document.querySelector('.logForm').remove();
-          LoginFormContainer.style.display = 'none';
-          const buttonProfile = document.querySelector('.profile');
-          buttonProfile.style.display = 'inline';
-          const buttonLogoute = document.querySelector('.logout');
-          buttonLogoute.style.display = 'inline';
-          const buttonLogin = document.querySelector('.login');
-          buttonLogin.style.display = 'none';
+          document.querySelector(".logForm").remove();
+          LoginFormContainer.style.display = "none";
+          const buttonProfile = document.querySelector(".profile");
+          buttonProfile.style.display = "inline";
+          const buttonLogoute = document.querySelector(".logout");
+          buttonLogoute.style.display = "inline";
+          const buttonLogin = document.querySelector(".login");
+          buttonLogin.style.display = "none";
 
-          msg.innerText = '';
+          msg.innerText = "";
 
-          const profileButton = document.querySelector('.profile');
-          profileButton.addEventListener('click', () => {
-            window.location = '/profile';
+          const profileButton = document.querySelector(".profile");
+          profileButton.addEventListener("click", () => {
+            window.location = "/profile";
           });
         } else {
-          msg.style.display = 'block';
+          msg.style.display = "block";
           msg.innerText = `${result.msg}`;
         }
       } catch (error) {
@@ -245,19 +222,64 @@ findButtonForLogin.addEventListener('click', () => {
       }
     });
   } else {
-    const buttonText = document.querySelector('.login').textContent;
-    if (buttonText === 'Скрыть форму') {
-      document.querySelector('.login').textContent = 'Авторизоваться';
-      document.querySelector('.logForm').remove();
-      LoginFormContainer.style.display = 'none';
-      const buttonRegistration = document.querySelector('.registration');
-      buttonRegistration.style.display = 'inline';
+    const buttonText = document.querySelector(".login").textContent;
+    if (buttonText === "Скрыть форму") {
+      document.querySelector(".login").textContent = "Авторизоваться";
+      document.querySelector(".logForm").remove();
+      LoginFormContainer.style.display = "none";
+      const buttonRegistration = document.querySelector(".registration");
+      buttonRegistration.style.display = "inline";
     }
   }
 });
 
-const profileButton = document.querySelector(".profile");
+const buttonLogout = document.querySelector(".logout");
+buttonLogout.addEventListener("click", () => {
+  const confirmBox = document.createElement("div");
+  confirmBox.className = "confirm-box";
 
-profileButton?.addEventListener("click", () => {
-  window.location = "/profile";
+  const message = document.createElement("div");
+  message.className = "message";
+  message.textContent = "Вы действительно хотите выйти из профиля?";
+
+  const yesButton = document.createElement("button");
+  yesButton.className = "yes-button";
+  yesButton.textContent = "Да";
+
+  const noButton = document.createElement("button");
+  noButton.className = "no-button";
+  noButton.textContent = "Нет";
+
+  confirmBox.appendChild(message);
+  confirmBox.appendChild(yesButton);
+  confirmBox.appendChild(noButton);
+  document.body.appendChild(confirmBox);
+
+  yesButton.addEventListener("click", async () => {
+    try {
+      const response = await fetch("/users/logout");
+      if (response.ok) {
+        const buttonProfile = document.querySelector(".profile");
+        buttonProfile.style.display = "none";
+        const buttonLogoute = document.querySelector(".logout");
+        buttonLogoute.style.display = "none";
+        const buttonLogin = document.querySelector(".login");
+        buttonLogin.style.display = "inline";
+        buttonLogin.textContent = "Авторизоваться";
+        const buttonRegistration = document.querySelector(".registration");
+        buttonRegistration.style.display = "inline";
+        buttonRegistration.textContent = "Зарегистрироваться";
+        window.location = "/";
+        confirmBox.remove();
+      } else {
+        alert("Ошибка");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  noButton.addEventListener("click", () => {
+    confirmBox.remove();
+  });
 });

@@ -46,12 +46,9 @@ router.get("/", async (req, res) => {
 
     const filters = { rentPeriods, typesOfHouses, regions };
 
-    // console.log("filters>>>>>>", filters);
-    // console.log("typesOfHouses>>>>>>", typesOfHouses);
-    // console.log("regions>>>>>>", regions);
-
     renderTemplate(Profile, { user, favsFull, filters }, req, res);
   } catch (error) {
+    console.log("Ошибка запроса GET /", error);
     console.log("Ошибка запроса GET /", error);
   }
 });
@@ -85,8 +82,6 @@ router.post("/add", async (req, res) => {
     createdAt,
     updatedAt,
   });
-
-  console.log("NEW ADVERT >>>>>>", newAdvert.dataValues);
 
   if (newAdvert) {
     res.json({ msg: "SUCCESS" });
@@ -162,6 +157,14 @@ router.put("/password", async (req, res) => {
   } else {
     res.json({ msg: "Не удалось изменить пароль" });
   }
+});
+
+router.get("/favorites", async (request, response) => {
+  const { userId } = request.session;
+  const findFavorite = await Favorite.findAll({ where: { userId }, raw: true });
+  const numbersAd = findFavorite.map((house) => house.houseId);
+  const houses = await House.findAll({ raw: true, where: { id: numbersAd } });
+  renderTemplate(Favorites, { houses, numbersAd }, request, response);
 });
 
 module.exports = router;

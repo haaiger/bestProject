@@ -1,29 +1,30 @@
 .formHome {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    border: 2px solid black;
-    border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 2px solid black;
+  border-radius: 32px;
 }
 
 .wrapperFilters {
-    display: flex;
+  display: flex;
 }
 
 .wrapperFilter {
-    margin-right: 16px;
+  margin-right: 16px;
 }
 
 .wrapperRandomАdvertisement {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    padding: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  padding: 16px;
+  flex-wrap: wrap;
 }
 
 .card-body {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
