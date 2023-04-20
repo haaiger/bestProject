@@ -1,33 +1,30 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-plusplus */
 const router = require("express").Router();
 const renderTemplate = require("../lib/renderTemplate");
 const Profile = require("../views/Profile");
-const { User, Favorite, Category, House } = require("../../db/models");
-
-const session = {
-  user: "Вася",
-  userId: 1,
-  isAdmin: true,
-}; // !!! сделал "псевдосессию" вручную, изменил renderTemplate и Profile.jsx
+const {
+  User, Favorite, Category, House,
+} = require("../../db/models");
 
 router.get("/", async (req, res) => {
-  // console.log("session >>>>>>>>>", session); // !!!
   try {
     const user = await User.findOne({
-      where: { id: session.userId },
+      where: { id: req.session.userId },
       raw: true,
-    }); //!!!
+    });
     const userFavs = await Favorite.findAll({
-      where: { userId: session.userId },
+      where: { userId: req.session.userId },
       raw: true,
     });
 
-    let favsFull = [];
+    const favsFull = [];
     for (let i = 0; i < userFavs.length; i++) {
       favsFull.push(
         await House.findOne({
           where: { id: userFavs[i].houseId },
           raw: true,
-        })
+        }),
       );
     }
     // console.log("USER>>>>>>", user);
@@ -50,9 +47,9 @@ router.get("/", async (req, res) => {
     // console.log("typesOfHouses>>>>>>", typesOfHouses);
     // console.log("regions>>>>>>", regions);
 
-    renderTemplate(session, Profile, { user, favsFull, filters }, req, res);
+    renderTemplate(Profile, { user, favsFull, filters }, req, res);
   } catch (error) {
-    console.log("Ошибка запроса GET /", error);
+    console.log('Ошибка запроса GET /', error);
   }
 });
 

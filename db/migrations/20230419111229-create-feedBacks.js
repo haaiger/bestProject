@@ -6,7 +6,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("feedbacks", {
+    await queryInterface.createTable('FeedBacks', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,14 +16,14 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
       },
-      phone: {
-        type: Sequelize.STRING,
-      },
       number: {
+        type: Sequelize.INTEGER,
+      },
+      email: {
         type: Sequelize.STRING,
       },
-      comment: {
-        type: Sequelize.TEXT,
+      question: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,
@@ -36,6 +36,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("feedbacks");
+    await queryInterface.dropTable('FeedBacks');
   },
 };

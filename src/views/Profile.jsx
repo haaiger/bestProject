@@ -1,9 +1,9 @@
 const React = require("react");
 const Layout = require("./Layout");
 
-const { Category } = require("../../db/models");
-
-module.exports = function Profile({ userSession, user, favsFull, filters }) {
+module.exports = function Profile({
+  userSession, user, favsFull, filters,
+}) {
   console.log("userSession========>", userSession);
   console.log("user========>", user);
   console.log("userFavs========>", favsFull);
@@ -65,7 +65,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 {/* <input name="photo" type="file" placeholder="Фото" /> */}
                 <input name="address" type="text" placeholder="Адрес" />
                 <input name="geoTag" type="text" placeholder="Координаты" />
-                <button className="newAdBtn">apply</button>
+                <button className="newAdBtn" type="button">apply</button>
               </form>
               <br />
               <form
@@ -79,7 +79,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 <label>
                   СВободно\занято
                   <select name="isRent">
-                    <option value={true}>Свободно</option>
+                    <option value>Свободно</option>
                     <option value={false}>Занято</option>
                   </select>
                 </label>
@@ -120,7 +120,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 <input name="price" type="number" placeholder="Цена" />
                 <input name="address" type="text" placeholder="Адрес" />
                 <input name="geotag" type="text" placeholder="Координаты" />
-                <button className="searchAdBtn">apply</button>
+                <button className="searchAdBtn" type="button">apply</button>
               </form>
             </>
           ) : (
@@ -135,20 +135,40 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                     <li>{item.address}</li>
                     <li>{item.description}</li>
                   </ul>
-                  <button>Удалить из избранного</button>
-                  <button>Забронировать</button>
+                  <button type="button">Удалить из избранного</button>
+                  <button type="button">Забронировать</button>
                 </li>
               ))}
             </ul>
           )}
         </div>
         <div className="userInfo">
-          <div>firstname: {user.firstName}</div>
-          <div>middleName: {user.firstName}</div>
-          <div>lastName: {user.lastName}</div>
-          <div>phone: {user.phone}</div>
-          <div>email: {user.email}</div>
-          <button>edit userInfo</button>
+          <div>
+            firstname:
+            {' '}
+            {user.firstName}
+          </div>
+          <div>
+            middleName:
+            {' '}
+            {user.firstName}
+          </div>
+          <div>
+            lastName:
+            {' '}
+            {user.lastName}
+          </div>
+          <div>
+            phone:
+            {' '}
+            {user.phone}
+          </div>
+          <div>
+            email:
+            {' '}
+            {user.email}
+          </div>
+          <button type="button">edit userInfo</button>
         </div>
       </div>
       <script defer src="/js/profile.js" />

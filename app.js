@@ -1,10 +1,15 @@
-const express = require("express");
-const path = require("path");
-const morgan = require("morgan");
-require("dotenv").config();
+const express = require('express');
+const path = require('path');
+const morgan = require('morgan');
+require('dotenv').config();
 // const checkConnect = require("./src/middlewares/checkConnectBd");
 
 // Роуты
+<<<<<<< HEAD
+const homeRouter = require('./src/routes/homeRouter');
+const userRouters = require('./src/routes/users.routers');
+const profileRouter = require('./src/routes/profileRouter');
+=======
 <<<<<<< HEAD
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
@@ -16,26 +21,33 @@ const homeRouter = require("./src/routes/homeRouter");
 >>>>>>> main
 const userRouters = require("./src/routes/users.routers");
 const profileRouter = require("./src/routes/profileRouter");
+>>>>>>> main
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+<<<<<<< HEAD
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
+
+=======
 <<<<<<< HEAD
 =======
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 
 >>>>>>> main
+>>>>>>> main
 // Мидлварки
-app.use(express.static(path.join(process.cwd(), "public")));
+app.use(express.static(path.join(process.cwd(), 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan("dev"));
+app.use(morgan('dev'));
 
 const sessionConfig = {
-  name: "newCookie",
+  name: 'newCookie',
   store: new FileStore(),
-  secret: process.env.SESSION_SECRET ?? "Секретное слово",
+  secret: process.env.SESSION_SECRET ?? 'Секретное слово',
   resave: false, // * если true, пересохранит сессию, даже если она не менялась
   saveUninitialized: false, // * если false, куки появятся только при установке req.session
   cookie: {
@@ -47,6 +59,15 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 // Мидлварка для просмотра сессии
+app.use((req, res, next) => {
+  console.log('session=>', req.session);
+  next();
+});
+
+// Роуты
+app.use('/', homeRouter);
+app.use('/profile', profileRouter);
+app.use('/users', userRouters);
 // app.use((req, res, next) => {
 //   console.log("session=>", req.session);
 //   next();

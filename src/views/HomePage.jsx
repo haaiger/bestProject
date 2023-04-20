@@ -9,6 +9,7 @@ const someCards = [
 ];
 
 function HomePage({ userSession }) {
+  console.log(userSession, '<<<<<<<<<HOPME PAGE');
   return (
     <Layout userSession={userSession}>
       <link rel="stylesheet" href="/style/home.css" />

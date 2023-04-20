@@ -8,6 +8,6 @@ module.exports = {
     await queryInterface.bulkInsert("Houses", generateRandomHouses(100));
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete("Houses", null, {});
+    await queryInterface.bulkDelete('Houses', null, {});
   },
 };
