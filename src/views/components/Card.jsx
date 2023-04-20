@@ -1,15 +1,29 @@
 const React = require("react");
 
-function Card({
-  title, description, photo, id, userSession, numbersAd,
-}) {
+function Card({ id, photo, rentPeriod, typeHouse, region, price, address }) {
+  function dayMonth(rentPeriod) {
+    if (rentPeriod === "Посуточно") {
+      return "руб/сут";
+    }
+    return "руб/мес";
+  }
+
   return (
-    <div className="card" style={{ width: "18rem" }}>
-      <script defer src="/js/card.js" />
-      <img className="card-img-top" src={photo} alt={description} />
-      <div className="card-body" id={id}>
-        <h5 className="card-title">{title}</h5>
-        <p className="card-text">{description}</p>
+    <a href={`/full-card/card${id}`}>
+      <div className="card card-one" id={id} style={{ width: "18rem" }}>
+        <img
+          className="card-img-top"
+          src={photo || "https://clck.ru/34BUog"}
+          alt="One card"
+        />
+        <div className="card-body">
+          <h5 className="card-typeHouse">{typeHouse}</h5>
+          <h5 className="card-rentPeriod">{rentPeriod}</h5>
+          <p className="card-price">
+            {price} {dayMonth(rentPeriod)}
+          </p>
+          <p className="card-region">{region}</p>
+          <p className="card-address">{address}</p>
         {numbersAd.includes(id) ? (
           <button
             id={`${id}`}
@@ -29,8 +43,9 @@ function Card({
             Добавить в избранное
           </button>
         )}
+        </div>
       </div>
-    </div>
+    </a>
   );
 }
 

@@ -128,43 +128,46 @@ button:hover {
   display: none;
 }
 
-.col-md-4 {
-  position: relative;
-  padding-left: 15px;
-  padding-right: 15px;
+.confirm-box {
+  background-color: white;
+  border: 2px solid black;
+  margin: auto;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+
+  width: 100%;
+  max-width: 350px;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.col-md-4:before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  border-right: 2px solid #ccc;
+.message {
+  margin: 10px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
-.col-md-4:last-child:before {
-  display: none;
+.button-wrapper {
+  text-align: center;
 }
 
-/* Media queries */
-@media screen and (max-width: 768px) {
-  .anavbar-nav {
-    flex-direction: column;
-    height: auto;
-  }
+.yes-button,
+.no-button {
+  color: #ffffff;
+  margin: 5px;
+  background-color: green;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
 
-  .container-nav-link {
-    width: 100%;
-  }
+  padding: 6px 12px;
+  font-size: 20px;
+  line-height: 1.42857143;
+  border-radius: 5px;
 
-  .logReg {
-    margin-right: 0;
-    margin-top: 20px;
-  }
-
-  .registration-form,
-  .login-form {
-    position: static;
-  }
+  margin: auto 10px auto auto;
 }

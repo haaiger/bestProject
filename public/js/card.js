@@ -49,4 +49,3 @@ buttonRemoveFavorite.forEach((cardButton) => {
       console.error("Ошибка:", error);
     }
   });
-});

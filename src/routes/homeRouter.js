@@ -1,9 +1,11 @@
 const router = require("express").Router();
+const Sequelize = require("sequelize");
 const renderTemplate = require("../lib/renderTemplate");
 const Contact = require("../views/Contact");
 const Home = require("../views/HomePage");
 const YandexMap = require("../views/MapComponent");
 const { FeedBacks, Favorite } = require("../../db/models");
+const { House } = require("../../db/models");
 
 router.get("/", async (request, response) => {
   try {
@@ -16,6 +18,17 @@ router.get("/", async (request, response) => {
   } catch (error) {
     console.log("Ошибка запроса GET /", error);
   }
+console.log(FeedBacks, "Feedback<<<<<<");
+
+router.get("/", async (request, response) => {
+  const HouseFromDB = await House.findAll({
+    limit: 10,
+    order: Sequelize.literal("random()"),
+    raw: true,
+  });
+  console.log(HouseFromDB);
+
+  renderTemplate(Home, { HouseFromDB }, request, response);
 });
 
 // router.get('/map', async (req, res) => {
