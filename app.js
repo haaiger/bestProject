@@ -11,6 +11,7 @@ const homeRouter = require('./src/routes/homeRouter');
 const userRouters = require('./src/routes/usersRouter');
 const profileRouter = require('./src/routes/profileRouter');
 const listRouter = require("./src/routes/listRouter");
+const cardRouter = require('./src/routes/cardRouter');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,10 +37,10 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 // Мидлварка для просмотра сессии
-app.use((req, res, next) => {
-  console.log('session=>', req.session);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log('session=>', req.session);
+//   next();
+// });
 
 // Проверка авторизации, мидлварка
 const checkAuth = (request, response, next) => {
@@ -55,6 +56,7 @@ app.use('/', homeRouter);
 app.use('/profile', checkAuth, profileRouter);
 app.use('/users', userRouters);
 app.use("/list-cards", listRouter);
+app.use("/", cardRouter);
 // app.use(pageNotFoundRouter);
 
 // Старт сервера

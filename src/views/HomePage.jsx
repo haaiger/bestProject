@@ -3,13 +3,27 @@ const Layout = require("./Layout");
 const Card = require("./components/Card");
 
 const someCards = [
-  { link: null, title: "title1", text: "text1" },
-  { link: null, title: "title2", text: "text2" },
-  { link: null, title: "title3", text: "text3" },
+  {
+    link: null,
+    title: "title1",
+    text: "text1",
+    id: 1,
+  },
+  {
+    link: null,
+    title: "title2",
+    text: "text2",
+    id: 2,
+  },
+  {
+    link: null,
+    title: "title3",
+    text: "text3",
+    id: 3,
+  },
 ];
 
-function HomePage({ userSession }) {
-  console.log(userSession, '<<<<<<<<<HOPME PAGE');
+function HomePage({ userSession, numbersAd }) {
   return (
     <Layout userSession={userSession}>
       <link rel="stylesheet" href="/style/home.css" />
@@ -48,10 +62,13 @@ function HomePage({ userSession }) {
         <div className="wrapperRandomАdvertisement">
           {someCards.map((card, index) => (
             <Card
+              numbersAd={numbersAd}
+              userSession={userSession}
+              id={card.id}
               key={index}
-              title={card.title}
-              text={card.text}
-              link={card.link}
+              title={card.typehouse}
+              text={card.description}
+              link={card.photo}
             />
           ))}
         </div>

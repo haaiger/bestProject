@@ -3,6 +3,7 @@
 const router = require("express").Router();
 const renderTemplate = require("../lib/renderTemplate");
 const Profile = require("../views/Profile");
+const Favorites = require("../views/components/Favorites");
 const {
   User, Favorite, Category, House,
 } = require("../../db/models");
@@ -27,8 +28,6 @@ router.get("/", async (req, res) => {
         }),
       );
     }
-    // console.log("USER>>>>>>", user);
-    console.log("userFavs>>>>>>", favsFull);
 
     const categories = await Category.findAll();
     const rentPeriods = categories
@@ -43,13 +42,9 @@ router.get("/", async (req, res) => {
 
     const filters = { rentPeriods, typesOfHouses, regions };
 
-    // console.log("filters>>>>>>", filters);
-    // console.log("typesOfHouses>>>>>>", typesOfHouses);
-    // console.log("regions>>>>>>", regions);
-
     renderTemplate(Profile, { user, favsFull, filters }, req, res);
   } catch (error) {
-    console.log('Ошибка запроса GET /', error);
+    console.log("Ошибка запроса GET /", error);
   }
 });
 
@@ -84,13 +79,19 @@ router.post("/add", async (req, res) => {
     updatedAt,
   });
 
-  console.log("NEW ADVERT >>>>>>", newAdvert.dataValues);
-
   if (newAdvert) {
     res.json({ msg: "SUCCESS" });
   } else {
     res.json({ msg: "FAIL" });
   }
+});
+
+router.get("/favorites", async (request, response) => {
+  const { userId } = request.session;
+  const findFavorite = await Favorite.findAll({ where: { userId }, raw: true });
+  const numbersAd = findFavorite.map((house) => house.houseId);
+  const houses = await House.findAll({ raw: true, where: { id: numbersAd } });
+  renderTemplate(Favorites, { houses, numbersAd }, request, response);
 });
 
 module.exports = router;
