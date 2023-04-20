@@ -14,7 +14,7 @@ module.exports = function Navbar({ userSession }) {
           <a className="navLink" href="/products/">
             Все элементы
           </a>
-          <a className="navLink" href="/cart">
+          <a className="navLink" href="/profile/favorites">
             Избранное
           </a>
         </div>

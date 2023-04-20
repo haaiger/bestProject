@@ -1,9 +1,17 @@
+/* eslint-disable jsx-a11y/heading-has-content */
+/* eslint-disable react/self-closing-comp */
 const React = require('react');
 const Layout = require('./Layout');
 
+const style = '/style/profile.css';
+
 module.exports = function Profile({ userSession, user, favsFull, filters }) {
+  // console.log("userSession========>", userSession);
+  // console.log("user========>", user);
+  // console.log("userFavs========>", favsFull);
+  // console.log("filters========>", filters);
   return (
-    <Layout userSession={userSession}>
+    <Layout userSession={userSession} style={style}>
       <div className="mainContainer" style={{ display: 'flex' }}>
         <div className="operations">
           <h3 className="msg"></h3>
@@ -64,9 +72,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 {/* <input name="photo" type="file" placeholder="Фото" /> */}
                 <input name="address" type="text" placeholder="Адрес" />
                 <input name="geoTag" type="text" placeholder="Координаты" />
-                <button className="newAdBtn" type="button">
-                  apply
-                </button>
+                <button className="newAdBtn">apply</button>
               </form>
               <br />
               <form
@@ -77,14 +83,17 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                   padding: '5px',
                 }}
               >
+                <input type="number" name="id" placeholder="id" />
                 <label>
                   СВободно\занято
                   <select name="isRent">
-                    <option value>Свободно</option>
-                    <option value={false}>Занято</option>
+                    <option disabled selected>
+                      Выберите
+                    </option>
+                    <option value={true}>Занято</option>
+                    <option value={false}>Свободно</option>
                   </select>
                 </label>
-                <input type="number" name="id" placeholder="id" />
                 <label>
                   rentPeriods
                   <select name="rentPeriod">
@@ -98,7 +107,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 </label>
                 <label>
                   typesOfHouses
-                  <select name="typeHouseName">
+                  <select name="typeHouse">
                     <option disabled selected>
                       Выберите
                     </option>
@@ -109,7 +118,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 </label>
                 <label>
                   regions
-                  <select name="regionName">
+                  <select name="region">
                     <option disabled selected>
                       Выберите
                     </option>
@@ -120,11 +129,10 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 </label>
                 <input name="price" type="number" placeholder="Цена" />
                 <input name="address" type="text" placeholder="Адрес" />
-                <input name="geotag" type="text" placeholder="Координаты" />
-                <button className="searchAdBtn" type="button">
-                  apply
-                </button>
+                {/* <input name="geotag" type="text" placeholder="Координаты" /> */}
+                <button className="searchAdBtn">apply</button>
               </form>
+              <div className="searchResultsDiv"></div>
             </>
           ) : (
             <ul>
@@ -138,23 +146,30 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                     <li>{item.address}</li>
                     <li>{item.description}</li>
                   </ul>
-                  <button type="button">Удалить из избранного</button>
-                  <button type="button">Забронировать</button>
+                  <button>Удалить из избранного</button>
+                  <button>Забронировать</button>
                 </li>
               ))}
             </ul>
           )}
         </div>
-        <div className="userInfo">
-          <div>firstname: {user.firstName}</div>
-          <div>middleName: {user.firstName}</div>
-          <div>lastName: {user.lastName}</div>
-          <div>phone: {user.phone}</div>
+        <div className="userInfoDiv">
+          <div className="fullNameDiv">
+            <span>{user.firstName} </span>
+            <span>{user.middleName} </span>
+            <span>{user.lastName}</span>
+          </div>
+          <div>Телефон: {user.phone}</div>
           <div>email: {user.email}</div>
-          <button type="button">edit userInfo</button>
+          <button className="editUserBtn">edit userInfo</button>
+          <div class="editPassDiv">
+            <button className="editPassBtn">Изменить пароль</button>
+          </div>
+          <h4 className="passMsg"></h4>
         </div>
       </div>
       <script defer src="/js/profile.js" />
+      <script defer src="/js/editUser.js" />
     </Layout>
   );
 };

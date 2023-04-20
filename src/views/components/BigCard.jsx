@@ -1,17 +1,16 @@
 const React = require("react");
 
 function BigCard({
-  url, region, address, price, seller,
+  region, address, price, photo, typeHouse,
 }) {
-  const img = "/helpers/example.jpeg";
   return (
     <div className="wrapperBigCard">
       <link rel="stylesheet" href="/style/bigCards.css" />
       <div className="wrapperImg">
-        <img src={img} alt="Картинка" className="imgBigCard" />
+        <img src={photo} alt="Картинка" className="imgBigCard" />
       </div>
       <div className="wrapperDescription">
-        <div>2-комн. кв., площадь, этаж</div>
+        <div>{typeHouse}</div>
         <div>
           <div>
             Район:
@@ -28,11 +27,6 @@ function BigCard({
           Цена:
           {' '}
           {price}
-        </div>
-        <div>
-          Продавец:
-          {' '}
-          {seller}
         </div>
       </div>
     </div>

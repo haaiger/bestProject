@@ -12,7 +12,10 @@ function Layout({ children, userSession, style, font }) {
         <link rel="stylesheet" href="/style/layout.css" />
         <link rel="stylesheet" href="/style/contact.css" />
         <link rel="stylesheet" href="/style/adminMail.css" />
+        <link rel="stylesheet" href="/style/logreg.css" />
         <link rel="stylesheet" href={style} />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
 
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
@@ -20,24 +23,14 @@ function Layout({ children, userSession, style, font }) {
           integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
           crossOrigin="anonymous"
         />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,200;0,500;0,900;1,400&display=swap"
           rel="stylesheet"
         />
-
         <link
           href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:ital,wght@0,500;0,900;1,400&display=swap"
           rel="stylesheet"
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:ital,wght@0,500;0,900;1,400&display=swap"
-          rel="stylesheet"
-        />
-
-        <link rel="stylesheet" href="/style/logreg.css" />
-
         <link
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
@@ -45,8 +38,8 @@ function Layout({ children, userSession, style, font }) {
           crossOrigin="anonymous"
         />
         <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
           crossOrigin="anonymous"
         />
         <script defer src="/js/logreg.js" />
@@ -59,6 +52,7 @@ function Layout({ children, userSession, style, font }) {
         </header>
         <div className="registration-form-container" />
         <div className="login-form-container" />
+        <div className="confirm-exit" />
         {children}
         <footer>
           <div className="footerLink">
@@ -73,7 +67,7 @@ function Layout({ children, userSession, style, font }) {
             <div className="footerBlock">
               <h4 className="footer-h4">Навигация</h4>
               <a
-                href="/"
+                href="/profile"
                 className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover footer-a"
               >
                 Личный кабинет

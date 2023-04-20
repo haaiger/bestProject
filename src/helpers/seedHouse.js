@@ -1,4 +1,6 @@
+/* eslint-disable import/no-import-module-exports */
 /* eslint-disable no-plusplus */
+const { faker } = require('@faker-js/faker');
 
 function generateRandomHouseData() {
   const rentPeriods = ["Посуточно", "Месяц(ы)", "На длительный срок"];
@@ -10,8 +12,11 @@ function generateRandomHouseData() {
   const randomRegion = region[Math.floor(Math.random() * region.length)];
   const randomPrice = Math.floor(Math.random() * 5000000) + 500;
   const randomRooms = Math.floor(Math.random() * 10) + 1;
-  const randomDescription = `Это ${randomHouseType} с ${randomRooms} комнат(ой/ами), расположена в(-о) ${randomRegion}.`;
-  const randomPhoto = `https://example.com/${randomHouseType}.jpg`;
+  const randomDescription = faker.commerce.productDescription();
+  const randomPhoto = faker.image.city(
+    Math.floor(Math.random() * 1000) + 1,
+    Math.floor(Math.random() * 1000) + 1,
+  );
   const randomAddress = `Ленина ${Math.floor(Math.random() * 100) + 1}`;
   const randomGeoTag = `${Math.floor(Math.random() * 1000) + 1}, ${
     Math.floor(Math.random() * 1000) + 1
@@ -45,5 +50,6 @@ function generateRandomHouses(numHouses) {
 }
 
 // console.log(generateRandomHouseData());
+console.log(faker.image.city());
 
 module.exports = generateRandomHouses;

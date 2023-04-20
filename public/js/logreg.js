@@ -1,6 +1,6 @@
 const findButtonForReg = document.querySelector('.registration');
 const registrationFormContainer = document.querySelector(
-  '.registration-form-container',
+  '.registration-form-container'
 );
 let counterForReg = 0;
 
@@ -125,9 +125,9 @@ findButtonForReg.addEventListener('click', () => {
             const buttonLogin = document.querySelector('.login');
             buttonLogin.style.display = 'none';
 
-            const profileButton = document.querySelector(".profile");
-            profileButton.addEventListener("click", () => {
-              location.assign(`/profile`);
+            const profileButton = document.querySelector('.profile');
+            profileButton.addEventListener('click', () => {
+              window.location.href = '/profile';
             });
           }
         } catch (error) {
@@ -138,36 +138,13 @@ findButtonForReg.addEventListener('click', () => {
   } else {
     const buttonText = document.querySelector('.registration').textContent;
     if (buttonText === 'Скрыть форму') {
-      document.querySelector('.registration').textContent = 'Зарегистрироваться';
+      document.querySelector('.registration').textContent =
+        'Зарегистрироваться';
       document.querySelector('.regForm').remove();
       registrationFormContainer.style.display = 'none';
       const buttonLogin = document.querySelector('.login');
       buttonLogin.style.display = 'inline';
     }
-  }
-});
-
-const logoutButton = document.querySelector('.logout');
-logoutButton?.addEventListener('click', async () => {
-  try {
-    const response = await fetch('/users/logout');
-    if (response.ok) {
-      const buttonProfile = document.querySelector('.profile');
-      buttonProfile.style.display = 'none';
-      const buttonLogoute = document.querySelector('.logout');
-      buttonLogoute.style.display = 'none';
-      const buttonLogin = document.querySelector('.login');
-      buttonLogin.style.display = 'inline';
-      buttonLogin.textContent = 'Авторизоваться';
-      const buttonRegistration = document.querySelector('.registration');
-      buttonRegistration.style.display = 'inline';
-      buttonRegistration.textContent = 'Зарегистрироваться';
-      window.location = '/';
-    } else {
-      alert('Ошибка');
-    }
-  } catch (error) {
-    console.log(error);
   }
 });
 
@@ -256,8 +233,53 @@ findButtonForLogin.addEventListener('click', () => {
   }
 });
 
-const profileButton = document.querySelector(".profile");
+const buttonLogout = document.querySelector('.logout');
+buttonLogout.addEventListener('click', () => {
+  const confirmBox = document.createElement('div');
+  confirmBox.className = 'confirm-box';
 
-profileButton?.addEventListener("click", () => {
-  window.location = "/profile";
+  const message = document.createElement('div');
+  message.className = 'message';
+  message.textContent = 'Вы действительно хотите выйти из профиля?';
+
+  const yesButton = document.createElement('button');
+  yesButton.className = 'yes-button';
+  yesButton.textContent = 'Да';
+
+  const noButton = document.createElement('button');
+  noButton.className = 'no-button';
+  noButton.textContent = 'Нет';
+
+  confirmBox.appendChild(message);
+  confirmBox.appendChild(yesButton);
+  confirmBox.appendChild(noButton);
+  document.body.appendChild(confirmBox);
+
+  yesButton.addEventListener('click', async () => {
+    try {
+      const response = await fetch('/users/logout');
+      if (response.ok) {
+        const buttonProfile = document.querySelector('.profile');
+        buttonProfile.style.display = 'none';
+        const buttonLogoute = document.querySelector('.logout');
+        buttonLogoute.style.display = 'none';
+        const buttonLogin = document.querySelector('.login');
+        buttonLogin.style.display = 'inline';
+        buttonLogin.textContent = 'Авторизоваться';
+        const buttonRegistration = document.querySelector('.registration');
+        buttonRegistration.style.display = 'inline';
+        buttonRegistration.textContent = 'Зарегистрироваться';
+        window.location = '/';
+        confirmBox.remove();
+      } else {
+        alert('Ошибка');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  noButton.addEventListener('click', () => {
+    confirmBox.remove();
+  });
 });
