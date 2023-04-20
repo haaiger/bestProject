@@ -10,6 +10,7 @@ const FileStore = require("session-file-store")(session);
 
 const homeRouter = require("./src/routes/homeRouter");
 const userRouters = require("./src/routes/usersRouter");
+const fullCardRouter = require("./src/routes/fullCardRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -52,6 +53,7 @@ const checkAuth = (request, response, next) => {
 // Роуты
 app.use("/", homeRouter);
 app.use("/users", userRouters);
+app.use("/full-card", fullCardRouter);
 // app.use(pageNotFoundRouter);
 
 // Старт сервера
