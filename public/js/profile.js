@@ -22,3 +22,20 @@ if (newAdvert) {
     }
   });
 }
+
+if (findAdvert) {
+  findAdvert.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const data = new FormData(findAdvert);
+    const response = await fetch("/profile/search", {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify(Object.fromEntries(data)),
+    });
+
+    const result = await response.json();
+    console.log(result);
+  });
+}

@@ -95,11 +95,30 @@ router.post("/add", async (req, res) => {
   }
 });
 
+router.post("/search", async (req, res) => {
+  // console.log("=============", req.body, "================");
+  const obj = req.body;
+
+  for (let key in obj) {
+    if (obj[key] === null || obj[key] === "") {
+      delete obj[key];
+    }
+  }
+  console.log("=============", obj, "================");
+  const searchResult = await House.findAll({ where: { ...obj }, raw: true });
+  console.log(searchResult, "VVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+  if (searchResult[0]) {
+    res.json(searchResult);
+  } else {
+    res.json({ msg: "Ничего не нашлось" });
+  }
+});
+
 //* редактирование данных пользователя (кроме пароля)
 router.put("/user", async (req, res) => {
-  const { firstname, middleName, lastName, phone, email } = req.body;
+  const { firstName, middleName, lastName, phone, email } = req.body;
   const updatedUser = await User.update(
-    { firstname, middleName, lastName, phone, email },
+    { firstName, middleName, lastName, phone, email },
     { where: { id: req.session.userId }, returning: true, plain: true }
   );
   // console.log(updatedUser[1].dataValues);

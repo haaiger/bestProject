@@ -117,6 +117,7 @@ editPassBtn.addEventListener("click", (event4) => {
       checkPassForm.passInput.value = "";
       checkPassForm.passInput.placeholder = "Введите новый пароль";
 
+      //изменение пароля на новый
       checkPassForm.addEventListener("submit", async (event7) => {
         event7.preventDefault();
         const newPass = checkPassForm.passInput.value;

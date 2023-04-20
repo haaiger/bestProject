@@ -80,8 +80,11 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 <label>
                   СВободно\занято
                   <select name="isRent">
-                    <option value>Свободно</option>
-                    <option value={false}>Занято</option>
+                    <option disabled selected>
+                      Выберите
+                    </option>
+                    <option value={true}>Занято</option>
+                    <option value={false}>Свободно</option>
                   </select>
                 </label>
                 <label>
@@ -97,7 +100,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 </label>
                 <label>
                   typesOfHouses
-                  <select name="typeHouseName">
+                  <select name="typeHouse">
                     <option disabled selected>
                       Выберите
                     </option>
@@ -108,7 +111,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 </label>
                 <label>
                   regions
-                  <select name="regionName">
+                  <select name="region">
                     <option disabled selected>
                       Выберите
                     </option>
