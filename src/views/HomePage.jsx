@@ -8,8 +8,8 @@ const someCards = [
   { link: null, title: "title3", text: "text3" },
 ];
 
-function HomePage({ userSession }) {
-  console.log(userSession, '<<<<<<<<<HOPME PAGE');
+function HomePage({ userSession, HouseFromDB }) {
+  console.log(userSession, "<<<<<<<<<HOPME PAGE");
   return (
     <Layout userSession={userSession}>
       <link rel="stylesheet" href="/style/home.css" />
@@ -46,12 +46,16 @@ function HomePage({ userSession }) {
         </form>
         <button type="button">Показать на карте</button>
         <div className="wrapperRandomАdvertisement">
-          {someCards.map((card, index) => (
+          {HouseFromDB.map((card, index) => (
             <Card
               key={index}
-              title={card.title}
-              text={card.text}
-              link={card.link}
+              // photo={card.photo}
+              id={card.id}
+              typeHouse={card.typeHouse}
+              rentPeriod={card.rentPeriod}
+              region={card.region}
+              price={card.price}
+              address={card.address}
             />
           ))}
         </div>

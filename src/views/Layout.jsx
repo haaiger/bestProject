@@ -61,6 +61,7 @@ function Layout({
         </header>
         <div className="registration-form-container" />
         <div className="login-form-container" />
+        <div className="confirm-exit" />
         {children}
         <footer>
           <div className="footerLink">
