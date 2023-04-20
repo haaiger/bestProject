@@ -9,6 +9,7 @@ let user;
 
 const bcrypt = require("bcrypt");
 
+//* отрисовка личного кабинета пользователя
 router.get("/", async (req, res) => {
   try {
     user = await User.findOne({
@@ -30,7 +31,7 @@ router.get("/", async (req, res) => {
       );
     }
     // console.log("USER>>>>>>", user);
-    console.log("userFavs>>>>>>", favsFull);
+    // console.log("userFavs>>>>>>", favsFull);
 
     const categories = await Category.findAll();
     const rentPeriods = categories
@@ -55,9 +56,8 @@ router.get("/", async (req, res) => {
   }
 });
 
+//* добавление нового объявления администратором
 router.post("/add", async (req, res) => {
-  // console.log(">>>>>>>>>>>", req.body, "0000000000000000000000000000000");
-
   const {
     rentPeriod,
     typeHouse,
@@ -95,8 +95,8 @@ router.post("/add", async (req, res) => {
   }
 });
 
+//* редактирование данных пользователя (кроме пароля)
 router.put("/user", async (req, res) => {
-  // console.log(">>>>>>>>>>>", req.body, "0000000000000000000000000000000");
   const { firstname, middleName, lastName, phone, email } = req.body;
   const updatedUser = await User.update(
     { firstname, middleName, lastName, phone, email },
@@ -116,7 +116,8 @@ router.put("/user", async (req, res) => {
     res.json({ msg: "fail" });
   }
 });
-//проверка старого пароля перед сменой нового
+
+//* проверка старого пароля перед сменой нового
 router.post("/password", async (req, res) => {
   const { oldPass } = req.body;
   const passCheck = await bcrypt.compare(oldPass, user.password);
@@ -127,9 +128,8 @@ router.post("/password", async (req, res) => {
   }
 });
 
+//* смена старого пароля на новый после первичной проверки
 router.put("/password", async (req, res) => {
-  console.log("==============PUTPUTPUTPUT++++++++++=");
-
   const { newPass } = req.body;
   const hashPass = await bcrypt.hash(newPass, 10);
   const updatedUser = await User.update(
@@ -137,7 +137,7 @@ router.put("/password", async (req, res) => {
     { where: { id: req.session.userId }, returning: true, plain: true }
   );
 
-  console.log(updatedUser);
+  // console.log(updatedUser);
   if (updatedUser) {
     res.json({ msg: "Пароль изменён" });
   } else {

@@ -4,10 +4,10 @@ const Layout = require("./Layout");
 const style = "/style/profile.css";
 
 module.exports = function Profile({ userSession, user, favsFull, filters }) {
-  console.log("userSession========>", userSession);
-  console.log("user========>", user);
-  console.log("userFavs========>", favsFull);
-  console.log("filters========>", filters);
+  // console.log("userSession========>", userSession);
+  // console.log("user========>", user);
+  // console.log("userFavs========>", favsFull);
+  // console.log("filters========>", filters);
   return (
     <Layout userSession={userSession} style={style}>
       <div className="mainContainer" style={{ display: "flex" }}>
@@ -76,6 +76,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                   padding: "5px",
                 }}
               >
+                <input type="number" name="id" placeholder="id" />
                 <label>
                   СВободно\занято
                   <select name="isRent">
@@ -83,7 +84,6 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                     <option value={false}>Занято</option>
                   </select>
                 </label>
-                <input type="number" name="id" placeholder="id" />
                 <label>
                   rentPeriods
                   <select name="rentPeriod">
@@ -119,9 +119,10 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 </label>
                 <input name="price" type="number" placeholder="Цена" />
                 <input name="address" type="text" placeholder="Адрес" />
-                <input name="geotag" type="text" placeholder="Координаты" />
+                {/* <input name="geotag" type="text" placeholder="Координаты" /> */}
                 <button className="searchAdBtn">apply</button>
               </form>
+              <div className="searchResultsDiv"></div>
             </>
           ) : (
             <ul>
