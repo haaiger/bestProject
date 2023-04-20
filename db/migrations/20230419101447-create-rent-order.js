@@ -27,6 +27,12 @@ module.exports = {
           key: "id",
         },
       },
+      rentDateStart: {
+        type: Sequelize.String,
+      },
+      rentDateEnd: {
+        type: Sequelize.String,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

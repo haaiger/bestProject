@@ -3,11 +3,11 @@
 function generateRandomHouseData() {
   const rentPeriods = ["Посуточно", "Месяц(ы)", "На длительный срок"];
   const houseTypes = ["Комната", "Квартира", "Дом"];
-  const districts = ["Первый район", "Второй район", "Третий район", "Четвёртый район", "Пятый район"];
+  const region = ["Первый район", "Второй район", "Третий район", "Четвёртый район", "Пятый район"];
 
   const randomRentPeriod = rentPeriods[Math.floor(Math.random() * rentPeriods.length)];
   const randomHouseType = houseTypes[Math.floor(Math.random() * houseTypes.length)];
-  const randomDistrict = districts[Math.floor(Math.random() * districts.length)];
+  const randomDistrict = region[Math.floor(Math.random() * region.length)];
   const randomPrice = Math.floor(Math.random() * 5000000) + 500;
   const randomRooms = Math.floor(Math.random() * 10) + 1;
   const randomDescription = `Это ${randomHouseType} с ${randomRooms} комнат(ой/ами), расположена в(-о) ${randomDistrict}.`;

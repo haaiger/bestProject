@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       userId: DataTypes.INTEGER,
       houseId: DataTypes.INTEGER,
+      rentDateStart: DataTypes.STRING,
+      rentDateEnd: DataTypes.STRING,
     },
     {
       sequelize,

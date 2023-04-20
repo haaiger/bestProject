@@ -15,7 +15,7 @@ module.exports = {
       typeHouse: {
         type: Sequelize.STRING,
       },
-      district: {
+      region: {
         type: Sequelize.STRING,
       },
       price: {
