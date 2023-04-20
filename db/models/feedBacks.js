@@ -1,5 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable strict */
+
 'use strict';
+
 const { Model } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class FeedBacks extends Model {
     /**

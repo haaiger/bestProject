@@ -1,7 +1,9 @@
 const React = require('react');
 const Navbar = require('./Navbar');
 
-function Layout({ children, userSession, style, font }) {
+function Layout({
+  children, userSession, style, font,
+}) {
   console.log(userSession, 'USERSESIION');
   return (
     <html lang="en">

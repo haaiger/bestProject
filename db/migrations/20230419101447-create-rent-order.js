@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -25,6 +26,12 @@ module.exports = {
           },
           key: "id",
         },
+      },
+      rentDateStart: {
+        type: Sequelize.String,
+      },
+      rentDateEnd: {
+        type: Sequelize.String,
       },
       createdAt: {
         allowNull: false,
