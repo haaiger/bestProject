@@ -1,36 +1,28 @@
+/* eslint-disable strict */
 /* eslint-disable no-unused-vars */
+
+"use strict";
+
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("RentOrders", {
+    await queryInterface.createTable('FeedBacks', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      userId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Users",
-          },
-          key: "id",
-        },
-      },
-      houseId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Houses",
-          },
-          key: "id",
-        },
-      },
-      rentDateStart: {
+      name: {
         type: Sequelize.STRING,
       },
-      rentDateEnd: {
+      number: {
+        type: Sequelize.INTEGER,
+      },
+      email: {
+        type: Sequelize.STRING,
+      },
+      question: {
         type: Sequelize.STRING,
       },
       createdAt: {
@@ -44,6 +36,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("RentOrders");
+    await queryInterface.dropTable('FeedBacks');
   },
 };

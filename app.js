@@ -2,6 +2,8 @@ const express = require("express");
 const path = require("path");
 const morgan = require("morgan");
 require("dotenv").config();
+const session = require("express-session");
+const FileStore = require("session-file-store")(session);
 // const checkConnect = require("./src/middlewares/checkConnectBd");
 
 // Роуты
@@ -36,10 +38,19 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 // Мидлварка для просмотра сессии
-// app.use((req, res, next) => {
-//   console.log("session=>", req.session);
-//   next();
-// });
+app.use((req, res, next) => {
+  console.log("session=>", req.session);
+  next();
+});
+
+// Проверка авторизации, мидлварка
+const checkAuth = (request, response, next) => {
+  if (request.session.userId) {
+    next();
+  } else {
+    response.redirect("/");
+  }
+};
 
 // Роуты
 app.use("/", homeRouter);
