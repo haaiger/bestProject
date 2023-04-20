@@ -3,101 +3,129 @@ const Layout = require("./Layout");
 
 const { Category } = require("../../db/models");
 
-module.exports = async function Profile({ userSession, user, userFavs }) {
-  const categories = await Category.findAll();
-  const rentPeriods = categories
-    .map((item) => item.rentPeriod)
-    .filter((item) => item);
-  const typesOfHouses = categories
-    .map((item) => item.typeHouse)
-    .filter((item) => item);
-  const regions = categories.map((item) => item.region).filter((item) => item);
-
+module.exports = function Profile({ userSession, user, favsFull, filters }) {
+  console.log("userSession========>", userSession);
+  console.log("user========>", user);
+  console.log("userFavs========>", favsFull);
+  console.log("filters========>", filters);
   return (
     <Layout userSession={userSession}>
-      <div className="mainContainer">
+      <div className="mainContainer" style={{ display: "flex" }}>
         <div className="operations">
-          {userSession.isAdmin ? (
+          <h3 className="msg"></h3>
+          {user?.isAdmin ? (
             <>
-              {/* форма создания объявления */}
-              <form name="newAdvert">
+              <form
+                name="newAdvert"
+                style={{
+                  border: "1px black solid",
+                  margin: "5px",
+                  padding: "5px",
+                }}
+              >
                 <label>
-                  rentPeriods
-                  <input type="select" name="rentPeriod">
-                    <option disabled>Выберите</option>
-                    {rentPeriods.map((item) => (
-                      <option value={item}>{item}</option>
+                  rentPeriod
+                  <select name="rentPeriod">
+                    <option disabled selected>
+                      Выберите
+                    </option>
+                    {filters.rentPeriods.map((item) => (
+                      <option value={item} key={item}>
+                        {item}
+                      </option>
                     ))}
-                  </input>
+                  </select>
                 </label>
                 <label>
-                  typesOfHouses
-                  <input type="select" name="typeHouseName">
-                    <option disabled>Выберите</option>
-                    {typesOfHouses.map((item) => (
-                      <option value={item}>{item}</option>
+                  typeHouse
+                  <select name="typeHouse">
+                    <option disabled selected>
+                      Выберите
+                    </option>
+                    {filters.typesOfHouses.map((item) => (
+                      <option value={item} key={item}>
+                        {item}
+                      </option>
                     ))}
-                  </input>
+                  </select>
                 </label>
                 <label>
                   regions
-                  <input type="select" name="regionName">
-                    <option disabled>Выберите</option>
-                    {regions.map((item) => (
+                  <select name="region">
+                    <option disabled selected>
+                      Выберите
+                    </option>
+                    {filters.regions.map((item) => (
                       <option value={item}>{item}</option>
                     ))}
-                  </input>
+                  </select>
                 </label>
                 <input name="price" type="number" placeholder="Цена" />
                 <input name="description" type="text" placeholder="Описание" />
-                <input name="photos" type="file" placeholder="Фото" />
+                {/* <input name="photo" type="file" placeholder="Фото" /> */}
                 <input name="address" type="text" placeholder="Адрес" />
-                <input name="geotag" type="text" placeholder="Координаты" />
-                <button>apply</button>
+                <input name="geoTag" type="text" placeholder="Координаты" />
+                <button className="newAdBtn">apply</button>
               </form>
-              {/* форма поиска объявления */}
-              <form name="findAdvert">
-                <input type="number" name="isRent">
-                  <option value={true}>Свободно</option>
-                  <option value={false}>Занято</option>
-                </input>
-                <input type="select" name="id" placeholder="id" />
+              <br />
+              <form
+                name="findAdvert"
+                style={{
+                  border: "1px black solid",
+                  margin: "5px",
+                  padding: "5px",
+                }}
+              >
+                <label>
+                  СВободно\занято
+                  <select name="isRent">
+                    <option value={true}>Свободно</option>
+                    <option value={false}>Занято</option>
+                  </select>
+                </label>
+                <input type="number" name="id" placeholder="id" />
                 <label>
                   rentPeriods
-                  <input type="select" name="rentPeriod">
-                    <option disabled>Выберите</option>
-                    {rentPeriods.map((item) => (
+                  <select name="rentPeriod">
+                    <option disabled selected>
+                      Выберите
+                    </option>
+                    {filters.rentPeriods.map((item) => (
                       <option value={item}>{item}</option>
                     ))}
-                  </input>
+                  </select>
                 </label>
                 <label>
                   typesOfHouses
-                  <input type="select" name="typeHouseName">
-                    <option disabled>Выберите</option>
-                    {typesOfHouses.map((item) => (
+                  <select name="typeHouseName">
+                    <option disabled selected>
+                      Выберите
+                    </option>
+                    {filters.typesOfHouses.map((item) => (
                       <option value={item}>{item}</option>
                     ))}
-                  </input>
+                  </select>
                 </label>
                 <label>
                   regions
-                  <input type="select" name="regionName">
-                    <option disabled>Выберите</option>
-                    {regions.map((item) => (
+                  <select name="regionName">
+                    <option disabled selected>
+                      Выберите
+                    </option>
+                    {filters.regions.map((item) => (
                       <option value={item}>{item}</option>
                     ))}
-                  </input>
+                  </select>
                 </label>
                 <input name="price" type="number" placeholder="Цена" />
                 <input name="address" type="text" placeholder="Адрес" />
                 <input name="geotag" type="text" placeholder="Координаты" />
-                <button>apply</button>
+                <button className="searchAdBtn">apply</button>
               </form>
             </>
           ) : (
             <ul>
-              {userFavs.map((item) => (
+              {favsFull.map((item) => (
                 <li>
                   <ul>
                     <li>{item.rentPeriod}</li>
@@ -105,7 +133,7 @@ module.exports = async function Profile({ userSession, user, userFavs }) {
                     <li>{item.region}</li>
                     <li>{item.price}</li>
                     <li>{item.address}</li>
-                    <li>{item.desc}</li>
+                    <li>{item.description}</li>
                   </ul>
                   <button>Удалить из избранного</button>
                   <button>Забронировать</button>
@@ -123,6 +151,7 @@ module.exports = async function Profile({ userSession, user, userFavs }) {
           <button>edit userInfo</button>
         </div>
       </div>
+      <script defer src="/js/profile.js" />
     </Layout>
   );
 };
