@@ -7,10 +7,10 @@ function generateRandomHouseData() {
 
   const randomRentPeriod = rentPeriods[Math.floor(Math.random() * rentPeriods.length)];
   const randomHouseType = houseTypes[Math.floor(Math.random() * houseTypes.length)];
-  const randomDistrict = region[Math.floor(Math.random() * region.length)];
+  const randomRegion = region[Math.floor(Math.random() * region.length)];
   const randomPrice = Math.floor(Math.random() * 5000000) + 500;
   const randomRooms = Math.floor(Math.random() * 10) + 1;
-  const randomDescription = `Это ${randomHouseType} с ${randomRooms} комнат(ой/ами), расположена в(-о) ${randomDistrict}.`;
+  const randomDescription = `Это ${randomHouseType} с ${randomRooms} комнат(ой/ами), расположена в(-о) ${randomRegion}.`;
   const randomPhoto = `https://example.com/${randomHouseType}.jpg`;
   const randomAddress = `Ленина ${Math.floor(Math.random() * 100) + 1}`;
   const randomGeoTag = `${Math.floor(Math.random() * 1000) + 1}, ${
@@ -21,7 +21,7 @@ function generateRandomHouseData() {
   return {
     rentPeriod: randomRentPeriod,
     typeHouse: randomHouseType,
-    district: randomDistrict,
+    region: randomRegion,
     price: randomPrice,
     rooms: randomRooms,
     description: randomDescription,

@@ -28,10 +28,10 @@ module.exports = {
         },
       },
       rentDateStart: {
-        type: Sequelize.String,
+        type: Sequelize.STRING,
       },
       rentDateEnd: {
-        type: Sequelize.String,
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: false,

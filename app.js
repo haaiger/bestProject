@@ -2,42 +2,19 @@ const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
 require('dotenv').config();
+const session = require("express-session");
+const FileStore = require("session-file-store")(session);
 // const checkConnect = require("./src/middlewares/checkConnectBd");
 
 // Роуты
-<<<<<<< HEAD
 const homeRouter = require('./src/routes/homeRouter');
-const userRouters = require('./src/routes/users.routers');
+const userRouters = require('./src/routes/usersRouter');
 const profileRouter = require('./src/routes/profileRouter');
-=======
-<<<<<<< HEAD
-const session = require("express-session");
-const FileStore = require("session-file-store")(session);
-const homeRouter = require("./src/routes/homeRouter");
 const listRouter = require("./src/routes/listRouter");
-const profileRouter = require("./src/routes/profileRouter");
-=======
-const homeRouter = require("./src/routes/homeRouter");
->>>>>>> main
-const userRouters = require("./src/routes/users.routers");
-const profileRouter = require("./src/routes/profileRouter");
->>>>>>> main
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-<<<<<<< HEAD
-const session = require('express-session');
-const FileStore = require('session-file-store')(session);
-
-=======
-<<<<<<< HEAD
-=======
-const session = require("express-session");
-const FileStore = require("session-file-store")(session);
-
->>>>>>> main
->>>>>>> main
 // Мидлварки
 app.use(express.static(path.join(process.cwd(), 'public')));
 app.use(express.urlencoded({ extended: true }));
@@ -64,20 +41,20 @@ app.use((req, res, next) => {
   next();
 });
 
-// Роуты
-app.use('/', homeRouter);
-app.use('/profile', profileRouter);
-app.use('/users', userRouters);
-// app.use((req, res, next) => {
-//   console.log("session=>", req.session);
-//   next();
-// });
+// Проверка авторизации, мидлварка
+const checkAuth = (request, response, next) => {
+  if (request.session.userId) {
+    next();
+  } else {
+    response.redirect("/");
+  }
+};
 
 // Роуты
-app.use("/", homeRouter);
+app.use('/', homeRouter);
+app.use('/profile', checkAuth, profileRouter);
+app.use('/users', userRouters);
 app.use("/list-cards", listRouter);
-app.use("/profile", profileRouter);
-app.use("/users", userRouters);
 // app.use(pageNotFoundRouter);
 
 // Старт сервера

@@ -1,6 +1,6 @@
 const findButtonForReg = document.querySelector('.registration');
 const registrationFormContainer = document.querySelector(
-  '.registration-form-container'
+  '.registration-form-container',
 );
 let counterForReg = 0;
 
@@ -138,8 +138,7 @@ findButtonForReg.addEventListener('click', () => {
   } else {
     const buttonText = document.querySelector('.registration').textContent;
     if (buttonText === 'Скрыть форму') {
-      document.querySelector('.registration').textContent =
-        'Зарегистрироваться';
+      document.querySelector('.registration').textContent = 'Зарегистрироваться';
       document.querySelector('.regForm').remove();
       registrationFormContainer.style.display = 'none';
       const buttonLogin = document.querySelector('.login');
@@ -201,9 +200,6 @@ findButtonForLogin.addEventListener('click', () => {
 
     <button class="btn btn-success my-3" style='width: 100%' type='submit'>Авторизоваться</button>
 
-
-
-
     </form>
   `;
     LoginFormContainer.style.display = 'inline';
@@ -260,53 +256,8 @@ findButtonForLogin.addEventListener('click', () => {
   }
 });
 
-// const { fullregistrationForm } = document.forms;
-// fullregistrationForm.addEventListener("submit", async (e) => {
-//   e.preventDefault();
-//   const password1Input = fullregistrationForm.querySelector("#password1");
-//   const password2Input = fullregistrationForm.querySelector("#password2");
-//   const password1 = password1Input.value;
-//   const password2 = password2Input.value;
-//   if (password1 !== password2) {
-//     const msg = document.querySelector(".msg1");
-//     msg.style.display = "inline";
-//     msg.innerText = "Пароли не совпадают";
-//   } else {
-//     const data = new FormData(regForm1);
-//     const body = JSON.stringify(Object.fromEntries(data));
+const profileButton = document.querySelector(".profile");
 
-//     try {
-//       const response = await fetch("/users/registration", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(Object.fromEntries(data)),
-//       });
-//       const result = await response.json();
-//       const msg1 = document.querySelector(".msg1");
-//       if (result.msg) {
-//         msg1.style.visibility = "visible";
-//         msg1.innerText = `${result.msg}`;
-//       } else {
-//         document.querySelector(".regForm").remove();
-//         registrationFormContainer.style.display = "none";
-//         const buttonProfile = document.querySelector(".profile");
-//         buttonProfile.style.display = "inline";
-//         const buttonLogoute = document.querySelector(".logout");
-//         buttonLogoute.style.display = "inline";
-//         const buttonRegistration = document.querySelector(".registration");
-//         buttonRegistration.style.display = "none";
-//         const buttonLogin = document.querySelector(".login");
-//         buttonLogin.style.display = "none";
-
-//         const profileButton = document.querySelector(".profile");
-//         profileButton.addEventListener("click", () => {
-//           location.assign(`/profile/${result.user.id}`);
-//         });
-//       }
-//     } catch (error) {
-//       // alert('ОШИБКА!!, ЗАПИСЬ НЕ СОЗДАЛАСЬ', error);
-//     }
-//   }
-// });
+profileButton?.addEventListener("click", () => {
+  window.location = "/profile";
+});
