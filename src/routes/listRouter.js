@@ -3,10 +3,6 @@ const renderTemplate = require("../lib/renderTemplate");
 const ListPage = require("../views/ListPage");
 const { House } = require("../../db/models");
 
-// const rentPeriod = "Суточно";
-// const typeHouse = "Квартира";
-// const region = "Ленинский";
-
 router.get(`/:rentPeriod/:typeHouse/:regions`, async (request, response) => {
   try {
     const { rentPeriod, typeHouse, region } = request.params;

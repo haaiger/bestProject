@@ -14,7 +14,6 @@ const listRouter = require("./src/routes/listRouter");
 const cardRouter = require('./src/routes/cardRouter');
 const fullCardRouter = require("./src/routes/fullCardRouter");
 
-
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -43,7 +42,6 @@ app.use(session(sessionConfig));
 //   console.log('session=>', req.session);
 //   next();
 // });
-
 
 // Проверка авторизации, мидлварка
 const checkAuth = (request, response, next) => {

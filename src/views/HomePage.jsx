@@ -2,29 +2,7 @@ const React = require("react");
 const Layout = require("./Layout");
 const Card = require("./components/Card");
 
-const someCards = [
-  {
-    link: null,
-    title: "title1",
-    text: "text1",
-    id: 1,
-  },
-  {
-    link: null,
-    title: "title2",
-    text: "text2",
-    id: 2,
-  },
-  {
-    link: null,
-    title: "title3",
-    text: "text3",
-    id: 3,
-  },
-];
-
-function HomePage({ userSession, HouseFromDB, numbersAd}) {
-  console.log(userSession, "<<<<<<<<<HOPME PAGE");
+function HomePage({ userSession, HouseFromDB, numbersAd }) {
   return (
     <Layout userSession={userSession}>
       <link rel="stylesheet" href="/style/home.css" />
@@ -68,7 +46,6 @@ function HomePage({ userSession, HouseFromDB, numbersAd}) {
               id={card.id}
               key={index}
               // photo={card.photo}
-              id={card.id}
               typeHouse={card.typeHouse}
               rentPeriod={card.rentPeriod}
               region={card.region}
