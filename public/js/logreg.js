@@ -127,7 +127,7 @@ findButtonForReg.addEventListener("click", () => {
 
             const profileButton = document.querySelector(".profile");
             profileButton.addEventListener("click", () => {
-              location.assign(`/profile/${result.user.id}`);
+              location.assign(`/profile`);
             });
           }
         } catch (error) {
