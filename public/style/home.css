@@ -1,36 +1,29 @@
-.wrappeHome {
-    display: flex;
-    flex-direction: column;
-}
-
-.editForm {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 16px;
-}
-
-.pagination {
-    display: flex;
-    gap: 8px;
-    list-style: none;
-}
-
-.navigation {
+.formHome {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 32px;
 }
 
-.page-link {
-    text-decoration: none;
+.wrapperFilters {
+    display: flex;
 }
 
-.page-item {
-    color: black
+.wrapperFilter {
+    margin-right: 16px;
 }
 
-.active {
-    color: blue
+.wrapperRandomАdvertisement {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 16px;
+}
+
+.card-body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }

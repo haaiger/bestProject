@@ -3,18 +3,29 @@ const path = require("path");
 const morgan = require("morgan");
 require("dotenv").config();
 // const checkConnect = require("./src/middlewares/checkConnectBd");
-//123
+
 // Роуты
+<<<<<<< HEAD
+const session = require("express-session");
+const FileStore = require("session-file-store")(session);
 const homeRouter = require("./src/routes/homeRouter");
+const listRouter = require("./src/routes/listRouter");
+const profileRouter = require("./src/routes/profileRouter");
+=======
+const homeRouter = require("./src/routes/homeRouter");
+>>>>>>> main
 const userRouters = require("./src/routes/users.routers");
 const profileRouter = require("./src/routes/profileRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+<<<<<<< HEAD
+=======
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 
+>>>>>>> main
 // Мидлварки
 app.use(express.static(path.join(process.cwd(), "public")));
 app.use(express.urlencoded({ extended: true }));
@@ -43,6 +54,7 @@ app.use(session(sessionConfig));
 
 // Роуты
 app.use("/", homeRouter);
+app.use("/list-cards", listRouter);
 app.use("/profile", profileRouter);
 app.use("/users", userRouters);
 // app.use(pageNotFoundRouter);
