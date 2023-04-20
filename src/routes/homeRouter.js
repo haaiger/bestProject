@@ -14,16 +14,16 @@ router.get('/', async (request, response) => {
     console.log('Ошибка запроса GET /', error);
   }
 });
-router.get('/map', async (req, res) => {
-  try {
-    renderTemplate(YandexMap, {}, res, req);
-  } catch (error) {
-    console.log('Ошибка запроса GET /', error);
-  }
-});
+// router.get('/map', async (req, res) => {
+//   try {
+//     renderTemplate(YandexMap, {}, res, req);
+//   } catch (error) {
+//     console.log('Ошибка запроса GET /', error);
+//   }
+// });
 
 router.get('/contact', (req, res) => {
-  renderTemplate(Contact, {}, res, req);
+  renderTemplate(Contact, {}, req, res);
 });
 module.exports = router;
 

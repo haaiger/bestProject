@@ -1,14 +1,11 @@
 const React = require('react');
 const Layout = require('./Layout');
 
-const font = `<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:ital,wght@0,500;0,900;1,400&display=swap" rel="stylesheet">`;
-const style = `/style/contact.css`;
+const style = '/style/contact.css';
 
-function Contact() {
+function Contact({ userSession }) {
   return (
-    <Layout style={style} font={font}>
+    <Layout style={style} userSession={userSession}>
       <body>
         <div className="bodyContact">
           <div className="center">
@@ -16,7 +13,7 @@ function Contact() {
               <div>
                 <h1 className="hTitle">
                   Мы всегда рады помочь Вам в подборе недвижимости. Мы
-                  внимательно относимся к каждому обращению и доспуны для вас с
+                  внимательно относимся к каждому обращению и доступны для вас с
                   пн по пт с 9:00 до 19:00
                 </h1>
                 <h3 className="hTitle">
@@ -37,46 +34,48 @@ function Contact() {
                 <h3 className="hTitle">Адрес электронной почты</h3>
                 <p>· info@gmail.com</p>
               </div>
-              <div>
-                <h3 className="hTitle">WhatsApp / Viber</h3>
+              <div className="socialLine">
+                <div>
+                  <h3 className="hTitle">WhatsApp / Viber</h3>
 
-                <input
-                  type="image"
-                  src="./img/whatsApp.png"
-                  alt="wsApp"
-                  name="btn-wsApp"
-                  className="icon"
-                  id="btn-wsApp"
-                />
+                  <input
+                    type="image"
+                    src="./img/whatsApp.png"
+                    alt="wsApp"
+                    name="btn-wsApp"
+                    className="icon"
+                    id="btn-wsApp"
+                  />
 
-                <input
-                  type="image"
-                  src="./img/viber.png"
-                  alt="viber"
-                  name="btn-viber"
-                  className="icon"
-                  id="btn-viber"
-                />
-              </div>
-              <div>
-                <h3 className="hTitle">Социальные сети</h3>
+                  <input
+                    type="image"
+                    src="./img/viber.png"
+                    alt="viber"
+                    name="btn-viber"
+                    className="icon"
+                    id="btn-viber"
+                  />
+                </div>
+                <div className="socialLine2">
+                  <h3 className="hTitle">Социальные сети</h3>
 
-                <input
-                  type="image"
-                  src="./img/vk.png"
-                  alt="vk"
-                  name="btn-vk"
-                  className="icon"
-                  id="btn-vk"
-                />
-                <input
-                  type="image"
-                  src="./img/telegram.png"
-                  alt="tg"
-                  name="btn-tg"
-                  className="icon"
-                  id="btn-tg"
-                />
+                  <input
+                    type="image"
+                    src="./img/vk.png"
+                    alt="vk"
+                    name="btn-vk"
+                    className="icon"
+                    id="btn-vk"
+                  />
+                  <input
+                    type="image"
+                    src="./img/telegram.png"
+                    alt="tg"
+                    name="btn-tg"
+                    className="icon"
+                    id="btn-tg"
+                  />
+                </div>
               </div>
             </div>
             <div className="bottomForm">

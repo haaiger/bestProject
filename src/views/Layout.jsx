@@ -1,7 +1,8 @@
 const React = require('react');
-const Navbar = require("./Navbar");
+const Navbar = require('./Navbar');
 
 function Layout({ children, userSession, style, font }) {
+  console.log(userSession, 'USERSESIION');
   return (
     <html lang="en">
       <head>
@@ -10,6 +11,46 @@ function Layout({ children, userSession, style, font }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         {/* <link rel="stylesheet" href="/style/normalize.css" /> */}
         <link rel="stylesheet" href="/style/layout.css" />
+        <link rel="stylesheet" href="/style/contact.css" />
+        <link rel="stylesheet" href={style} />
+
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+          crossOrigin="anonymous"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,200;0,500;0,900;1,400&display=swap"
+          rel="stylesheet"
+        />
+
+        <link
+          href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:ital,wght@0,500;0,900;1,400&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&family=Roboto:ital,wght@0,500;0,900;1,400&display=swap"
+          rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="/style/logreg.css" />
+
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossOrigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+          crossOrigin="anonymous"
+        />
+        <script defer src="/js/logreg.js" />
+
         <title>Project</title>
       </head>
       <body>
@@ -31,7 +72,7 @@ function Layout({ children, userSession, style, font }) {
             </div>
             <div className="footerBlock">
               <h4 className="footer-h4">Навигация</h4>
-              <achildren, userSession, style, font }
+              <a
                 href="/"
                 className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover footer-a"
               >

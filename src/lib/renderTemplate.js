@@ -1,6 +1,6 @@
-require("@babel/register");
-const React = require("react");
-const ReactDOMServer = require("react-dom/server");
+require('@babel/register');
+const React = require('react');
+const ReactDOMServer = require('react-dom/server');
 
 function renderTemplate(reactComponent, props, request, response) {
   // console.log('React Component', reactComponent)

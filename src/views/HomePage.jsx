@@ -1,7 +1,8 @@
-const React = require("react");
-const Layout = require("./Layout");
+const React = require('react');
+const Layout = require('./Layout');
 
 function HomePage({ userSession }) {
+  console.log(userSession, '<<<<<<<<<HOPME PAGE');
   return (
     <Layout userSession={userSession}>
       <link rel="stylesheet" href="/style/home.css" />

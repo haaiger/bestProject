@@ -5,7 +5,13 @@ body {
   justify-content: center;
   overflow: auto;
 }
-
+header {
+  width: 100%;
+}
+.container-fluid {
+  display: flex;
+  justify-content: space-evenly;
+}
 .listLayout {
   display: flex;
   list-style: none;

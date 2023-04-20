@@ -6,20 +6,30 @@
   font-family: 'Roboto', sans-serif;
   min-height: 1400px;
 }
-
+.container-fluid-nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+/* .logForm {
+  margin-left: 100px;
+} */
 .center {
   display: flex;
   grid-template-rows: 60%;
   flex-direction: column;
   justify-content: space-between;
   height: 65em;
+  max-width: 80%;
+  align-items: center;
 }
 .hTitle {
   font-size: larger;
 }
 .main {
   display: grid;
-  grid-template-rows: 35% 30% 30% 30% 30%;
+  grid-template-rows: 55% 30% 30% 30% 30%;
+  margin-top: 40px;
 }
 p {
   font-family: 'Quicksand', sans-serif;
@@ -32,4 +42,10 @@ p {
 }
 .bottomForm {
   margin-top: 360px;
+}
+.socialLine {
+  display: flex;
+}
+.socialLine2 {
+  margin-left: 50px;
 }
