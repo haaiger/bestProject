@@ -1,13 +1,11 @@
+/* eslint-disable jsx-a11y/heading-has-content */
+/* eslint-disable react/self-closing-comp */
 const React = require("react");
 const Layout = require("./Layout");
 
 module.exports = function Profile({
   userSession, user, favsFull, filters,
 }) {
-  console.log("userSession========>", userSession);
-  console.log("user========>", user);
-  console.log("userFavs========>", favsFull);
-  console.log("filters========>", filters);
   return (
     <Layout userSession={userSession}>
       <div className="mainContainer" style={{ display: "flex" }}>

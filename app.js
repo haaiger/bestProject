@@ -7,10 +7,13 @@ const FileStore = require("session-file-store")(session);
 // const checkConnect = require("./src/middlewares/checkConnectBd");
 
 // Роуты
-
-const homeRouter = require("./src/routes/homeRouter");
-const userRouters = require("./src/routes/usersRouter");
+const homeRouter = require('./src/routes/homeRouter');
+const userRouters = require('./src/routes/usersRouter');
+const profileRouter = require('./src/routes/profileRouter');
+const listRouter = require("./src/routes/listRouter");
+const cardRouter = require('./src/routes/cardRouter');
 const fullCardRouter = require("./src/routes/fullCardRouter");
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,10 +39,11 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 
 // Мидлварка для просмотра сессии
-app.use((req, res, next) => {
-  console.log("session=>", req.session);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log('session=>', req.session);
+//   next();
+// });
+
 
 // Проверка авторизации, мидлварка
 const checkAuth = (request, response, next) => {
@@ -51,8 +55,11 @@ const checkAuth = (request, response, next) => {
 };
 
 // Роуты
-app.use("/", homeRouter);
-app.use("/users", userRouters);
+app.use('/', homeRouter);
+app.use('/profile', checkAuth, profileRouter);
+app.use('/users', userRouters);
+app.use("/list-cards", listRouter);
+app.use("/", cardRouter);
 app.use("/full-card", fullCardRouter);
 // app.use(pageNotFoundRouter);
 

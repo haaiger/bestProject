@@ -24,9 +24,25 @@ function Card({ id, photo, rentPeriod, typeHouse, region, price, address }) {
           </p>
           <p className="card-region">{region}</p>
           <p className="card-address">{address}</p>
-          <button type="button" className="btn btn-primary buttonHome">
+        {numbersAd.includes(id) ? (
+          <button
+            id={`${id}`}
+            type="button"
+            className="btn btn-danger buttonRemoveFavorite"
+            data-user-id={userSession.userId}
+          >
+            Убрать из избранного
+          </button>
+        ) : (
+          <button
+            id={`${id}`}
+            type="button"
+            className="btn btn-primary buttonHome buttonAddFavorite"
+            data-user-id={userSession.userId}
+          >
             Добавить в избранное
           </button>
+        )}
         </div>
       </div>
     </a>
