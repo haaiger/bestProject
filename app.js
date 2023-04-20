@@ -5,14 +5,14 @@ require("dotenv").config();
 // const checkConnect = require("./src/middlewares/checkConnectBd");
 
 // Роуты
+const session = require("express-session");
+const FileStore = require("session-file-store")(session);
 const homeRouter = require("./src/routes/homeRouter");
 const userRouters = require("./src/routes/users.routers");
+const favoritesRouters = require("./src/routes/favorites.router");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-const session = require("express-session");
-const FileStore = require("session-file-store")(session);
 
 // Мидлварки
 app.use(express.static(path.join(process.cwd(), "public")));
@@ -43,6 +43,7 @@ app.use(session(sessionConfig));
 // Роуты
 app.use("/", homeRouter);
 app.use("/users", userRouters);
+app.use("/favirites", favoritesRouters);
 // app.use(pageNotFoundRouter);
 
 // Старт сервера
