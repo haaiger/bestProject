@@ -9,25 +9,27 @@ function Card({ id, photo, rentPeriod, typeHouse, region, price, address }) {
   }
 
   return (
-    <div className="card card-one" id={id} style={{ width: "18rem" }}>
-      <img
-        className="card-img-top"
-        src={photo || "https://clck.ru/34BUog"}
-        alt="One card"
-      />
-      <div className="card-body">
-        <h5 className="card-typeHouse">{typeHouse}</h5>
-        <h5 className="card-rentPeriod">{rentPeriod}</h5>
-        <p className="card-price">
-          {price} {dayMonth(rentPeriod)}
-        </p>
-        <p className="card-region">{region}</p>
-        <p className="card-address">{address}</p>
-        <button type="button" className="btn btn-primary buttonHome">
-          Добавить в изобранное
-        </button>
+    <a href={`/full-card/card${id}`}>
+      <div className="card card-one" id={id} style={{ width: "18rem" }}>
+        <img
+          className="card-img-top"
+          src={photo || "https://clck.ru/34BUog"}
+          alt="One card"
+        />
+        <div className="card-body">
+          <h5 className="card-typeHouse">{typeHouse}</h5>
+          <h5 className="card-rentPeriod">{rentPeriod}</h5>
+          <p className="card-price">
+            {price} {dayMonth(rentPeriod)}
+          </p>
+          <p className="card-region">{region}</p>
+          <p className="card-address">{address}</p>
+          <button type="button" className="btn btn-primary buttonHome">
+            Добавить в избранное
+          </button>
+        </div>
       </div>
-    </div>
+    </a>
   );
 }
 
