@@ -9,7 +9,7 @@ function Card({ id, photo, rentPeriod, typeHouse, region, price, address }) {
   }
 
   return (
-    <a href={`/full-card/card${id}`}>
+    <a href={`/full-card/${id}`}>
       <div className="card card-one" id={id} style={{ width: "18rem" }}>
         <img
           className="card-img-top"

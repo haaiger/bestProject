@@ -4,8 +4,12 @@ const renderTemplate = require("../lib/renderTemplate");
 const { House } = require("../../db/models");
 const FullCard = require("../views/components/FullCard");
 
-router.get(`/`, (request, response) => {
-  renderTemplate(FullCard, {}, request, response);
+router.get(`/:id`, async (request, response) => {
+  const { id } = request.params;
+
+  const oneHouseFronDB = await House.findOne({ where: { id }, raw: true });
+
+  renderTemplate(FullCard, { oneHouseFronDB }, request, response);
 });
 
 module.exports = router;

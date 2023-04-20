@@ -1,7 +1,7 @@
 const React = require("react");
 const Layout = require("../Layout");
 
-module.exports = function FullCard({ userSession }) {
+module.exports = function FullCard({ userSession, oneHouseFronDB }) {
   return (
     <Layout userSession={userSession}>
       <div className="container mt-5" style={{ height: 1500 }}>
@@ -77,21 +77,18 @@ module.exports = function FullCard({ userSession }) {
             </div>
           </div>
           <div className="col-md-12 pt-5">
-            <h1 className="mb-4">Дом</h1>
-            <p className="lead mb-4">
-              Это Дом с 8 комнат(ой/ами), расположена в(-о) Третий район.
-            </p>
-            <h3 className="mb-4">Посуточно</h3>
-            <h4 className="mb-4">8 комнат</h4>
+            <h1 className="mb-4">{oneHouseFronDB.typeHouse}</h1>
+            <p className="lead mb-4">{oneHouseFronDB.description}</p>
+            <h3 className="mb-4">{oneHouseFronDB.rentPeriod}</h3>
 
-            <h4 className="mb-4">Цена: 3 493 530 руб.</h4>
-            <h3 className="mb-4">Третий район</h3>
+            <h4 className="mb-4">Цена: {oneHouseFronDB.price}</h4>
+            <h3 className="mb-4">{oneHouseFronDB.region}</h3>
 
-            <p>Адрес: Ленина 65</p>
+            <p>{oneHouseFronDB.address}</p>
             <button type="button" className="btn btn-primary mt-4">
               Добавить в избранное
             </button>
-            <button type="button" className="btn btn-primary mt-4">
+            <button type="button" className="btn btn-warning mt-4">
               Забронировать
             </button>
           </div>
