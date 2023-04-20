@@ -89,12 +89,20 @@ module.exports = function FullCard({ userSession, oneHouseFronDB }) {
             <h3 className="mb-4">{oneHouseFronDB.region}</h3>
 
             <p>{oneHouseFronDB.address}</p>
-            <button type="button" className="btn btn-primary mt-4">
-              Добавить в избранное
-            </button>
-            <button type="button" className="btn btn-warning mt-4">
-              Забронировать
-            </button>
+            {userSession.userId && (
+              <button
+                id={`${id}`}
+                data-user-id={userSession.userId}
+                type="button"
+                className={`btn ${
+                  isFavorite
+                    ? "btn-danger buttonRemoveFavorite"
+                    : "btn-primary buttonHome buttonAddFavorite"
+                }`}
+              >
+                {isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
+              </button>
+            )}
           </div>
         </div>
       </div>
