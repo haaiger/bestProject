@@ -1,7 +1,6 @@
 const React = require('react');
 
 module.exports = function Navbar({ userSession }) {
-  console.log(userSession, '<<<<<USER IN NAVBAR');
   return (
     <nav>
       <div className="anavbar-nav">

@@ -1,10 +1,7 @@
 const React = require('react');
 const Navbar = require('./Navbar');
 
-function Layout({
-  children, userSession, style, font,
-}) {
-  console.log(userSession, 'USERSESIION');
+function Layout({ children, userSession, style, font }) {
   return (
     <html lang="en">
       <head>
@@ -14,6 +11,7 @@ function Layout({
         {/* <link rel="stylesheet" href="/style/normalize.css" /> */}
         <link rel="stylesheet" href="/style/layout.css" />
         <link rel="stylesheet" href="/style/contact.css" />
+        <link rel="stylesheet" href="/style/adminMail.css" />
         <link rel="stylesheet" href={style} />
 
         <link
@@ -52,7 +50,7 @@ function Layout({
           crossOrigin="anonymous"
         />
         <script defer src="/js/logreg.js" />
-
+        <script defer src="/js/adminMail.js" />
         <title>Project</title>
       </head>
       <body>

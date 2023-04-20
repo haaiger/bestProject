@@ -1,13 +1,12 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-plusplus */
-const router = require("express").Router();
-const renderTemplate = require("../lib/renderTemplate");
-const Profile = require("../views/Profile");
-const {
-  User, Favorite, Category, House,
-} = require("../../db/models");
+const router = require('express').Router();
+const renderTemplate = require('../lib/renderTemplate');
+const Profile = require('../views/Profile');
+const { User, Favorite, Category, House } = require('../../db/models');
+// const Layout = require('../views/Layout');
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const user = await User.findOne({
       where: { id: req.session.userId },
@@ -24,11 +23,11 @@ router.get("/", async (req, res) => {
         await House.findOne({
           where: { id: userFavs[i].houseId },
           raw: true,
-        }),
+        })
       );
     }
     // console.log("USER>>>>>>", user);
-    console.log("userFavs>>>>>>", favsFull);
+    console.log('userFavs>>>>>>', favsFull);
 
     const categories = await Category.findAll();
     const rentPeriods = categories
@@ -53,8 +52,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/add", async (req, res) => {
-  console.log(">>>>>>>>>>>", req.body, "0000000000000000000000000000000");
+router.post('/add', async (req, res) => {
+  console.log('>>>>>>>>>>>', req.body, '0000000000000000000000000000000');
 
   const {
     rentPeriod,
@@ -84,12 +83,12 @@ router.post("/add", async (req, res) => {
     updatedAt,
   });
 
-  console.log("NEW ADVERT >>>>>>", newAdvert.dataValues);
+  console.log('NEW ADVERT >>>>>>', newAdvert.dataValues);
 
   if (newAdvert) {
-    res.json({ msg: "SUCCESS" });
+    res.json({ msg: 'SUCCESS' });
   } else {
-    res.json({ msg: "FAIL" });
+    res.json({ msg: 'FAIL' });
   }
 });
 

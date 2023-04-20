@@ -1,14 +1,15 @@
 const { newAdvert, findAdvert } = document.forms;
-const msg = document.querySelector(".msg");
+const msg = document.querySelector('.msg');
+const adminMail = document.querySelector('.btn-admin-mail');
 
-newAdvert.addEventListener("submit", async (event) => {
+newAdvert.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   const data = new FormData(newAdvert);
-  const response = await fetch("/profile/add", {
-    method: "POST",
+  const response = await fetch('/profile/add', {
+    method: 'POST',
     headers: {
-      "content-Type": "application/json",
+      'content-Type': 'application/json',
     },
     body: JSON.stringify(Object.fromEntries(data)),
   });
@@ -16,7 +17,9 @@ newAdvert.addEventListener("submit", async (event) => {
   const result = await response.json();
   msg.innerText = result.msg;
 
-  if (result.msg === "SUCCESS") {
-    newAdvert.querySelectorAll("input").forEach((el) => (el.value = ""));
+  if (result.msg === 'SUCCESS') {
+    newAdvert.querySelectorAll('input').forEach((el) => (el.value = ''));
   }
 });
+
+// adminMail.addEventListener('click')
