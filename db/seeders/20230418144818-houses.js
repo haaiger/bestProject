@@ -11,7 +11,7 @@ module.exports = {
         photo: "фото",
         address: "Герцена 6",
         geoTag: "1234,5678",
-        isRent: false
+        isRent: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -24,7 +24,7 @@ module.exports = {
         photo: "фото",
         address: "Ленана 5",
         geoTag: "5678,9101",
-        isRent: false
+        isRent: false,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
@@ -37,7 +37,7 @@ module.exports = {
         photo: "фото",
         address: "Мира 20",
         geoTag: "1234,5678",
-        isRent: true
+        isRent: true,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
