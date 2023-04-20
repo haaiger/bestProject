@@ -81,7 +81,11 @@ module.exports = function FullCard({ userSession, oneHouseFronDB }) {
             <p className="lead mb-4">{oneHouseFronDB.description}</p>
             <h3 className="mb-4">{oneHouseFronDB.rentPeriod}</h3>
 
-            <h4 className="mb-4">Цена: {oneHouseFronDB.price}</h4>
+            <h4 className="mb-4">
+              Цена:
+              {' '}
+              {oneHouseFronDB.price}
+            </h4>
             <h3 className="mb-4">{oneHouseFronDB.region}</h3>
 
             <p>{oneHouseFronDB.address}</p>

@@ -10,16 +10,18 @@ function Card({
   address,
   userSession,
   numbersAd,
+  description,
 }) {
   const isFavorite = numbersAd ? numbersAd.includes(id) : false;
+  console.log(photo);
 
   return (
-    <div className="card card-one" id={id} style={{ width: "18rem" }}>
-      <script defer src="/js/card.js" />
+    <div className="card card-one wrapperCard" id={id} style={{ width: "18rem" }}>
+      <link rel="stylesheet" href="/style/card.css" />
       <img
-        className="card-img-top"
-        src={photo || "https://clck.ru/34BUog"}
-        alt="One card"
+        className="card-img-top imgCard"
+        src={photo}
+        alt={description}
       />
       <div className="card-body">
         <a href={`/full-card/${id}`}>
