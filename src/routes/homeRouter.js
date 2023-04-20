@@ -26,7 +26,6 @@ router.get("/", async (request, response) => {
     order: Sequelize.literal("random()"),
     raw: true,
   });
-  console.log(HouseFromDB);
 
   renderTemplate(Home, { HouseFromDB }, request, response);
 });
