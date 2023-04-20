@@ -7,12 +7,9 @@ const FileStore = require("session-file-store")(session);
 // const checkConnect = require("./src/middlewares/checkConnectBd");
 
 // Роуты
-const session = require("express-session");
-const FileStore = require("session-file-store")(session);
+
 const homeRouter = require("./src/routes/homeRouter");
-const userRouters = require("./src/routes/users.routers");
-const favoritesRouters = require("./src/routes/favorites.routers");
-const rentOrderRouters = require("./src/routes/rent.routers");
+const userRouters = require("./src/routes/usersRouter");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -55,8 +52,6 @@ const checkAuth = (request, response, next) => {
 // Роуты
 app.use("/", homeRouter);
 app.use("/users", userRouters);
-app.use("/favirites", favoritesRouters);
-app.use("/rent-porder", rentOrderRouters);
 // app.use(pageNotFoundRouter);
 
 // Старт сервера

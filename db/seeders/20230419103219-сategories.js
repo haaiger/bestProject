@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /** @type {import('sequelize').Sequelize} */
 
-const seedCategories = require('../../src/helpers/seedCategories');
+const seedCategories = require("../../src/helpers/seedCategories");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
