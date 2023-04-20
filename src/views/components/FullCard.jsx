@@ -1,9 +1,16 @@
 const React = require("react");
 const Layout = require("../Layout");
 
-module.exports = function FullCard({ userSession, oneHouseFronDB }) {
+module.exports = function FullCard({
+  userSession,
+  oneHouseFronDB,
+  numbersAd,
+  id,
+}) {
+  const isFavorite = numbersAd.includes(Number(id));
   return (
     <Layout userSession={userSession}>
+      <script defer src="/js/card.js" />
       <div className="container mt-5" style={{ height: 1500 }}>
         <div className="row">
           <div className="col-md-12">
@@ -91,7 +98,7 @@ module.exports = function FullCard({ userSession, oneHouseFronDB }) {
             <p>{oneHouseFronDB.address}</p>
             {userSession.userId && (
               <button
-                id={`${id}`}
+                id={`${oneHouseFronDB.id}`}
                 data-user-id={userSession.userId}
                 type="button"
                 className={`btn ${
