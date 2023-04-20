@@ -124,11 +124,6 @@ findButtonForReg.addEventListener('click', () => {
             buttonRegistration.style.display = 'none';
             const buttonLogin = document.querySelector('.login');
             buttonLogin.style.display = 'none';
-
-            const profileButton = document.querySelector('.profile');
-            profileButton.addEventListener('click', () => {
-              window.location.href = '/profile';
-            });
           }
         } catch (error) {
           // alert('ОШИБКА!!, ЗАПИСЬ НЕ СОЗДАЛАСЬ', error);
@@ -147,7 +142,10 @@ findButtonForReg.addEventListener('click', () => {
     }
   }
 });
-
+const profileButton = document.querySelector('.profile');
+profileButton.addEventListener('click', () => {
+  window.location = '/profile';
+});
 const LoginFormContainer = document.querySelector('.login-form-container');
 let counterForLogin = 0;
 
