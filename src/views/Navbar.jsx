@@ -1,7 +1,6 @@
 const React = require('react');
 
 module.exports = function Navbar({ userSession }) {
-  console.log(userSession, '<<<<<USER IN NAVBAR');
   return (
     <nav>
       <div className="anavbar-nav">
@@ -15,7 +14,7 @@ module.exports = function Navbar({ userSession }) {
           <a className="navLink" href="/products/">
             Все элементы
           </a>
-          <a className="navLink" href="/cart">
+          <a className="navLink" href="/profile/favorites">
             Избранное
           </a>
         </div>

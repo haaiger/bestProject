@@ -5,7 +5,7 @@ const seedUsers = require("../../src/helpers/seedUsers");
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert("Users", seedUsers(10));
+    // await queryInterface.bulkInsert("Users", seedUsers(10));
   },
   down: async (queryInterface, Sequelize) => {
     await queryInterface.bulkDelete("Users", null, {});
