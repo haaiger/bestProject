@@ -9,7 +9,8 @@ const session = require("express-session");
 const FileStore = require("session-file-store")(session);
 const homeRouter = require("./src/routes/homeRouter");
 const userRouters = require("./src/routes/users.routers");
-const favoritesRouters = require("./src/routes/favorites.router");
+const favoritesRouters = require("./src/routes/favorites.routers");
+const rentOrderRouters = require("./src/routes/rent.routers");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -44,6 +45,7 @@ app.use(session(sessionConfig));
 app.use("/", homeRouter);
 app.use("/users", userRouters);
 app.use("/favirites", favoritesRouters);
+app.use("/rent-porder", rentOrderRouters);
 // app.use(pageNotFoundRouter);
 
 // Старт сервера
