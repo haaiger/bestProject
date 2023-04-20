@@ -14,11 +14,17 @@ function ListPage({ findHouses, userSession }) {
           <button type="button">На карте</button>
         </div>
         <div className="wrapperListBigCard">
-          {/* {findHouses.map((house) => (
-            <BigCard url={house.url} />
-          ))} */}
-          <BigCard />
-          <BigCard />
+          {findHouses.map((house) => (
+            <BigCard
+              photo={house.photo}
+              rooms={house.rooms}
+              address={house.address}
+              price={house.price}
+              typeHouse={house.typeHouse}
+              rentPeriod={house.rentPeriod}
+              region={house.region}
+            />
+          ))}
         </div>
       </div>
     </Layout>

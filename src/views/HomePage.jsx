@@ -7,6 +7,7 @@ function HomePage({ userSession, HouseFromDB, numbersAd }) {
     <Layout userSession={userSession}>
       <link rel="stylesheet" href="/style/home.css" />
       <script defer src="/js/home.js" />
+      <script defer src="/js/card.js" />
       <div className="wrapperHome">
         <form className="formHome" name="formHome">
           <div className="wrapperFilters">
@@ -28,10 +29,10 @@ function HomePage({ userSession, HouseFromDB, numbersAd }) {
             </div>
             <div className="wrapperFilter">
               <label>Район:</label>
-              <select name="regions">
-                <option>Центральный</option>
-                <option>Ленинский</option>
-                <option>Октябрьский</option>
+              <select name="region">
+                <option>Первый район</option>
+                <option>Второй район</option>
+                <option>Пятый район</option>
               </select>
             </div>
           </div>
@@ -45,12 +46,13 @@ function HomePage({ userSession, HouseFromDB, numbersAd }) {
               userSession={userSession}
               id={card.id}
               key={index}
-              // photo={card.photo}
+              photo={card.photo}
               typeHouse={card.typeHouse}
               rentPeriod={card.rentPeriod}
               region={card.region}
               price={card.price}
               address={card.address}
+              description={card.description}
             />
           ))}
         </div>
