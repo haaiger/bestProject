@@ -3,13 +3,15 @@
 const router = require("express").Router();
 const renderTemplate = require("../lib/renderTemplate");
 const Profile = require("../views/Profile");
-const {
-  User, Favorite, Category, House,
-} = require("../../db/models");
+const { User, Favorite, Category, House } = require("../../db/models");
+
+let user;
+
+const bcrypt = require("bcrypt");
 
 router.get("/", async (req, res) => {
   try {
-    const user = await User.findOne({
+    user = await User.findOne({
       where: { id: req.session.userId },
       raw: true,
     });
@@ -24,7 +26,7 @@ router.get("/", async (req, res) => {
         await House.findOne({
           where: { id: userFavs[i].houseId },
           raw: true,
-        }),
+        })
       );
     }
     // console.log("USER>>>>>>", user);
@@ -49,12 +51,12 @@ router.get("/", async (req, res) => {
 
     renderTemplate(Profile, { user, favsFull, filters }, req, res);
   } catch (error) {
-    console.log('Ошибка запроса GET /', error);
+    console.log("Ошибка запроса GET /", error);
   }
 });
 
 router.post("/add", async (req, res) => {
-  console.log(">>>>>>>>>>>", req.body, "0000000000000000000000000000000");
+  // console.log(">>>>>>>>>>>", req.body, "0000000000000000000000000000000");
 
   const {
     rentPeriod,
@@ -90,6 +92,56 @@ router.post("/add", async (req, res) => {
     res.json({ msg: "SUCCESS" });
   } else {
     res.json({ msg: "FAIL" });
+  }
+});
+
+router.put("/user", async (req, res) => {
+  // console.log(">>>>>>>>>>>", req.body, "0000000000000000000000000000000");
+  const { firstname, middleName, lastName, phone, email } = req.body;
+  const updatedUser = await User.update(
+    { firstname, middleName, lastName, phone, email },
+    { where: { id: req.session.userId }, returning: true, plain: true }
+  );
+  // console.log(updatedUser[1].dataValues);
+  if (updatedUser[1]) {
+    res.json({
+      msg: "success",
+      firstName: updatedUser[1].dataValues.firstName,
+      middleName: updatedUser[1].dataValues.middleName,
+      lastName: updatedUser[1].dataValues.lastName,
+      phone: updatedUser[1].dataValues.phone,
+      email: updatedUser[1].dataValues.email,
+    });
+  } else {
+    res.json({ msg: "fail" });
+  }
+});
+//проверка старого пароля перед сменой нового
+router.post("/password", async (req, res) => {
+  const { oldPass } = req.body;
+  const passCheck = await bcrypt.compare(oldPass, user.password);
+  if (passCheck) {
+    res.json({ msg: "Введите новый пароль" });
+  } else {
+    res.json({ msg: "Пароль неверный" });
+  }
+});
+
+router.put("/password", async (req, res) => {
+  console.log("==============PUTPUTPUTPUT++++++++++=");
+
+  const { newPass } = req.body;
+  const hashPass = await bcrypt.hash(newPass, 10);
+  const updatedUser = await User.update(
+    { password: hashPass },
+    { where: { id: req.session.userId }, returning: true, plain: true }
+  );
+
+  console.log(updatedUser);
+  if (updatedUser) {
+    res.json({ msg: "Пароль изменён" });
+  } else {
+    res.json({ msg: "Не удалось изменить пароль" });
   }
 });
 
