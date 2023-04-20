@@ -19,6 +19,8 @@ function generateRandomCategoryData() {
     rentPeriod: randomRentPeriod,
     typeHouse: randomHouseType,
     region: randomRegion,
+    createdAt: new Date(),
+    updatedAt: new Date(),
   };
 }
 
