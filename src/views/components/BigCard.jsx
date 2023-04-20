@@ -1,7 +1,7 @@
 const React = require("react");
 
 function BigCard({
-  region, address, price, seller, photo, typeHouse,
+  region, address, price, photo, typeHouse,
 }) {
   return (
     <div className="wrapperBigCard">
@@ -27,11 +27,6 @@ function BigCard({
           Цена:
           {' '}
           {price}
-        </div>
-        <div>
-          Продавец:
-          {' '}
-          {seller}
         </div>
       </div>
     </div>

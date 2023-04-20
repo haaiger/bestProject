@@ -6,7 +6,7 @@ router.post("/favorites/new", async (request, response) => {
     const { userId, houseId } = request.body;
 
     const findFavorite = await Favorite.findOne({
-      where: { userId: 1, houseId },
+      where: { userId, houseId },
       raw: true,
     });
 
