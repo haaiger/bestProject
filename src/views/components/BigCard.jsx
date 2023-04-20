@@ -1,7 +1,7 @@
 const React = require("react");
 
 function BigCard({
-  url, region, address, price, seller,
+  region, address, price, seller,
 }) {
   const img = "/helpers/example.jpeg";
   return (

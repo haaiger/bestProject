@@ -1,51 +1,54 @@
 const React = require("react");
 
-function Card({ id, photo, rentPeriod, typeHouse, region, price, address }) {
-  function dayMonth(rentPeriod) {
-    if (rentPeriod === "Посуточно") {
-      return "руб/сут";
-    }
-    return "руб/мес";
-  }
+function Card({
+  id,
+  photo,
+  rentPeriod,
+  typeHouse,
+  region,
+  price,
+  address,
+  userSession,
+  numbersAd,
+}) {
+  const isFavorite = numbersAd ? numbersAd.includes(id) : false;
 
   return (
-    <a href={`/full-card/${id}`}>
-      <div className="card card-one" id={id} style={{ width: "18rem" }}>
-        <img
-          className="card-img-top"
-          src={photo || "https://clck.ru/34BUog"}
-          alt="One card"
-        />
-        <div className="card-body">
+    <div className="card card-one" id={id} style={{ width: "18rem" }}>
+      <script defer src="/js/card.js" />
+      <img
+        className="card-img-top"
+        src={photo || "https://clck.ru/34BUog"}
+        alt="One card"
+      />
+      <div className="card-body">
+        <a href={`/full-card/${id}`}>
           <h5 className="card-typeHouse">{typeHouse}</h5>
           <h5 className="card-rentPeriod">{rentPeriod}</h5>
           <p className="card-price">
-            {price} {dayMonth(rentPeriod)}
+            {price}
+            {' '}
+            {rentPeriod === "Посуточно" ? "руб/сут" : "руб/мес"}
           </p>
           <p className="card-region">{region}</p>
           <p className="card-address">{address}</p>
-        {numbersAd.includes(id) ? (
+        </a>
+        {userSession.userId && (
           <button
             id={`${id}`}
-            type="button"
-            className="btn btn-danger buttonRemoveFavorite"
             data-user-id={userSession.userId}
-          >
-            Убрать из избранного
-          </button>
-        ) : (
-          <button
-            id={`${id}`}
             type="button"
-            className="btn btn-primary buttonHome buttonAddFavorite"
-            data-user-id={userSession.userId}
+            className={`btn ${
+              isFavorite
+                ? "btn-danger buttonRemoveFavorite"
+                : "btn-primary buttonHome buttonAddFavorite"
+            }`}
           >
-            Добавить в избранное
+            {isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
           </button>
         )}
-        </div>
       </div>
-    </a>
+    </div>
   );
 }
 
