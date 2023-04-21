@@ -88,9 +88,9 @@ router.post("/search", async (req, res) => {
       delete obj[key];
     }
   }
-  console.log("=============", obj, "================");
+  // console.log("=============", obj, "================");
   const searchResult = await House.findAll({ where: { ...obj }, raw: true });
-  console.log(searchResult, "VVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+  // console.log(searchResult, "VVVVVVVVVVVVVVVVVVVVVVVVVVVV");
   if (searchResult[0]) {
     res.json(searchResult);
   } else {
@@ -166,7 +166,7 @@ router.put("/:adId", async (req, res) => {
   // console.log(updatedAd, "^^^^");
 
   if (updatedAd[1]) {
-    console.log(updatedAd[1].dataValues, "^^^^");
+    // console.log(updatedAd[1].dataValues, "^^^^");
     res.json({ msg: "success", ...updatedAd[1].dataValues });
   } else {
     res.json({ msg: "Не удалось изменить" });

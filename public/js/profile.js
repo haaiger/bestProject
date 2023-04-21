@@ -3,7 +3,7 @@ const msg = document.querySelector(".msg");
 const allAds = document.querySelector(".allAds");
 const searchResultsDiv = document.querySelector(".searchResultsDiv");
 
-// * Profile.jsx:27-28 (получение объекта через dataset)
+// * Profile.jsx:27-28 (получение объекта с фильтрами через dataset)
 const filters = JSON.parse(document.querySelector(".sendData").dataset.send);
 
 console.log(filters);
@@ -165,11 +165,10 @@ if (allAds) {
 //* слушатели кнопок "удалить" и "изменить" для объявлений из результатов поиска
 searchResultsDiv.addEventListener("click", async (event) => {
   event.preventDefault();
-
+ //* кнопка "изменить"
   if (event.target.className === "editAdBtn") {
     const thisAdDiv = event.target.parentNode;
     const editAdBtn = thisAdDiv.querySelector(".editAdBtn");
-    console.log(editAdBtn);
     editAdBtn.disabled = true;
     const ul = event.target.parentNode.childNodes[3];
     const thisAdId = Number(thisAdDiv.id);
@@ -232,7 +231,6 @@ searchResultsDiv.addEventListener("click", async (event) => {
         console.log(result);
 
         if (result.msg === "success") {
-          //!! продолжай здесть (вставляй новые значения отредактированного объявл)
           ul.children[1].children[1].innerText = result.typeHouse;
           ul.children[2].children[1].innerText = result.rentPeriod;
           ul.children[3].children[1].innerText = result.region;
@@ -246,6 +244,7 @@ searchResultsDiv.addEventListener("click", async (event) => {
       }
     });
   }
+  //* кнопка "удалить"
   if (event.target.className === "delAdBtn") {
     const adId = Number(event.target.parentNode.id);
     const response = await fetch(`/profile/${adId}`, {
@@ -264,3 +263,4 @@ searchResultsDiv.addEventListener("click", async (event) => {
     }
   }
 });
+/
