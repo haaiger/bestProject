@@ -1,3 +1,70 @@
 .hidden {
   display: none;
 }
+
+.mainContainer {
+  display: flex;
+  /* align-items: center; */
+}
+
+.adminMaile {
+  width: 100%;
+  height: 20px;
+}
+
+.operations {
+  width: 70%;
+}
+
+.adminForm {
+  border: 1px black solid;
+
+  margin: 5px;
+  padding: 5px;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.adminForm input,
+select,
+button {
+  margin: 5px;
+  height: 30px;
+}
+
+.userInfoDiv {
+  width: 30%;
+  margin-left: 20px;
+}
+
+.userInfoDiv button {
+  margin: 5px;
+  width: 200px;
+}
+
+.editUserForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.editUserForm input {
+  margin: 5px;
+}
+
+.editUserForm button {
+  margin: 5px;
+}
+
+.checkPassForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkPassForm input {
+  margin: 5px;
+  width: 200px;
+}
+
+.checkPassForm button {
+  margin: 5px;
+}

@@ -1,12 +1,11 @@
 const { newAdvert, findAdvert } = document.forms;
-const msg = document.querySelector(".msg");
+const msg = document.querySelector(".passMsg");
 const adminMail = document.querySelector(".btn-admin-mail");
 const allAds = document.querySelector(".allAds");
 const searchResultsDiv = document.querySelector(".searchResultsDiv");
 
 // * Profile.jsx:27-28 (получение объекта с фильтрами через dataset)
-const filters = JSON.parse(document.querySelector(".sendData").dataset.send);
-
+const filters = JSON.parse(document.querySelector(".adminForm").dataset.send);
 console.log(filters);
 
 //* создание нового объявления администратором
@@ -25,6 +24,9 @@ if (newAdvert) {
 
     if (result.msg === "SUCCESS") {
       newAdvert.querySelectorAll("input").forEach((el) => (el.value = ""));
+      setTimeout(() => {
+        msg.innerText = "";
+      }, 2000);
     }
   });
 }

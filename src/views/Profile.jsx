@@ -24,14 +24,9 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
               </div>
               <form
                 name="newAdvert"
-                style={{
-                  border: "1px black solid",
-                  margin: "5px",
-                  padding: "5px",
-                }}
-                encType="multipart/form-data"
-                className="sendData"
+                className="adminForm"
                 data-send={JSON.stringify(filters)}
+                encType="multipart/form-data"
               >
                 <span>Создание объявления</span>
                 <br />
@@ -80,14 +75,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 <button className="newAdBtn">Применить</button>
               </form>
               <br />
-              <form
-                name="findAdvert"
-                style={{
-                  border: "1px black solid",
-                  margin: "5px",
-                  padding: "5px",
-                }}
-              >
+              <form name="findAdvert" className="adminForm" style={{}}>
                 <span>Поиск объявлений</span>
                 <br />
                 <input type="number" name="id" placeholder="id" />
@@ -173,7 +161,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
           <div class="editPassDiv">
             <button className="editPassBtn">Изменить пароль</button>
           </div>
-          <h4 className="passMsg"></h4>
+          <h5 className="passMsg"></h5>
         </div>
       </div>
       <script defer src="/js/profile.js" />
