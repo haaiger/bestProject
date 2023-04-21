@@ -131,14 +131,13 @@ findButtonForReg.addEventListener('click', () => {
       }
     });
   } else {
-    const buttonText = document.querySelector('.registration').textContent;
-    if (buttonText === 'Скрыть форму') {
-      document.querySelector('.registration').textContent =
-        'Зарегистрироваться';
-      document.querySelector('.regForm').remove();
-      registrationFormContainer.style.display = 'none';
-      const buttonLogin = document.querySelector('.login');
-      buttonLogin.style.display = 'inline';
+    const buttonText = document.querySelector(".registration").textContent;
+    if (buttonText === "Скрыть форму") {
+      document.querySelector(".registration").textContent = "Зарегистрироваться";
+      document.querySelector(".regForm").remove();
+      registrationFormContainer.style.display = "none";
+      const buttonLogin = document.querySelector(".login");
+      buttonLogin.style.display = "inline";
     }
   }
 });
@@ -280,4 +279,10 @@ buttonLogout.addEventListener('click', () => {
   noButton.addEventListener('click', () => {
     confirmBox.remove();
   });
+});
+
+const profileButton = document.querySelector(".profile");
+
+profileButton?.addEventListener("click", () => {
+  window.location = "/profile";
 });

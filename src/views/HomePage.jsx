@@ -6,8 +6,12 @@ function HomePage({ filters, userSession, HouseFromDB, numbersAd }) {
   return (
     <Layout userSession={userSession}>
       <link rel="stylesheet" href="/style/home.css" />
+      <link rel="stylesheet" href="/style/cardCarousel.css" />
+
       <script defer src="/js/home.js" />
       <script defer src="/js/card.js" />
+      <script defer src="/js/cardCarousel.js" />
+
       <div className="wrapperHome">
         <form className="formHome" name="formHome">
           <div className="wrapperFilters">
