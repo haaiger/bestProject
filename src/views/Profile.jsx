@@ -12,7 +12,10 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
   // console.log("filters========>", filters);
   return (
     <Layout userSession={userSession} style={style}>
-      <div className="mainContainer" style={{ display: "flex", height: "100vh" }}>
+      <div
+        className="mainContainer"
+        style={{ display: "flex", height: "100vh" }}
+      >
         <div className="operations">
           <h3 className="msg"></h3>
           {user?.isAdmin ? (
@@ -72,6 +75,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 <input name="photo" type="file" placeholder="Фото" multiple />
                 <input name="address" type="text" placeholder="Адрес" />
                 <input name="geoTag" type="text" placeholder="Координаты" />
+                <br />
                 <button className="newAdBtn">Применить</button>
               </form>
               <br />
@@ -125,6 +129,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 <input name="price" type="number" placeholder="Цена" />
                 <input name="address" type="text" placeholder="Адрес" />
                 {/* <input name="geotag" type="text" placeholder="Координаты" /> */}
+                <br />
                 <button className="searchAdBtn">Применить</button>
               </form>
               <button className="allAds">Показать все</button>
