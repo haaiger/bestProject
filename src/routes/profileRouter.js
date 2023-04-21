@@ -69,6 +69,7 @@ router.post("/add", upload.array("photo"), async (req, res) => {
     price,
     description,
     photo: JSON.stringify(photos),
+    isRent: false,
     address,
     geoTag,
     isRent,
