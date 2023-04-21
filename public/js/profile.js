@@ -168,6 +168,9 @@ searchResultsDiv.addEventListener("click", async (event) => {
 
   if (event.target.className === "editAdBtn") {
     const thisAdDiv = event.target.parentNode;
+    const editAdBtn = thisAdDiv.querySelector(".editAdBtn");
+    console.log(editAdBtn);
+    editAdBtn.disabled = true;
     const ul = event.target.parentNode.childNodes[3];
     const thisAdId = Number(thisAdDiv.id);
     // console.log(thisAdDiv);
@@ -212,6 +215,7 @@ searchResultsDiv.addEventListener("click", async (event) => {
       e.preventDefault();
       // * "отмена"
       if (e.target.className === "cancelAdEditBtn") {
+        editAdBtn.disabled = false;
         e.target.parentNode.remove();
       }
       // * "сохранить"
@@ -229,6 +233,15 @@ searchResultsDiv.addEventListener("click", async (event) => {
 
         if (result.msg === "success") {
           //!! продолжай здесть (вставляй новые значения отредактированного объявл)
+          ul.children[1].children[1].innerText = result.typeHouse;
+          ul.children[2].children[1].innerText = result.rentPeriod;
+          ul.children[3].children[1].innerText = result.region;
+          ul.children[3].children[2].innerText = result.address;
+          ul.children[5].children[1].innerText = result.price;
+          ul.children[6].children[1].innerText = result.description;
+          ul.children[7].children[1].innerText = result.geoTag;
+          editAdBtn.disabled = false;
+          editAdForm.remove();
         }
       }
     });
