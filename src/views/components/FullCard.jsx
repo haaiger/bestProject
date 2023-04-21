@@ -36,8 +36,8 @@ module.exports = function FullCard({
             )}
             {photos.length > 1 && (
               <div className="carousel-controls">
-                <button className="Предыдущая">Назад</button>
-                <button className="Следующая">Вперед</button>
+                <button className="Предыдущая btn btn-info">Назад</button>
+                <button className="Следующая btn btn-info">Вперед</button>
               </div>
             )}
           </div>

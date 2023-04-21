@@ -71,7 +71,6 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 <input name="description" type="text" placeholder="Описание" />
                 <input name="photo" type="file" placeholder="Фото" multiple />
                 <input name="address" type="text" placeholder="Адрес" />
-                <input name="geoTag" type="text" placeholder="Координаты" />
                 <button className="newAdBtn">Применить</button>
               </form>
               <br />

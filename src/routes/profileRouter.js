@@ -53,8 +53,6 @@ router.post("/add", upload.array("photo"), async (req, res) => {
     price,
     description,
     address,
-    geoTag,
-    isRent,
     createdAt,
     updatedAt,
   } = req.body;
@@ -71,8 +69,6 @@ router.post("/add", upload.array("photo"), async (req, res) => {
     photo: JSON.stringify(photos),
     isRent: false,
     address,
-    geoTag,
-    isRent,
     createdAt,
     updatedAt,
   });
@@ -212,7 +208,6 @@ router.put("/:adId", async (req, res) => {
     address,
     price,
     description,
-    geoTag,
     isRent,
   } = req.body;
   if (isRent === "false") {
@@ -229,7 +224,6 @@ router.put("/:adId", async (req, res) => {
       address,
       price,
       description,
-      geoTag,
       isRent,
     },
     { where: { id: adId }, returning: true, plain: true }

@@ -80,9 +80,6 @@ if (findAdvert) {
                       <li><span>Описание: </span><span>${
                         item.description
                       }</span></li>
-                      <li><span>Координаты: </span><span>${
-                        item.geoTag
-                      }</span></li>
                       <li><span>Создано: </span><span>${item.createdAt.toString()}</span></li>
                       <li><span>Обновлено: </span><span>${item.updatedAt.toString()}</span></li>
                   </ul>
@@ -146,9 +143,6 @@ if (allAds) {
                             <li><span>Описание: </span><span>${
                               item.description
                             }</span></li>
-                            <li><span>Координаты: </span><span>${
-                              item.geoTag
-                            }</span></li>
                             <li><span>Создано: </span><span>${item.createdAt.toString()}</span></li>
                             <li><span>Обновлено: </span><span>${item.updatedAt.toString()}</span></li>
                         </ul>
@@ -180,7 +174,6 @@ searchResultsDiv.addEventListener("click", async (event) => {
     const thisAdAddress = ul.children[3].children[2].innerText;
     const thisAdPrice = ul.children[5].children[1].innerHTML;
     const thisAdDescription = ul.children[6].children[1].textContent;
-    const thisAdGeoTag = ul.children[7].children[1].innerHTML;
     const editAdFormHtml = `
         <form name="editAdForm" style="display: flex; flex-direction: column">
             <input name="typeHouse" type="text" value="${thisAdTypeHouse}" />
@@ -194,7 +187,6 @@ searchResultsDiv.addEventListener("click", async (event) => {
             <input name="price" type="number" value="${thisAdPrice}" />
             <span>(только цифры)</span>
             <input name="description" type="text" value="${thisAdDescription}" />
-            <input name="geoTag" type="text" value="${thisAdGeoTag}" />
             <span>(только цифры)</span>
             <select name="isRent">
                 <option value="true">true</option>
@@ -237,7 +229,6 @@ searchResultsDiv.addEventListener("click", async (event) => {
           ul.children[3].children[2].innerText = result.address;
           ul.children[5].children[1].innerText = result.price;
           ul.children[6].children[1].innerText = result.description;
-          ul.children[7].children[1].innerText = result.geoTag;
           editAdBtn.disabled = false;
           editAdForm.remove();
         }
