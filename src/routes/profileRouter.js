@@ -109,6 +109,66 @@ router.post("/searchAll", async (req, res) => {
   }
 });
 
+//* редактирование данных пользователя (кроме пароля)
+router.put("/user", async (req, res) => {
+  console.log("===========PUT EDIT USER================");
+  const { firstName, middleName, lastName, phone, email } = req.body;
+  const updatedUser = await User.update(
+    { firstName, middleName, lastName, phone, email },
+    { where: { id: req.session.userId }, returning: true, plain: true }
+  );
+  // console.log(updatedUser[1].dataValues);
+  if (updatedUser[1]) {
+    res.json({
+      msg: "success",
+      firstName: updatedUser[1].dataValues.firstName,
+      middleName: updatedUser[1].dataValues.middleName,
+      lastName: updatedUser[1].dataValues.lastName,
+      phone: updatedUser[1].dataValues.phone,
+      email: updatedUser[1].dataValues.email,
+    });
+  } else {
+    res.json({ msg: "fail" });
+  }
+});
+
+//* проверка старого пароля перед сменой нового
+router.post("/password", async (req, res) => {
+  const { oldPass } = req.body;
+  const passCheck = await bcrypt.compare(oldPass, user.password);
+  if (passCheck) {
+    res.json({ msg: "Введите новый пароль" });
+  } else {
+    res.json({ msg: "Пароль неверный" });
+  }
+});
+
+//* смена старого пароля на новый после первичной проверки
+router.put("/password", async (req, res) => {
+  console.log("===========PUT EDIT PASSWORD================");
+  const { newPass } = req.body;
+  const hashPass = await bcrypt.hash(newPass, 10);
+  const updatedUser = await User.update(
+    { password: hashPass },
+    { where: { id: req.session.userId }, returning: true, plain: true }
+  );
+
+  // console.log(updatedUser);
+  if (updatedUser) {
+    res.json({ msg: "Пароль изменён" });
+  } else {
+    res.json({ msg: "Не удалось изменить пароль" });
+  }
+});
+
+router.get("/favorites", async (request, response) => {
+  const { userId } = request.session;
+  const findFavorite = await Favorite.findAll({ where: { userId }, raw: true });
+  const numbersAd = findFavorite.map((house) => house.houseId);
+  const houses = await House.findAll({ raw: true, where: { id: numbersAd } });
+  renderTemplate(Favorites, { houses, numbersAd }, request, response);
+});
+
 //* удаление объявления админом
 router.delete("/:adId", async (req, res) => {
   const { adId } = req.params;
@@ -172,64 +232,6 @@ router.put("/:adId", async (req, res) => {
   } else {
     res.json({ msg: "Не удалось изменить" });
   }
-});
-
-//* редактирование данных пользователя (кроме пароля)
-router.put("/user", async (req, res) => {
-  const { firstName, middleName, lastName, phone, email } = req.body;
-  const updatedUser = await User.update(
-    { firstName, middleName, lastName, phone, email },
-    { where: { id: req.session.userId }, returning: true, plain: true }
-  );
-  // console.log(updatedUser[1].dataValues);
-  if (updatedUser[1]) {
-    res.json({
-      msg: "success",
-      firstName: updatedUser[1].dataValues.firstName,
-      middleName: updatedUser[1].dataValues.middleName,
-      lastName: updatedUser[1].dataValues.lastName,
-      phone: updatedUser[1].dataValues.phone,
-      email: updatedUser[1].dataValues.email,
-    });
-  } else {
-    res.json({ msg: "fail" });
-  }
-});
-
-//* проверка старого пароля перед сменой нового
-router.post("/password", async (req, res) => {
-  const { oldPass } = req.body;
-  const passCheck = await bcrypt.compare(oldPass, user.password);
-  if (passCheck) {
-    res.json({ msg: "Введите новый пароль" });
-  } else {
-    res.json({ msg: "Пароль неверный" });
-  }
-});
-
-//* смена старого пароля на новый после первичной проверки
-router.put("/password", async (req, res) => {
-  const { newPass } = req.body;
-  const hashPass = await bcrypt.hash(newPass, 10);
-  const updatedUser = await User.update(
-    { password: hashPass },
-    { where: { id: req.session.userId }, returning: true, plain: true }
-  );
-
-  // console.log(updatedUser);
-  if (updatedUser) {
-    res.json({ msg: "Пароль изменён" });
-  } else {
-    res.json({ msg: "Не удалось изменить пароль" });
-  }
-});
-
-router.get("/favorites", async (request, response) => {
-  const { userId } = request.session;
-  const findFavorite = await Favorite.findAll({ where: { userId }, raw: true });
-  const numbersAd = findFavorite.map((house) => house.houseId);
-  const houses = await House.findAll({ raw: true, where: { id: numbersAd } });
-  renderTemplate(Favorites, { houses, numbersAd }, request, response);
 });
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const { newAdvert, findAdvert } = document.forms;
-const msg = document.querySelector('.msg');
-const adminMail = document.querySelector('.btn-admin-mail');
+const msg = document.querySelector(".msg");
+const adminMail = document.querySelector(".btn-admin-mail");
 const allAds = document.querySelector(".allAds");
 const searchResultsDiv = document.querySelector(".searchResultsDiv");
 
@@ -11,14 +11,14 @@ console.log(filters);
 
 //* создание нового объявления администратором
 if (newAdvert) {
-  newAdvert.addEventListener('submit', async (event) => {
+  newAdvert.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const data = new FormData(newAdvert);
-    const response = await fetch('/profile/add', {
-      method: 'POST',
+    const response = await fetch("/profile/add", {
+      method: "POST",
       headers: {
-        'content-Type': 'application/json',
+        "content-Type": "application/json",
       },
       body: JSON.stringify(Object.fromEntries(data)),
     });
@@ -26,21 +26,21 @@ if (newAdvert) {
     const result = await response.json();
     msg.innerText = result.msg;
 
-    if (result.msg === 'SUCCESS') {
-      newAdvert.querySelectorAll('input').forEach((el) => (el.value = ''));
+    if (result.msg === "SUCCESS") {
+      newAdvert.querySelectorAll("input").forEach((el) => (el.value = ""));
     }
   });
 }
 
 //* поиск объявления одминистратором
 if (findAdvert) {
-  findAdvert.addEventListener('submit', async (event) => {
+  findAdvert.addEventListener("submit", async (event) => {
     event.preventDefault();
     const data = new FormData(findAdvert);
-    const response = await fetch('/profile/search', {
-      method: 'POST',
+    const response = await fetch("/profile/search", {
+      method: "POST",
       headers: {
-        'content-Type': 'application/json',
+        "content-Type": "application/json",
       },
       body: JSON.stringify(Object.fromEntries(data)),
     });
@@ -166,7 +166,7 @@ if (allAds) {
 //* слушатели кнопок "удалить" и "изменить" для объявлений из результатов поиска
 searchResultsDiv.addEventListener("click", async (event) => {
   event.preventDefault();
- //* кнопка "изменить"
+  //* кнопка "изменить"
   if (event.target.className === "editAdBtn") {
     const thisAdDiv = event.target.parentNode;
     const editAdBtn = thisAdDiv.querySelector(".editAdBtn");
@@ -264,4 +264,3 @@ searchResultsDiv.addEventListener("click", async (event) => {
     }
   }
 });
-/

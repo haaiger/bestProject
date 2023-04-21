@@ -55,8 +55,10 @@ editUserBtn.addEventListener("click", (event1) => {
       },
       body: JSON.stringify(Object.fromEntries(data)),
     });
-
+    //!
+    console.log("response", response);
     const result = await response.json();
+    //!
     console.log(result);
 
     if (result.msg === "success") {
