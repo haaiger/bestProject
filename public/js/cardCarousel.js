@@ -16,7 +16,7 @@ const showSlide = () => {
   sliders[slideIndex].classList.add("active");
 };
 
-prevButton.addEventListener("click", () => {
+prevButton?.addEventListener("click", () => {
   slideIndex--;
   if (slideIndex < 0) {
     slideIndex = sliders.length - 1;
@@ -24,7 +24,7 @@ prevButton.addEventListener("click", () => {
   showSlide();
 });
 
-nextButton.addEventListener("click", () => {
+nextButton?.addEventListener("click", () => {
   slideIndex++;
   if (slideIndex >= sliders.length) {
     slideIndex = 0;

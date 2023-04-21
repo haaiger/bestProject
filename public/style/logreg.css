@@ -57,7 +57,7 @@ nav {
 }
 /* Navbar styles */
 .anavbar-nav {
-  background-color: #333333;
+  background-color: darkslateblue;
   min-width: 100%;
   display: flex;
   flex-direction: row;
@@ -70,8 +70,7 @@ nav {
 .container-nav-link {
   display: flex;
   width: 50%;
-  margin-right: 255px;
-  justify-content: space-evenly;
+  gap: 32px;
 }
 
 .logReg {
@@ -81,7 +80,6 @@ nav {
 .navLink {
   font-size: 18px;
   color: #ffffff;
-  margin: 0 20px;
   text-decoration: none;
 }
 
