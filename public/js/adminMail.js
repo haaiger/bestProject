@@ -1,52 +1,52 @@
-const closeMail = document.querySelector('.close-btn');
-const newBtn = document.querySelector('.new-btn');
-const rightSide = document.querySelector('.rightSide');
+const closeMail = document.querySelector(".close-btn");
+const newBtn = document.querySelector(".new-btn");
+const rightSide = document.querySelector(".rightSide");
 
 async function removeAll() {
   try {
-    const response = await fetch('/admin/mail/remove/all', {
-      method: 'DELETE',
+    const response = await fetch("/admin/mail/remove/all", {
+      method: "DELETE",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
 
     closeMail.click();
   } catch (err) {
-    console.log('ошибка в fetch removeAll ');
+    console.log("ошибка в fetch removeAll ");
   }
 }
 
-rightSide?.addEventListener('click', async (e) => {
-  if (e.target.classList.contains('p-btn-close')) {
+rightSide?.addEventListener("click", async (e) => {
+  if (e.target.classList.contains("p-btn-close")) {
     const idEl = e.target.id;
     const btn = document.getElementById(idEl);
 
     btn.remove();
-    const response = await fetch('/admin/mail', {
-      method: 'PUT',
+    const response = await fetch("/admin/mail", {
+      method: "PUT",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ idEl }),
     });
   }
 });
 
-closeMail?.addEventListener('click', async () => {
+closeMail?.addEventListener("click", async () => {
   try {
-    const leftSide = document.querySelector('.leftSide');
-    const chekDiv = document.querySelector('.removeAll');
+    const leftSide = document.querySelector(".leftSide");
+    const chekDiv = document.querySelector(".removeAll");
     if (!chekDiv) {
-      const div = document.createElement('div');
+      const div = document.createElement("div");
       leftSide.append(div);
 
-      div.className = 'removeAll';
+      div.className = "removeAll";
 
       div.innerHTML = `<button onClick="removeAll()" type="button" className="btn-msg remove-all-btn">
         удалить все
         </button>`;
-      const chekDive = document.querySelector('.removeAll');
+      const chekDive = document.querySelector(".removeAll");
 
       //   chekDive.addEventListener('click', async () => {
       //     console.log('test worked');
@@ -63,16 +63,16 @@ closeMail?.addEventListener('click', async () => {
       //   });
     }
 
-    const res = await fetch('/admin/mail/closed?remove=true', {
-      method: 'GET',
+    const res = await fetch("/admin/mail/closed?remove=true", {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
     const response = await res.json();
-    console.log(response, '<<<<<<RES from back');
+    console.log(response, "<<<<<<RES from back");
 
-    rightSide.innerHTML = '';
+    rightSide.innerHTML = "";
 
     response.forEach((msg) => {
       rightSide.innerHTML += `  
@@ -97,25 +97,25 @@ closeMail?.addEventListener('click', async () => {
     </div>`;
     });
   } catch (err) {
-    console.log(err, 'ошибка в fetch closeMail');
+    console.log(err, "ошибка в fetch closeMail");
   }
 });
 
-newBtn?.addEventListener('click', async () => {
+newBtn?.addEventListener("click", async () => {
   try {
-    const chekDiv = document.querySelector('.removeAll');
+    const chekDiv = document.querySelector(".removeAll");
     if (chekDiv) {
       chekDiv.remove();
     }
-    const res = await fetch('/admin/mail/closed?remove=false', {
-      method: 'GET',
+    const res = await fetch("/admin/mail/closed?remove=false", {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
     const response = await res.json();
 
-    rightSide.innerHTML = '';
+    rightSide.innerHTML = "";
 
     response.forEach((msg) => {
       rightSide.innerHTML += `  
@@ -140,7 +140,7 @@ newBtn?.addEventListener('click', async () => {
     </div>`;
     });
   } catch (err) {
-    console.log(err, 'ошибка в fetch closeMail');
+    console.log(err, "ошибка в fetch closeMail");
   }
 });
 
