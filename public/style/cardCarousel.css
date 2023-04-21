@@ -29,7 +29,7 @@
 
 .carousel-mini img {
   width: 285px;
-  height: 200px;
+
   position: absolute;
   top: 0;
   left: 0;
@@ -40,4 +40,12 @@
 .carousel-mini img.active {
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
+}
+
+.img-empty {
+  width: 285px;
+  height: 200px;
+
+  top: 0;
+  left: 0;
 }

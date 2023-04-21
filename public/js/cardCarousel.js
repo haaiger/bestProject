@@ -1,20 +1,15 @@
-const sliders1 = document.querySelectorAll(".carousel-mini img");
-let slideIndex1 = 0;
+// let slideIndex1 = 0;
+// const sliders1 = document.querySelectorAll(".carousel-mini img");
+// const carouselInterval = setInterval(() => {
+//   sliders1[slideIndex1].classList.remove("active");
+//   slideIndex1 = (slideIndex1 + 1) % sliders1.length;
+//   sliders1[slideIndex1].classList.add("active");
+// }, 2000);
 
-function carouselSlide() {
-  for (let i = 0; i < sliders1.length; i++) {
-    sliders1[i].classList.remove("active");
-  }
-  slideIndex1 = (slideIndex1 + 1) % sliders1.length;
-  sliders1[slideIndex1].classList.add("active");
-}
-
-const carouselInterval = setInterval(carouselSlide, 5000);
-
-let slideIndex = 0;
 const sliders = document.querySelectorAll(".carousel img");
-const prevButton = document.querySelector(".prev-btn");
-const nextButton = document.querySelector(".next-btn");
+const prevButton = document.querySelector(".Предыдущая");
+const nextButton = document.querySelector(".Следующая");
+let slideIndex = 0;
 
 const showSlide = () => {
   sliders.forEach((slide) => slide.classList.remove("active"));

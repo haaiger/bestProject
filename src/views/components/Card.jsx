@@ -23,14 +23,20 @@ function Card({
     >
       <link rel="stylesheet" href="/style/card.css" />
       <div className="container-carousel">
-        <div className="carousel-mini">
-          {photos.map((photo, index) => (
-            <img
-              src={photo.replace("public", "")}
-              className={index === 0 ? "active" : ""}
-            />
-          ))}
-        </div>
+        {photos && photos.length > 0 ? (
+          <div className="carousel-mini">
+            {photos.map((photo, index) => (
+              <img
+                key={index}
+                src={photo.replace("public", "")}
+                className={index === 0 ? "active" : ""}
+                alt={`House photo ${index}`}
+              />
+            ))}
+          </div>
+        ) : (
+          <img src="\img\no_photo.jpg" className="img-empty" />
+        )}
       </div>
       <div className="card-body">
         <a href={`/full-card/${id}`}>

@@ -20,18 +20,26 @@ module.exports = function FullCard({
       <div className="container mt-5">
         <div className="row">
           <div className="container-carousel">
-            <div className="carousel">
-              {photos.map((photo, index) => (
-                <img
-                  src={photo.replace("public", "")}
-                  className={index === 0 ? "active" : ""}
-                />
-              ))}
-            </div>
-            <div className="carousel-controls">
-              <button className="prev-btn">Назад</button>
-              <button className="next-btn">Вперед</button>
-            </div>
+            {photos && photos.length > 0 ? (
+              <div className="carousel">
+                {photos.map((photo, index) => (
+                  <img
+                    key={index}
+                    src={photo.replace("public", "")}
+                    className={index === 0 ? "active" : ""}
+                    alt={`House photo ${index}`}
+                  />
+                ))}
+              </div>
+            ) : (
+              <img src="\img\no_photo.jpg" className="img-empty" />
+            )}
+            {photos.length > 1 && (
+              <div className="carousel-controls">
+                <button className="Предыдущая">Назад</button>
+                <button className="Следующая">Вперед</button>
+              </div>
+            )}
           </div>
 
           <div className="col-md-12 pt-5">
