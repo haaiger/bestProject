@@ -24,10 +24,9 @@ function Card({
       <link rel="stylesheet" href="/style/card.css" />
       <div className="container-carousel">
         <div className="carousel-mini">
-          {photos.map((el, index) => (
+          {photos.map((photo, index) => (
             <img
-              src={el.replace("public", "")}
-              alt=""
+              src={photo.replace("public", "")}
               className={index === 0 ? "active" : ""}
             />
           ))}

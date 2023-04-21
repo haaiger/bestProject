@@ -21,15 +21,15 @@
 }
 
 .carousel-mini {
-  width: 300px;
-  /* height: 500px; */
+  width: 285x;
+  height: 200px;
   overflow: hidden;
   position: relative;
 }
 
 .carousel-mini img {
-  width: 300px;
-  /* height: 500px; */
+  width: 285px;
+  height: 200px;
   position: absolute;
   top: 0;
   left: 0;

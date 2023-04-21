@@ -24,7 +24,6 @@ module.exports = function FullCard({
               {photos.map((photo, index) => (
                 <img
                   src={photo.replace("public", "")}
-                  alt=""
                   className={index === 0 ? "active" : ""}
                 />
               ))}

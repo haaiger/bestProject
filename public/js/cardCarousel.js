@@ -1,10 +1,15 @@
-// let slideIndex = 0;
-// const sliders = document.querySelectorAll(".carousel img");
-// setInterval(() => {
-//   sliders[slideIndex].classList.remove("active");
-//   slideIndex = (slideIndex + 1) % sliders.length;
-//   sliders[slideIndex].classList.add("active");
-// }, 5000);
+const sliders1 = document.querySelectorAll(".carousel-mini img");
+let slideIndex1 = 0;
+
+function carouselSlide() {
+  for (let i = 0; i < sliders1.length; i++) {
+    sliders1[i].classList.remove("active");
+  }
+  slideIndex1 = (slideIndex1 + 1) % sliders1.length;
+  sliders1[slideIndex1].classList.add("active");
+}
+
+const carouselInterval = setInterval(carouselSlide, 5000);
 
 let slideIndex = 0;
 const sliders = document.querySelectorAll(".carousel img");
