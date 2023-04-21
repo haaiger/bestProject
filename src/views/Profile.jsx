@@ -12,12 +12,19 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
   // console.log("filters========>", filters);
   return (
     <Layout userSession={userSession} style={style}>
+<<<<<<< HEAD
       <div className="mainContainer" style={{ display: "flex" }}>
+=======
+      <div
+        className="mainContainer"
+        style={{ display: 'flex', height: '100vh' }}
+      >
+>>>>>>> origin
         <div className="operations">
           <h3 className="msg"></h3>
           {user?.isAdmin ? (
             <>
-              <div className="adminMail">
+              <div className="adminMaile">
                 <a href="/admin/mail" className="btn-admin-mail">
                   Почта
                 </a>
@@ -29,6 +36,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                   margin: "5px",
                   padding: "5px",
                 }}
+                encType="multipart/form-data"
                 className="sendData"
                 data-send={JSON.stringify(filters)}
               >
@@ -73,12 +81,16 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 </label>
                 <input name="price" type="number" placeholder="Цена" />
                 <input name="description" type="text" placeholder="Описание" />
+<<<<<<< HEAD
                 <input
                   name="photo"
                   type="file"
                   placeholder="Фото"
                   value="test.jpg"
                 />
+=======
+                <input name="photo" type="file" placeholder="Фото" multiple />
+>>>>>>> origin
                 <input name="address" type="text" placeholder="Адрес" />
                 <input name="geoTag" type="text" placeholder="Координаты" />
                 <button className="newAdBtn">Применить</button>
@@ -101,7 +113,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                     <option disabled selected>
                       Выберите
                     </option>
-                    <option value={true}>Занято</option>
+                    <option value>Занято</option>
                     <option value={false}>Свободно</option>
                   </select>
                 </label>
@@ -173,8 +185,13 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
           </div>
           <div>Телефон: {user.phone}</div>
           <div>email: {user.email}</div>
+<<<<<<< HEAD
           <button className="editUserBtn">Изменить данные</button>
           <div class="editPassDiv">
+=======
+          <button className="editUserBtn">edit userInfo</button>
+          <div className="editPassDiv">
+>>>>>>> origin
             <button className="editPassBtn">Изменить пароль</button>
           </div>
           <h4 className="passMsg"></h4>
