@@ -1,8 +1,8 @@
-const buttonAddFavorite = document.querySelectorAll(".buttonAddFavorite");
-const buttonRemoveFavorite = document.querySelectorAll(".buttonRemoveFavorite");
-const wrapperButton = document.querySelector(".card-body");
+const buttonAddFavorite1 = document.querySelectorAll(".buttonAddFavorite");
+const buttonRemoveFavorite1 = document.querySelectorAll(".buttonRemoveFavorite");
+const wrapperButton1 = document.querySelector(".card-body");
 
-buttonAddFavorite.forEach((cardButton) => {
+buttonAddFavorite1.forEach((cardButton) => {
   cardButton?.addEventListener("click", async (event) => {
     event.preventDefault();
     const { userId } = event.target.dataset;
@@ -26,7 +26,7 @@ buttonAddFavorite.forEach((cardButton) => {
   });
 });
 
-buttonRemoveFavorite.forEach((cardButton) => {
+buttonRemoveFavorite1.forEach((cardButton) => {
   cardButton?.addEventListener("click", async (event) => {
     event.preventDefault();
     const { userId } = event.target.dataset;

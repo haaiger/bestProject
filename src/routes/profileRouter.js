@@ -3,6 +3,7 @@
 const router = require("express").Router();
 const renderTemplate = require("../lib/renderTemplate");
 const Profile = require("../views/Profile");
+const Favorites = require("../views/components/Favorites");
 const { User, Favorite, Category, House } = require("../../db/models");
 
 let user;

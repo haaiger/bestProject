@@ -1,9 +1,16 @@
 const React = require("react");
 const Layout = require("../Layout");
 
-module.exports = function FullCard({ userSession, oneHouseFronDB }) {
+module.exports = function FullCard({
+  userSession,
+  oneHouseFronDB,
+  numbersAd,
+  id,
+}) {
+  const isFavorite = numbersAd.includes(Number(id));
   return (
     <Layout userSession={userSession}>
+      <script defer src="/js/card.js" />
       <div className="container mt-5" style={{ height: 1500 }}>
         <div className="row">
           <div className="col-md-12">
@@ -81,16 +88,28 @@ module.exports = function FullCard({ userSession, oneHouseFronDB }) {
             <p className="lead mb-4">{oneHouseFronDB.description}</p>
             <h3 className="mb-4">{oneHouseFronDB.rentPeriod}</h3>
 
-            <h4 className="mb-4">Цена: {oneHouseFronDB.price}</h4>
+            <h4 className="mb-4">
+              Цена:
+              {' '}
+              {oneHouseFronDB.price}
+            </h4>
             <h3 className="mb-4">{oneHouseFronDB.region}</h3>
 
             <p>{oneHouseFronDB.address}</p>
-            <button type="button" className="btn btn-primary mt-4">
-              Добавить в избранное
-            </button>
-            <button type="button" className="btn btn-warning mt-4">
-              Забронировать
-            </button>
+            {userSession.userId && (
+              <button
+                id={`${oneHouseFronDB.id}`}
+                data-user-id={userSession.userId}
+                type="button"
+                className={`btn ${
+                  isFavorite
+                    ? "btn-danger buttonRemoveFavorite"
+                    : "btn-primary buttonHome buttonAddFavorite"
+                }`}
+              >
+                {isFavorite ? "Убрать из избранного" : "Добавить в избранное"}
+              </button>
+            )}
           </div>
         </div>
       </div>

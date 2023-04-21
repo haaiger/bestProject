@@ -22,11 +22,12 @@ module.exports = (sequelize, DataTypes) => {
       number: DataTypes.INTEGER,
       email: DataTypes.STRING,
       question: DataTypes.STRING,
+      remove: DataTypes.BOOLEAN,
     },
     {
       sequelize,
       modelName: 'FeedBacks',
-    },
+    }
   );
   return FeedBacks;
 };

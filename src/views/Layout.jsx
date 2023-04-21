@@ -1,9 +1,7 @@
 const React = require('react');
 const Navbar = require('./Navbar');
 
-function Layout({
-  children, userSession, style, font,
-}) {
+function Layout({ children, userSession, style, font }) {
   return (
     <html lang="en">
       <head>
@@ -13,6 +11,7 @@ function Layout({
         {/* <link rel="stylesheet" href="/style/normalize.css" /> */}
         <link rel="stylesheet" href="/style/layout.css" />
         <link rel="stylesheet" href="/style/contact.css" />
+        <link rel="stylesheet" href="/style/adminMail.css" />
         <link rel="stylesheet" href="/style/logreg.css" />
         <link rel="stylesheet" href={style} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,12 +38,12 @@ function Layout({
           crossOrigin="anonymous"
         />
         <script
-          src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
           crossOrigin="anonymous"
         />
         <script defer src="/js/logreg.js" />
-
+        <script defer src="/js/adminMail.js" />
         <title>Project</title>
       </head>
       <body>
@@ -68,7 +67,7 @@ function Layout({
             <div className="footerBlock">
               <h4 className="footer-h4">Навигация</h4>
               <a
-                href="/"
+                href="/profile"
                 className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover footer-a"
               >
                 Личный кабинет
