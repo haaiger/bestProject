@@ -1,7 +1,7 @@
 /* eslint-disable strict */
 /* eslint-disable no-unused-vars */
 
-"use strict";
+'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
@@ -24,6 +24,9 @@ module.exports = {
       },
       question: {
         type: Sequelize.STRING,
+      },
+      remove: {
+        type: Sequelize.BOOLEAN,
       },
       createdAt: {
         allowNull: false,

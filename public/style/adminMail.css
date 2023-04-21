@@ -1,0 +1,55 @@
+.adminMail {
+  display: grid;
+  grid-template-columns: 15% 75%;
+  width: 100%;
+  height: 200px;
+  justify-content: space-evenly;
+}
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: space-between;
+}
+.rightSide {
+  padding-bottom: 150px;
+}
+.static-btn {
+  display: flex;
+  flex-direction: column;
+  margin-top: 31px;
+}
+.removeAll {
+  display: flex;
+  justify-content: center;
+}
+.btn-msg {
+  text-decoration: none;
+  color: black;
+}
+.mail-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(199, 199, 199);
+  min-width: 70%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 5px 5px 5px 5px;
+}
+.mail-container:hover {
+  box-shadow: 4px 5px 15px 2px rgba(82, 79, 99, 0.2);
+}
+.p-main-container {
+  border-bottom: 1px solid rgb(180, 180, 180);
+  font-size: x-small;
+}
+.p-btn-close {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 0px;
+  height: 14px;
+  float: right;
+  font-size: xx-small;
+  align-items: center;
+}

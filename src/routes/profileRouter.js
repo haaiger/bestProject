@@ -1,17 +1,17 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-plusplus */
-const router = require("express").Router();
-const renderTemplate = require("../lib/renderTemplate");
-const Profile = require("../views/Profile");
-const Favorites = require("../views/components/Favorites");
-const { User, Favorite, Category, House } = require("../../db/models");
+const router = require('express').Router();
+const renderTemplate = require('../lib/renderTemplate');
+const Profile = require('../views/Profile');
+const Favorites = require('../views/components/Favorites');
+const { User, Favorite, Category, House } = require('../../db/models');
 
 let user;
 
-const bcrypt = require("bcrypt");
+const bcrypt = require('bcrypt');
 
 //* отрисовка личного кабинета пользователя
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     user = await User.findOne({
       where: { id: req.session.userId },
@@ -49,13 +49,13 @@ router.get("/", async (req, res) => {
 
     renderTemplate(Profile, { user, favsFull, filters }, req, res);
   } catch (error) {
-    console.log("Ошибка запроса GET /", error);
-    console.log("Ошибка запроса GET /", error);
+    console.log('Ошибка запроса GET /', error);
+    console.log('Ошибка запроса GET /', error);
   }
 });
 
 //* добавление нового объявления администратором
-router.post("/add", async (req, res) => {
+router.post('/add', async (req, res) => {
   const {
     rentPeriod,
     typeHouse,
@@ -85,33 +85,33 @@ router.post("/add", async (req, res) => {
   });
 
   if (newAdvert) {
-    res.json({ msg: "SUCCESS" });
+    res.json({ msg: 'SUCCESS' });
   } else {
-    res.json({ msg: "FAIL" });
+    res.json({ msg: 'FAIL' });
   }
 });
 
-router.post("/search", async (req, res) => {
+router.post('/search', async (req, res) => {
   // console.log("=============", req.body, "================");
   const obj = req.body;
 
   for (let key in obj) {
-    if (obj[key] === null || obj[key] === "") {
+    if (obj[key] === null || obj[key] === '') {
       delete obj[key];
     }
   }
-  console.log("=============", obj, "================");
+  console.log('=============', obj, '================');
   const searchResult = await House.findAll({ where: { ...obj }, raw: true });
-  console.log(searchResult, "VVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+  console.log(searchResult, 'VVVVVVVVVVVVVVVVVVVVVVVVVVVV');
   if (searchResult[0]) {
     res.json(searchResult);
   } else {
-    res.json({ msg: "Ничего не нашлось" });
+    res.json({ msg: 'Ничего не нашлось' });
   }
 });
 
 //* редактирование данных пользователя (кроме пароля)
-router.put("/user", async (req, res) => {
+router.put('/user', async (req, res) => {
   const { firstName, middleName, lastName, phone, email } = req.body;
   const updatedUser = await User.update(
     { firstName, middleName, lastName, phone, email },
@@ -120,7 +120,7 @@ router.put("/user", async (req, res) => {
   // console.log(updatedUser[1].dataValues);
   if (updatedUser[1]) {
     res.json({
-      msg: "success",
+      msg: 'success',
       firstName: updatedUser[1].dataValues.firstName,
       middleName: updatedUser[1].dataValues.middleName,
       lastName: updatedUser[1].dataValues.lastName,
@@ -128,23 +128,23 @@ router.put("/user", async (req, res) => {
       email: updatedUser[1].dataValues.email,
     });
   } else {
-    res.json({ msg: "fail" });
+    res.json({ msg: 'fail' });
   }
 });
 
 //* проверка старого пароля перед сменой нового
-router.post("/password", async (req, res) => {
+router.post('/password', async (req, res) => {
   const { oldPass } = req.body;
   const passCheck = await bcrypt.compare(oldPass, user.password);
   if (passCheck) {
-    res.json({ msg: "Введите новый пароль" });
+    res.json({ msg: 'Введите новый пароль' });
   } else {
-    res.json({ msg: "Пароль неверный" });
+    res.json({ msg: 'Пароль неверный' });
   }
 });
 
 //* смена старого пароля на новый после первичной проверки
-router.put("/password", async (req, res) => {
+router.put('/password', async (req, res) => {
   const { newPass } = req.body;
   const hashPass = await bcrypt.hash(newPass, 10);
   const updatedUser = await User.update(
@@ -154,13 +154,13 @@ router.put("/password", async (req, res) => {
 
   // console.log(updatedUser);
   if (updatedUser) {
-    res.json({ msg: "Пароль изменён" });
+    res.json({ msg: 'Пароль изменён' });
   } else {
-    res.json({ msg: "Не удалось изменить пароль" });
+    res.json({ msg: 'Не удалось изменить пароль' });
   }
 });
 
-router.get("/favorites", async (request, response) => {
+router.get('/favorites', async (request, response) => {
   const { userId } = request.session;
   const findFavorite = await Favorite.findAll({ where: { userId }, raw: true });
   const numbersAd = findFavorite.map((house) => house.houseId);
