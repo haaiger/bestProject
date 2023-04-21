@@ -12,7 +12,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
   // console.log("filters========>", filters);
   return (
     <Layout userSession={userSession} style={style}>
-      <div className="mainContainer" style={{ display: "flex" }}>
+      <div className="mainContainer" style={{ display: "flex", height: "100vh" }}>
         <div className="operations">
           <h3 className="msg"></h3>
           {user?.isAdmin ? (
