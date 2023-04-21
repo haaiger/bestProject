@@ -24,6 +24,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                   margin: "5px",
                   padding: "5px",
                 }}
+                encType="multipart/form-data"
               >
                 <label>
                   rentPeriod
@@ -64,7 +65,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 </label>
                 <input name="price" type="number" placeholder="Цена" />
                 <input name="description" type="text" placeholder="Описание" />
-                {/* <input name="photo" type="file" placeholder="Фото" /> */}
+                <input name="photo" type="file" placeholder="Фото" multiple />
                 <input name="address" type="text" placeholder="Адрес" />
                 <input name="geoTag" type="text" placeholder="Координаты" />
                 <button className="newAdBtn">apply</button>
@@ -85,7 +86,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                     <option disabled selected>
                       Выберите
                     </option>
-                    <option value={true}>Занято</option>
+                    <option value>Занято</option>
                     <option value={false}>Свободно</option>
                   </select>
                 </label>
@@ -157,7 +158,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
           <div>Телефон: {user.phone}</div>
           <div>email: {user.email}</div>
           <button className="editUserBtn">edit userInfo</button>
-          <div class="editPassDiv">
+          <div className="editPassDiv">
             <button className="editPassBtn">Изменить пароль</button>
           </div>
           <h4 className="passMsg"></h4>

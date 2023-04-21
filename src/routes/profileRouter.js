@@ -1,11 +1,13 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-plusplus */
 const router = require("express").Router();
+const multer = require("multer");
 const renderTemplate = require("../lib/renderTemplate");
 const Profile = require("../views/Profile");
 const Favorites = require("../views/components/Favorites");
 const { User, Favorite, Category, House } = require("../../db/models");
 
+const upload = multer({ dest: "public/photo/" });
 let user;
 
 const bcrypt = require("bcrypt");
@@ -55,14 +57,13 @@ router.get("/", async (req, res) => {
 });
 
 //* добавление нового объявления администратором
-router.post("/add", async (req, res) => {
+router.post("/add", upload.array("photo"), async (req, res) => {
   const {
     rentPeriod,
     typeHouse,
     region,
     price,
     description,
-    photo,
     address,
     geoTag,
     isRent,
@@ -70,13 +71,16 @@ router.post("/add", async (req, res) => {
     updatedAt,
   } = req.body;
 
+  const photos = req.files.map((file) => file.path);
+  console.log(photos, "req.filesreq.filesreq.files");
+
   const newAdvert = await House.create({
     rentPeriod,
     typeHouse,
     region,
     price,
     description,
-    photo,
+    photo: JSON.stringify(photos),
     address,
     geoTag,
     isRent,
@@ -95,7 +99,7 @@ router.post("/search", async (req, res) => {
   // console.log("=============", req.body, "================");
   const obj = req.body;
 
-  for (let key in obj) {
+  for (const key in obj) {
     if (obj[key] === null || obj[key] === "") {
       delete obj[key];
     }
@@ -114,7 +118,13 @@ router.post("/search", async (req, res) => {
 router.put("/user", async (req, res) => {
   const { firstName, middleName, lastName, phone, email } = req.body;
   const updatedUser = await User.update(
-    { firstName, middleName, lastName, phone, email },
+    {
+      firstName,
+      middleName,
+      lastName,
+      phone,
+      email,
+    },
     { where: { id: req.session.userId }, returning: true, plain: true }
   );
   // console.log(updatedUser[1].dataValues);

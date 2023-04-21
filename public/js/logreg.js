@@ -1,6 +1,6 @@
 const findButtonForReg = document.querySelector(".registration");
 const registrationFormContainer = document.querySelector(
-  ".registration-form-container"
+  ".registration-form-container",
 );
 let counterForReg = 0;
 
@@ -138,8 +138,7 @@ findButtonForReg.addEventListener("click", () => {
   } else {
     const buttonText = document.querySelector(".registration").textContent;
     if (buttonText === "Скрыть форму") {
-      document.querySelector(".registration").textContent =
-        "Зарегистрироваться";
+      document.querySelector(".registration").textContent = "Зарегистрироваться";
       document.querySelector(".regForm").remove();
       registrationFormContainer.style.display = "none";
       const buttonLogin = document.querySelector(".login");
@@ -282,4 +281,10 @@ buttonLogout.addEventListener("click", () => {
   noButton.addEventListener("click", () => {
     confirmBox.remove();
   });
+});
+
+const profileButton = document.querySelector(".profile");
+
+profileButton?.addEventListener("click", () => {
+  window.location = "/profile";
 });

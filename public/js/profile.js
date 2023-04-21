@@ -8,10 +8,7 @@ if (newAdvert) {
     const data = new FormData(newAdvert);
     const response = await fetch("/profile/add", {
       method: "POST",
-      headers: {
-        "content-Type": "application/json",
-      },
-      body: JSON.stringify(Object.fromEntries(data)),
+      body: data,
     });
 
     const result = await response.json();
