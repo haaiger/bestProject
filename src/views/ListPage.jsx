@@ -5,7 +5,6 @@ const Layout = require("./Layout");
 function ListPage({
   findHouses, userSession, rentPeriod, typeHouse, region,
 }) {
- console.log(rentPeriod);
   return (
     <Layout userSession={userSession}>
       <link rel="stylesheet" href="/style/list.css" />
