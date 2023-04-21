@@ -11,7 +11,6 @@ function ListPage({ findHouses, userSession }) {
         <div>
           <div>Количество найденных объявлений</div>
           <div>Фильтр для сортировки</div>
-          <button type="button">На карте</button>
         </div>
         <div className="wrapperListBigCard">
           {findHouses.map((house) => (
