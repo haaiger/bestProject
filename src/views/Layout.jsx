@@ -1,7 +1,9 @@
-const React = require('react');
-const Navbar = require('./Navbar');
+const React = require("react");
+const Navbar = require("./Navbar");
 
-function Layout({ children, userSession, style, font }) {
+function Layout({
+  children, userSession, style, font,
+}) {
   return (
     <html lang="en">
       <head>
@@ -54,72 +56,13 @@ function Layout({ children, userSession, style, font }) {
         <div className="login-form-container" />
         <div className="confirm-exit" />
         {children}
-        <footer>
-          <div className="footerLink">
-            <div>
-              <a
-                href="/"
-                className="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover"
-              >
-                Логотип ©Copyright 2023
-              </a>
-            </div>
-            <div className="footerBlock">
-              <h4 className="footer-h4">Навигация</h4>
-              <a
-                href="/profile"
-                className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover footer-a"
-              >
-                Личный кабинет
-              </a>
-              <a
-                href="/"
-                className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover footer-a"
-              >
-                Избранное
-              </a>
-              <a
-                href="/"
-                className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover footer-a"
-              >
-                Домашняя страница
-              </a>
-            </div>
-
-            <div className="footerBlock">
-              <a
-                href="/contact"
-                className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-              >
-                <h4 className="footer-h4">Контакты</h4>
-              </a>
-              <p className="footer-p"> Icon info@gmail.com</p>
-              <p className="footer-p"> Icon +7 999 888 77 66</p>
-              <p className="footer-p"> Icon Vkontakte.ru</p>
-            </div>
-            <div className="footerBlock">
-              <h4 className="footer-h4">Блог</h4>
-              <a
-                href="/"
-                className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-              >
-                Какая то инфа
-              </a>
-              <a
-                href="/"
-                className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-              >
-                Какая то инфа
-              </a>
-              <a
-                href="/"
-                className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-              >
-                Какая то инфа
-              </a>
-            </div>
-            <div className="wrapper-footer-right" />
-          </div>
+        <footer className="py-3">
+          <ul className="nav justify-content-center border-bottom pb-3 mb-3">
+            <li className="nav-item"><a href="/" className="nav-link px-2 text-info">Home</a></li>
+            <li className="nav-item"><a href="/profile" className="nav-link px-2 text-info">Profile</a></li>
+            <li className="nav-item"><a href="/contact" className="nav-link px-2 text-info">Contacts</a></li>
+          </ul>
+          <p className="text-center text-info">&copy; Софи, самый лучший заказчик!</p>
         </footer>
       </body>
     </html>

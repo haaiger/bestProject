@@ -53,9 +53,8 @@ function HomePage({ filters, userSession, HouseFromDB, numbersAd }) {
               </select>
             </div>
           </div>
-          <button type="submit">Поиск</button>
+          <button type="submit" className="search">Поиск</button>
         </form>
-        <button type="button">Показать на карте</button>
         <div className="wrapperRandomАdvertisement">
           {HouseFromDB.map((card, index) => (
             <Card
