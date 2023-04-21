@@ -1,4 +1,4 @@
-// console.log('hi');
+// // console.log('hi');
 // const test = `   <script defer
 // src="https://api-maps.yandex.ru/2.1/?apikey=601fbec6-659a-4400-ba68-8d4342dbc700&lang=ru_RU"
 // type="text/javascript"

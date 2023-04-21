@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable react/self-closing-comp */
-const React = require("react");
-const Layout = require("./Layout");
+const React = require('react');
+const Layout = require('./Layout');
 
-const style = "/style/profile.css";
+const style = '/style/profile.css';
 
 module.exports = function Profile({ userSession, user, favsFull, filters }) {
   // console.log("userSession========>", userSession);
@@ -12,19 +12,29 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
   // console.log("filters========>", filters);
   return (
     <Layout userSession={userSession} style={style}>
-      <div className="mainContainer" style={{ display: "flex" }}>
+      <div
+        className="mainContainer"
+        style={{ display: 'flex', height: '100vh' }}
+      >
         <div className="operations">
           <h3 className="msg"></h3>
           {user?.isAdmin ? (
             <>
+              <div className="adminMaile">
+                <a href="/admin/mail" className="btn-admin-mail">
+                  Почта
+                </a>
+              </div>
               <form
                 name="newAdvert"
                 style={{
-                  border: "1px black solid",
-                  margin: "5px",
-                  padding: "5px",
+                  border: '1px black solid',
+                  margin: '5px',
+                  padding: '5px',
                 }}
                 encType="multipart/form-data"
+                className="sendData"
+                data-send={JSON.stringify(filters)}
               >
                 <label>
                   rentPeriod
@@ -74,9 +84,9 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
               <form
                 name="findAdvert"
                 style={{
-                  border: "1px black solid",
-                  margin: "5px",
-                  padding: "5px",
+                  border: '1px black solid',
+                  margin: '5px',
+                  padding: '5px',
                 }}
               >
                 <input type="number" name="id" placeholder="id" />
@@ -128,6 +138,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 {/* <input name="geotag" type="text" placeholder="Координаты" /> */}
                 <button className="searchAdBtn">apply</button>
               </form>
+              <button className="allAds">Показать все</button>
               <div className="searchResultsDiv"></div>
             </>
           ) : (

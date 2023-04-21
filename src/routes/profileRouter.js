@@ -12,6 +12,8 @@ let user;
 
 const bcrypt = require("bcrypt");
 
+const getFilters = require("../helpers/getFilters"); // * функция, формирующая массивы поисковых фильтров для рендеринга форм создания, поиска и редактирования объявлений
+
 //* отрисовка личного кабинета пользователя
 router.get("/", async (req, res) => {
   try {
@@ -33,25 +35,11 @@ router.get("/", async (req, res) => {
         })
       );
     }
-    // console.log("USER>>>>>>", user);
-    // console.log("userFavs>>>>>>", favsFull);
 
-    const categories = await Category.findAll();
-    const rentPeriods = categories
-      .map((item) => item.rentPeriod)
-      .filter((item) => item);
-    const typesOfHouses = categories
-      .map((item) => item.typeHouse)
-      .filter((item) => item);
-    const regions = categories
-      .map((item) => item.region)
-      .filter((item) => item);
-
-    const filters = { rentPeriods, typesOfHouses, regions };
+    const filters = await getFilters();
 
     renderTemplate(Profile, { user, favsFull, filters }, req, res);
   } catch (error) {
-    console.log("Ошибка запроса GET /", error);
     console.log("Ошибка запроса GET /", error);
   }
 });
@@ -95,6 +83,7 @@ router.post("/add", upload.array("photo"), async (req, res) => {
   }
 });
 
+//* поиск объявления администратором
 router.post("/search", async (req, res) => {
   // console.log("=============", req.body, "================");
   const obj = req.body;
@@ -104,9 +93,9 @@ router.post("/search", async (req, res) => {
       delete obj[key];
     }
   }
-  console.log("=============", obj, "================");
+  // console.log("=============", obj, "================");
   const searchResult = await House.findAll({ where: { ...obj }, raw: true });
-  console.log(searchResult, "VVVVVVVVVVVVVVVVVVVVVVVVVVVV");
+  // console.log(searchResult, "VVVVVVVVVVVVVVVVVVVVVVVVVVVV");
   if (searchResult[0]) {
     res.json(searchResult);
   } else {
@@ -114,8 +103,19 @@ router.post("/search", async (req, res) => {
   }
 });
 
+//* слушатель кнопки "показать все" объявления
+router.post("/searchAll", async (req, res) => {
+  const allAds = await House.findAll();
+  if (allAds) {
+    res.json(allAds);
+  } else {
+    res.json({ msg: "Не удалось выполнить поиск" });
+  }
+});
+
 //* редактирование данных пользователя (кроме пароля)
 router.put("/user", async (req, res) => {
+  console.log("===========PUT EDIT USER================");
   const { firstName, middleName, lastName, phone, email } = req.body;
   const updatedUser = await User.update(
     {
@@ -155,6 +155,7 @@ router.post("/password", async (req, res) => {
 
 //* смена старого пароля на новый после первичной проверки
 router.put("/password", async (req, res) => {
+  console.log("===========PUT EDIT PASSWORD================");
   const { newPass } = req.body;
   const hashPass = await bcrypt.hash(newPass, 10);
   const updatedUser = await User.update(
@@ -176,6 +177,71 @@ router.get("/favorites", async (request, response) => {
   const numbersAd = findFavorite.map((house) => house.houseId);
   const houses = await House.findAll({ raw: true, where: { id: numbersAd } });
   renderTemplate(Favorites, { houses, numbersAd }, request, response);
+});
+
+//* удаление объявления админом
+router.delete("/:adId", async (req, res) => {
+  const { adId } = req.params;
+
+  const favsToDelete = await Favorite.findAll({
+    where: { houseId: adId },
+    raw: true,
+  });
+  favsToDelete.map(async (fav) => {
+    await Favorite.destroy({ where: { id: fav.id } });
+  });
+
+  const deletedAd = await House.destroy({ where: { id: adId } });
+  // console.log(deletedAd, "^^^^^^^^^^^");
+  if (deletedAd) {
+    res.json({ msg: `Объявление c id ${adId} удалено` });
+  } else {
+    res.json({ msg: "Не удалось удалить" });
+  }
+});
+
+//* редактирование объявления админом
+router.put("/:adId", async (req, res) => {
+  const { adId } = req.params;
+  // console.log(req.body, "=========");
+  let {
+    typeHouse,
+    rentPeriod,
+    region,
+    address,
+    price,
+    description,
+    geoTag,
+    isRent,
+  } = req.body;
+  if (isRent === "false") {
+    isRent = false;
+  } else {
+    isRent = true;
+  }
+
+  const updatedAd = await House.update(
+    {
+      typeHouse,
+      rentPeriod,
+      region,
+      address,
+      price,
+      description,
+      geoTag,
+      isRent,
+    },
+    { where: { id: adId }, returning: true, plain: true }
+  );
+
+  // console.log(updatedAd, "^^^^");
+
+  if (updatedAd[1]) {
+    // console.log(updatedAd[1].dataValues, "^^^^");
+    res.json({ msg: "success", ...updatedAd[1].dataValues });
+  } else {
+    res.json({ msg: "Не удалось изменить" });
+  }
 });
 
 module.exports = router;

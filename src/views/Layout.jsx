@@ -1,5 +1,5 @@
-const React = require("react");
-const Navbar = require("./Navbar");
+const React = require('react');
+const Navbar = require('./Navbar');
 
 function Layout({ children, userSession, style, font }) {
   return (
@@ -11,6 +11,7 @@ function Layout({ children, userSession, style, font }) {
         {/* <link rel="stylesheet" href="/style/normalize.css" /> */}
         <link rel="stylesheet" href="/style/layout.css" />
         <link rel="stylesheet" href="/style/contact.css" />
+        <link rel="stylesheet" href="/style/adminMail.css" />
         <link rel="stylesheet" href="/style/logreg.css" />
         <link rel="stylesheet" href={style} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,7 +43,7 @@ function Layout({ children, userSession, style, font }) {
           crossOrigin="anonymous"
         />
         <script defer src="/js/logreg.js" />
-
+        <script defer src="/js/adminMail.js" />
         <title>Project</title>
       </head>
       <body>
@@ -66,7 +67,7 @@ function Layout({ children, userSession, style, font }) {
             <div className="footerBlock">
               <h4 className="footer-h4">Навигация</h4>
               <a
-                href="/"
+                href="/profile"
                 className="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover footer-a"
               >
                 Личный кабинет

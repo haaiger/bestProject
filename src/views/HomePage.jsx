@@ -2,7 +2,7 @@ const React = require("react");
 const Layout = require("./Layout");
 const Card = require("./components/Card");
 
-function HomePage({ userSession, HouseFromDB, numbersAd }) {
+function HomePage({ filters, userSession, HouseFromDB, numbersAd }) {
   return (
     <Layout userSession={userSession}>
       <link rel="stylesheet" href="/style/home.css" />
@@ -18,25 +18,38 @@ function HomePage({ userSession, HouseFromDB, numbersAd }) {
             <div className="wrapperFilter">
               <label>Тип аренды:</label>
               <select name="rentPeriod">
-                <option>Посуточно</option>
-                <option>Краткосрочно</option>
-                <option>На длительный срок</option>
+                <option disabled selected>
+                  Выберите
+                </option>
+                {filters.rentPeriods.map((item) => (
+                  <option value={item} key={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="wrapperFilter">
               <label>Тип жилья:</label>
               <select name="typeHouse">
-                <option>Комната</option>
-                <option>Квартира</option>
-                <option>Дома</option>
+                <option disabled selected>
+                  Выберите
+                </option>
+                {filters.typesOfHouses.map((item) => (
+                  <option value={item} key={item}>
+                    {item}
+                  </option>
+                ))}
               </select>
             </div>
             <div className="wrapperFilter">
               <label>Район:</label>
               <select name="region">
-                <option>Первый район</option>
-                <option>Второй район</option>
-                <option>Пятый район</option>
+                <option disabled selected>
+                  Выберите
+                </option>
+                {filters.regions.map((item) => (
+                  <option value={item}>{item}</option>
+                ))}
               </select>
             </div>
           </div>

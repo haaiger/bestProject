@@ -1,8 +1,9 @@
 body {
   display: flex;
   flex-direction: column;
+  height: 100vh;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   overflow: auto;
 }
 header {
@@ -17,13 +18,13 @@ header {
   list-style: none;
   gap: 25px;
 }
-
+.wrapperHome {
+  height: 100vh;
+}
 .anchorLayout {
   text-decoration: none;
 }
 footer {
-  position: fixed;
-  bottom: 0;
   height: 300px;
   width: 100%;
   justify-content: space-around;
@@ -49,12 +50,12 @@ footer {
 }
 
 .footer-a {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 100;
   font-size: small;
 }
 .footer-h4 {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 600;
   font-size: medium;
 }
