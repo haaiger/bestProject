@@ -4,6 +4,7 @@
 
 .mainContainer {
   display: flex;
+  margin-left: 15px;
   /* align-items: center; */
 }
 
@@ -18,11 +19,14 @@
 
 .adminForm {
   border: 1px black solid;
-
-  margin: 5px;
+  border-radius: 10px;
+  margin: 15px 5px 5px 5px;
   padding: 5px;
-  /* display: flex;
-  flex-direction: column; */
+  background-color: #e9f2fc;
+}
+
+.adminForm span {
+  font-weight: bold;
 }
 
 .adminForm input,
@@ -30,11 +34,14 @@ select,
 button {
   margin: 5px;
   height: 30px;
+  border-radius: 5px;
+  border: 1px solid rgb(60, 60, 129);
 }
 
 .userInfoDiv {
   width: 30%;
   margin-left: 20px;
+  margin-top: 30px;
 }
 
 .userInfoDiv button {
@@ -45,6 +52,7 @@ button {
 .editUserForm {
   display: flex;
   flex-direction: column;
+  margin-top: 30px;
 }
 
 .editUserForm input {
@@ -67,4 +75,34 @@ button {
 
 .checkPassForm button {
   margin: 5px;
+}
+
+.adInAdminSearchDiv {
+  border-radius: 10px;
+  background-color: #e9f2fc;
+}
+
+body button {
+  background-color: #b8d9ff;
+  border-radius: 5px;
+  margin: 5px;
+  border: 0px;
+}
+
+body button:hover {
+  background-color: #73a4db;
+}
+
+.btn-admin-mail {
+  margin: 5px;
+  width: 40px;
+  height: 20px;
+  text-decoration: none;
+  background-color: #b8d9ff;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.btn-admin-mail:hover {
+  background-color: #73a4db;
 }
