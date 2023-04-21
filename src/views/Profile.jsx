@@ -32,6 +32,8 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                   margin: '5px',
                   padding: '5px',
                 }}
+                className="sendData"
+                data-send={JSON.stringify(filters)}
               >
                 <label>
                   rentPeriod
@@ -135,6 +137,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 {/* <input name="geotag" type="text" placeholder="Координаты" /> */}
                 <button className="searchAdBtn">apply</button>
               </form>
+              <button className="allAds">Показать все</button>
               <div className="searchResultsDiv"></div>
             </>
           ) : (

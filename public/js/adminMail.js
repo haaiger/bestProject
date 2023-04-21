@@ -17,7 +17,7 @@ async function removeAll() {
   }
 }
 
-rightSide?.addEventListener('click', async (e) => {
+rightSide.addEventListener('click', async (e) => {
   if (e.target.classList.contains('p-btn-close')) {
     const idEl = e.target.id;
     const btn = document.getElementById(idEl);
@@ -33,7 +33,7 @@ rightSide?.addEventListener('click', async (e) => {
   }
 });
 
-closeMail?.addEventListener('click', async () => {
+closeMail.addEventListener('click', async () => {
   try {
     const leftSide = document.querySelector('.leftSide');
     const chekDiv = document.querySelector('.removeAll');
@@ -101,7 +101,7 @@ closeMail?.addEventListener('click', async () => {
   }
 });
 
-newBtn?.addEventListener('click', async () => {
+newBtn.addEventListener('click', async () => {
   try {
     const chekDiv = document.querySelector('.removeAll');
     if (chekDiv) {
