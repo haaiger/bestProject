@@ -3,12 +3,17 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border: 2px solid black;
   border-radius: 32px;
+  background-color: bisque;
+  padding: 32px;
 }
 
 .wrapperFilters {
   display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
 .wrapperFilter {
@@ -27,4 +32,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+.search {
+  margin-top: 20px;
 }

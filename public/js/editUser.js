@@ -19,7 +19,7 @@ editUserBtn.addEventListener("click", (event1) => {
   const email = userInfoDiv.childNodes[2].innerText.slice(7);
 
   const newForm = `
-  <form name="editUserForm">
+  <form name="editUserForm" class="editUserForm">
     <input type="text" name="firstName" placeholder="Имя" value=${firstName} />
     <input type="text" name="middleName" placeholder="Фамилия" value=${middlename} />
     <input type="text" name="lastName" placeholder="Отчество" value=${lastName} />
@@ -55,8 +55,10 @@ editUserBtn.addEventListener("click", (event1) => {
       },
       body: JSON.stringify(Object.fromEntries(data)),
     });
-
+    //!
+    console.log("response", response);
     const result = await response.json();
+    //!
     console.log(result);
 
     if (result.msg === "success") {
@@ -77,7 +79,7 @@ editUserBtn.addEventListener("click", (event1) => {
 editPassBtn.addEventListener("click", (event4) => {
   event4.preventDefault();
   const checkPassFormHtml = `
-    <form name="checkPassForm">
+    <form name="checkPassForm" class="checkPassForm">
         <input type="password" name="passInput" placeholder="Введите старый пароль" />
         <button class="checkOldPassBtn">Применить</button>
         <button class="cancelPassCheckBtn">Отмена</button>

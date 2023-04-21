@@ -1,7 +1,7 @@
 const { formHome } = document.forms;
 const favouriteButton = document.querySelector(".buttonHome");
 
-formHome.addEventListener("submit", async (event) => {
+formHome?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const loginData = new FormData(formHome);
   const data = Object.fromEntries(loginData);
@@ -13,7 +13,7 @@ formHome.addEventListener("submit", async (event) => {
   }
 });
 
-favouriteButton.addEventListener("click", (event) => {
+favouriteButton?.addEventListener("click", (event) => {
   event.preventDefault();
   try {
     const data = null; // получаем данные дома.

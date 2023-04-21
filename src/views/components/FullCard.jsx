@@ -8,94 +8,50 @@ module.exports = function FullCard({
   id,
 }) {
   const isFavorite = numbersAd.includes(Number(id));
+  const photos = JSON.parse(oneHouseFronDB.photo);
+  photos.map((photo) => console.log(photo));
+
   return (
     <Layout userSession={userSession}>
+      <link rel="stylesheet" href="/style/cardCarousel.css" />
+      <script defer src="/js/cardCarousel.js" />
       <script defer src="/js/card.js" />
-      <div className="container mt-5" style={{ height: 1500 }}>
+
+      <div className="container mt-5">
         <div className="row">
-          <div className="col-md-12">
-            <div
-              id="carouselExampleIndicators"
-              className="carousel slide"
-              data-ride="carousel"
-            >
-              <ol className="carousel-indicators">
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="0"
-                  className="active"
-                />
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="1"
-                />
-                <li
-                  data-target="#carouselExampleIndicators"
-                  data-slide-to="2"
-                />
-              </ol>
-              <div className="carousel-inner">
-                <div className="carousel-item active">
+          <div className="container-carousel">
+            {photos && photos.length > 0 ? (
+              <div className="carousel">
+                {photos.map((photo, index) => (
                   <img
-                    src="/img/1.jpg"
-                    className="d-block mx-auto w-75"
-                    alt="..."
+                    key={index}
+                    src={photo.replace("public", "")}
+                    className={index === 0 ? "active" : ""}
+                    alt={`House photo ${index}`}
                   />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="/img/2.jpg"
-                    className="d-block mx-auto w-75"
-                    alt="..."
-                  />
-                </div>
-                <div className="carousel-item">
-                  <img
-                    src="/img/3.jpg"
-                    className="d-block mx-auto w-75"
-                    alt="..."
-                  />
-                </div>
+                ))}
               </div>
-              <button
-                className="carousel-control-prev"
-                type="button"
-                data-target="#carouselExampleIndicators"
-                data-slide="prev"
-              >
-                <span
-                  className="carousel-control-prev-icon"
-                  aria-hidden="true"
-                />
-                <span className="sr-only">Previous</span>
-              </button>
-              <button
-                className="carousel-control-next"
-                type="button"
-                data-target="#carouselExampleIndicators"
-                data-slide="next"
-              >
-                <span
-                  className="carousel-control-next-icon"
-                  aria-hidden="true"
-                />
-                <span className="sr-only">Next</span>
-              </button>
-            </div>
+            ) : (
+              <img src="\img\no_photo.jpg" className="img-empty" />
+            )}
+            {photos.length > 1 && (
+              <div className="carousel-controls">
+                <button className="Предыдущая">Назад</button>
+                <button className="Следующая">Вперед</button>
+              </div>
+            )}
           </div>
+
           <div className="col-md-12 pt-5">
             <h1 className="mb-4">{oneHouseFronDB.typeHouse}</h1>
             <p className="lead mb-4">{oneHouseFronDB.description}</p>
             <h3 className="mb-4">{oneHouseFronDB.rentPeriod}</h3>
 
-            <h4 className="mb-4">
-              Цена:
-              {' '}
-              {oneHouseFronDB.price}
-            </h4>
+            <h4 className="mb-4">Цена: {oneHouseFronDB.price}</h4>
             <h3 className="mb-4">{oneHouseFronDB.region}</h3>
 
             <p>{oneHouseFronDB.address}</p>
+
             {userSession.userId && (
               <button
                 id={`${oneHouseFronDB.id}`}

@@ -4,3 +4,7 @@
     align-items: center;
     padding: 32px;
 }
+
+.wrapperList {
+    height: 100vh;
+}

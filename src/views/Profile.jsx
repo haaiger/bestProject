@@ -1,9 +1,9 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable react/self-closing-comp */
-const React = require('react');
-const Layout = require('./Layout');
+const React = require("react");
+const Layout = require("./Layout");
 
-const style = '/style/profile.css';
+const style = "/style/profile.css";
 
 module.exports = function Profile({ userSession, user, favsFull, filters }) {
   // console.log("userSession========>", userSession);
@@ -12,26 +12,26 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
   // console.log("filters========>", filters);
   return (
     <Layout userSession={userSession} style={style}>
-      <div className="mainContainer" style={{ display: 'flex' }}>
+      <div className="mainContainer" style={{ display: "flex", height: "100vh" }}>
         <div className="operations">
           <h3 className="msg"></h3>
           {user?.isAdmin ? (
             <>
-              <div className="adminMail">
+              <div className="adminMaile">
                 <a href="/admin/mail" className="btn-admin-mail">
                   Почта
                 </a>
               </div>
               <form
                 name="newAdvert"
-                style={{
-                  border: '1px black solid',
-                  margin: '5px',
-                  padding: '5px',
-                }}
+                className="adminForm"
+                data-send={JSON.stringify(filters)}
+                encType="multipart/form-data"
               >
+                <span>Создание объявления</span>
+                <br />
                 <label>
-                  rentPeriod
+                  Период аренды
                   <select name="rentPeriod">
                     <option disabled selected>
                       Выберите
@@ -44,7 +44,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                   </select>
                 </label>
                 <label>
-                  typeHouse
+                  Тип жилья
                   <select name="typeHouse">
                     <option disabled selected>
                       Выберите
@@ -57,7 +57,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                   </select>
                 </label>
                 <label>
-                  regions
+                  Район
                   <select name="region">
                     <option disabled selected>
                       Выберите
@@ -69,33 +69,28 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 </label>
                 <input name="price" type="number" placeholder="Цена" />
                 <input name="description" type="text" placeholder="Описание" />
-                {/* <input name="photo" type="file" placeholder="Фото" /> */}
+                <input name="photo" type="file" placeholder="Фото" multiple />
                 <input name="address" type="text" placeholder="Адрес" />
                 <input name="geoTag" type="text" placeholder="Координаты" />
-                <button className="newAdBtn">apply</button>
+                <button className="newAdBtn">Применить</button>
               </form>
               <br />
-              <form
-                name="findAdvert"
-                style={{
-                  border: '1px black solid',
-                  margin: '5px',
-                  padding: '5px',
-                }}
-              >
+              <form name="findAdvert" className="adminForm" style={{}}>
+                <span>Поиск объявлений</span>
+                <br />
                 <input type="number" name="id" placeholder="id" />
                 <label>
-                  СВободно\занято
+                  Занято/свободно
                   <select name="isRent">
                     <option disabled selected>
                       Выберите
                     </option>
-                    <option value={true}>Занято</option>
+                    <option value>Занято</option>
                     <option value={false}>Свободно</option>
                   </select>
                 </label>
                 <label>
-                  rentPeriods
+                  Период аренды
                   <select name="rentPeriod">
                     <option disabled selected>
                       Выберите
@@ -106,7 +101,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                   </select>
                 </label>
                 <label>
-                  typesOfHouses
+                  Тип жилья
                   <select name="typeHouse">
                     <option disabled selected>
                       Выберите
@@ -117,7 +112,7 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                   </select>
                 </label>
                 <label>
-                  regions
+                  Район
                   <select name="region">
                     <option disabled selected>
                       Выберите
@@ -130,8 +125,9 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
                 <input name="price" type="number" placeholder="Цена" />
                 <input name="address" type="text" placeholder="Адрес" />
                 {/* <input name="geotag" type="text" placeholder="Координаты" /> */}
-                <button className="searchAdBtn">apply</button>
+                <button className="searchAdBtn">Применить</button>
               </form>
+              <button className="allAds">Показать все</button>
               <div className="searchResultsDiv"></div>
             </>
           ) : (
@@ -161,11 +157,11 @@ module.exports = function Profile({ userSession, user, favsFull, filters }) {
           </div>
           <div>Телефон: {user.phone}</div>
           <div>email: {user.email}</div>
-          <button className="editUserBtn">edit userInfo</button>
+          <button className="editUserBtn">Изменить данные</button>
           <div class="editPassDiv">
             <button className="editPassBtn">Изменить пароль</button>
           </div>
-          <h4 className="passMsg"></h4>
+          <h5 className="passMsg"></h5>
         </div>
       </div>
       <script defer src="/js/profile.js" />

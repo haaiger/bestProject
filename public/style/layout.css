@@ -1,107 +1,25 @@
 body {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+.wrapperHome {
+  display: flex;
   align-items: center;
   justify-content: center;
-  overflow: auto;
-}
-header {
-  width: 100%;
-}
-.container-fluid {
-  display: flex;
-  justify-content: space-evenly;
-}
-.listLayout {
-  display: flex;
-  list-style: none;
-  gap: 25px;
+  height: 100vh;
 }
 
-.anchorLayout {
-  text-decoration: none;
-}
-footer {
-  position: fixed;
-  bottom: 0;
-  height: 300px;
-  width: 100%;
-  justify-content: space-around;
-
-  background: rgb(107, 107, 107);
-}
-
-.footerLink {
-  display: flex;
-  flex-direction: row;
-  height: 100%;
-  justify-content: space-around;
-  align-items: center;
-  color: white;
-}
-.footerBlock {
-  display: flex;
-  flex-direction: column;
-}
 .btn-a {
   padding-bottom: 15px;
   color: white;
 }
 
-.footer-a {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-size: small;
-}
-.footer-h4 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 600;
-  font-size: medium;
-}
 footer {
-  height: 150px;
-  font-size: x-small;
-}
-@media screen and (max-width: 768px) {
-  /* для устройств с шириной экрана менее 768px */
-  body {
-    padding: 20px;
-  }
-
-  .listLayout {
-    flex-direction: column; /* список становится вертикальным */
-    gap: 15px; /* уменьшение расстояния между элементами */
-  }
-
-  footer {
-    flex-direction: column; /* блоки внутри футера становятся вертикальными */
-    height: auto; /* высота футера автоматически подстраивается под контент */
-    padding: 20px;
-  }
-
-  .footerLink {
-    flex-direction: column; /* ссылки становятся вертикальными */
-    justify-content: center;
-    align-items: center;
-    gap: 10px; /* уменьшение расстояния между элементами */
-  }
-
-  .footerBlock {
-    margin-bottom: 30px; /* увеличиваем расстояние между блоками */
-  }
-
-  .btn-a {
-    padding: 10px; /* изменение размеров кнопки */
-    font-size: 14px; /* изменение размера шрифта */
-  }
-
-  .footer-a {
-    font-size: 14px; /* изменение размера шрифта */
-    text-align: center; /* центр текста */
-  }
-
-  .footer-h4 {
-    font-size: 18px; /* изменение размера шрифта */
-    text-align: center; /* центр текста */
-  }
+  background-color: darkslateblue;
 }
